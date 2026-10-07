@@ -364,6 +364,34 @@
         height: 18px;
       }
     }
+
+    @media (max-width: 400px) {
+      padding: 0.5rem 0.4rem;
+      gap: 0.35rem;
+
+      .qty-selector {
+        .qty-btn {
+          width: 28px;
+          height: 28px;
+          font-size: 1rem;
+        }
+        .qty-num {
+          padding: 0 0.35rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      .add-btn, .buy-btn {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.76rem;
+        min-height: 40px;
+      }
+
+      .fav-action-btn {
+        width: 38px;
+        height: 38px;
+      }
+    }
   }
 }
 

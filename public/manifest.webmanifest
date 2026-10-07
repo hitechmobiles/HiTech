@@ -1,0 +1,19 @@
+{
+  "name": "HiTech Mobiles & Repair Services",
+  "short_name": "HiTech",
+  "description": "Premium Smartphones, Original Spares & Certified Mobile Care with Doorstep Pickup",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0f1c",
+  "theme_color": "#1a8fe3",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["shopping", "utilities", "business"]
+}

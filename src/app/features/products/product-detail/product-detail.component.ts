@@ -5,6 +5,7 @@ import { DataService } from '../../../core/services/data.service';
 import { CartService } from '../../../core/services/cart.service';
 import { FavouritesService } from '../../../core/services/favourites.service';
 import { ToastService } from '../../../core/services/toast.service';
+import { SeoService } from '../../../core/services/seo.service';
 import { ProductItem } from '../../../core/models/product.model';
 
 @Component({
@@ -17,6 +18,7 @@ import { ProductItem } from '../../../core/models/product.model';
 export class ProductDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private seoService = inject(SeoService);
   dataService = inject(DataService);
   cartService = inject(CartService);
   favService = inject(FavouritesService);
@@ -31,6 +33,12 @@ export class ProductDetailComponent implements OnInit {
       const found = this.dataService.allProducts().find(p => p.id === id);
       if (found) {
         this.product = found;
+        this.seoService.updateMeta({
+          title: `${found.name} — Specs, Price & Reviews`,
+          description: `Buy ${found.name} online at ₹${found.price.toLocaleString()} in India. 100% genuine guaranteed with manufacturer warranty and express shipping at HiTech.`,
+          canonicalUrl: `/products/${found.id}`,
+          ogImage: found.image
+        });
       }
     });
   }

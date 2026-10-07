@@ -156,6 +156,14 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
+  @media (max-width: 600px) {
+    gap: 0.45rem;
+  }
+
+  @media (max-width: 380px) {
+    gap: 0.25rem;
+  }
 }
 
 .action-btn {
@@ -180,6 +188,17 @@
     svg {
       width: 18px;
       height: 18px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+
+    svg {
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -347,6 +366,17 @@
 
   @media (max-width: 960px) {
     display: flex;
+  }
+
+  @media (max-width: 380px) {
+    min-height: 36px;
+    min-width: 36px;
+    padding: 0.25rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 

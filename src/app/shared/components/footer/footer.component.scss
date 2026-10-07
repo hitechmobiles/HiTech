@@ -135,11 +135,17 @@
   color: var(--text-secondary);
   font-size: 0.88rem;
   margin-bottom: 0.85rem;
+  transition: all var(--transition-fast);
 
   svg {
     flex-shrink: 0;
     color: var(--primary-accent);
     margin-top: 2px;
+  }
+
+  &.contact-link:hover {
+    color: var(--primary-accent);
+    transform: translateX(4px);
   }
 }
 

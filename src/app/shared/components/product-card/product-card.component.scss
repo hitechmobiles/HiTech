@@ -354,14 +354,18 @@
   }
 
   .add-cart-btn {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.75rem;
-    gap: 0.2rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    min-height: 38px;
+    border-radius: 8px;
+    gap: 0.25rem;
     flex-shrink: 0;
+    touch-action: manipulation;
 
     svg {
-      width: 13px;
-      height: 13px;
+      width: 14px;
+      height: 14px;
     }
   }
 }

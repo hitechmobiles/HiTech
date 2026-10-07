@@ -531,9 +531,10 @@ textarea.form-control {
 @media (max-width: 768px) {
   html {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
     scroll-behavior: smooth;
     overscroll-behavior-y: contain;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -581,8 +582,8 @@ textarea.form-control {
   /* Mobile card treatment for glass panels */
   .glass-panel {
     border-radius: 16px;
-    margin-left: -0.25rem;
-    margin-right: -0.25rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .glass-card {

@@ -1,0 +1,23 @@
+# robots.txt for HiTech Mobiles & Spares
+# https://hitech-mobiles.vercel.app
+
+User-agent: *
+Allow: /
+Allow: /products
+Allow: /products/*
+Allow: /services
+Allow: /register-shop
+Allow: /cart
+Allow: /favourites
+
+# Disallow private administration, partner portals, and authentication
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /owner
+Disallow: /owner/*
+Disallow: /auth/
+Disallow: /auth/*
+
+# Crawl delay & Sitemap index
+Crawl-delay: 1
+Sitemap: https://hitech-mobiles.vercel.app/sitemap.xml

@@ -23,9 +23,9 @@ export const environment = {
     pickupRadiusKm: 30
   },
   github: {
-    owner: 'BhuvaneshwaranMitrahsoft',
+    owner: 'hitechmobiles',
     repo: 'HiTech',
     branch: 'develop',
-    token: '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'
+    token: ''
   }
 };

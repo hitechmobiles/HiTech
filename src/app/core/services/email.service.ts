@@ -201,6 +201,7 @@ export class EmailService {
       issue_description: booking.issueDescription,
       customer_name: booking.customerName,
       customer_phone: booking.customerPhone,
+      customer_email: booking.customerEmail || '',
       customer_address: booking.customerAddress,
       preferred_slot: `${booking.preferredDate} (${booking.preferredTimeSlot})`,
       estimated_price: `₹${booking.estimatedPrice.toLocaleString()}`,

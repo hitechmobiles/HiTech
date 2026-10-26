@@ -146,6 +146,7 @@ export class OrderService {
     issueDescription: string;
     customerName: string;
     customerPhone: string;
+    customerEmail?: string;
     customerAddress: string;
     preferredDate: string;
     preferredTimeSlot: string;

@@ -11,50 +11,88 @@ function interpolateTemplate(templateHtml, variables) {
   return result;
 }
 
-// Fallback HTML generators if files are not accessible
-function generateOrderHtml(vars) {
-  return `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>New Order</title></head>
-<body style="font-family: sans-serif; background-color: #0f172a; padding: 20px; color: #334155;">
-  <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; padding: 24px;">
-    <h2 style="color: #1a8fe3; margin-top: 0;">Order #${vars.order_number || ''}</h2>
+// Fallback HTML generators
+function generateAdminOrderHtml(vars) {
+  return `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0f172a;color:#334155;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:12px;">
+    <h2 style="color:#1a8fe3;">🛒 New Store Order #${vars.order_number || ''}</h2>
     <p><strong>Customer:</strong> ${vars.customer_name || ''} (${vars.customer_phone || ''})</p>
     <p><strong>Email:</strong> ${vars.customer_email || 'N/A'}</p>
-    <p><strong>Delivery Address:</strong> ${vars.delivery_address || ''}</p>
-    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0;" />
-    <h3>Items:</h3>
-    <pre style="background: #f8fafc; padding: 12px; border-radius: 6px; font-family: monospace;">${vars.items_summary || ''}</pre>
-    <p><strong>Subtotal:</strong> ${vars.subtotal || ''}</p>
-    <p><strong>Delivery Fee:</strong> ${vars.delivery_fee || ''}</p>
-    <p><strong>Discount:</strong> ${vars.discount || ''}</p>
-    <h3 style="color: #1a8fe3;">Total Amount: ${vars.total_amount || ''}</h3>
-    <p style="color: #64748b; font-size: 12px;">Placed on: ${vars.order_date || ''} (${vars.order_type || ''})</p>
-  </div>
-</body>
-</html>`;
+    <p><strong>Address:</strong> ${vars.delivery_address || ''}</p>
+    <hr/><pre style="background:#f8fafc;padding:12px;border-radius:6px;">${vars.items_summary || ''}</pre>
+    <h3>Total Amount: ${vars.total_amount || ''}</h3>
+    <p style="color:#64748b;font-size:12px;">Placed on: ${vars.order_date || ''} (${vars.order_type || ''})</p>
+  </div></body></html>`;
 }
 
-function generateBookingHtml(vars) {
-  return `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Service Booking</title></head>
-<body style="font-family: sans-serif; background-color: #0f172a; padding: 20px; color: #334155;">
-  <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; padding: 24px;">
-    <h2 style="color: #7c3aed; margin-top: 0;">Service Booking #${vars.booking_id || ''}</h2>
+function generateCustomerOrderHtml(vars) {
+  return `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0f172a;color:#334155;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:12px;">
+    <h2 style="color:#0284c7;">✅ Order Confirmation #${vars.order_number || ''}</h2>
+    <p>Hello ${vars.customer_name || ''}, thank you for your order with HiTech!</p>
+    <hr/><pre style="background:#f8fafc;padding:12px;border-radius:6px;">${vars.items_summary || ''}</pre>
+    <h3>Total: ${vars.total_amount || ''}</h3>
+    <p><strong>Delivery to:</strong> ${vars.delivery_address || ''}</p>
+    <p style="color:#64748b;font-size:12px;">Support: bhuvaneshwaranaj@gmail.com</p>
+  </div></body></html>`;
+}
+
+function generateAdminBookingHtml(vars) {
+  return `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0f172a;color:#334155;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:12px;">
+    <h2 style="color:#7c3aed;">🔧 New Service Booking #${vars.booking_id || ''}</h2>
     <p><strong>Service:</strong> ${vars.service_name || ''}</p>
-    <p><strong>Device Model:</strong> ${vars.device_model || ''}</p>
-    <p><strong>Reported Issue:</strong> ${vars.issue_description || ''}</p>
-    <p><strong>Time Slot:</strong> ${vars.preferred_slot || ''}</p>
-    <p><strong>Estimated Price:</strong> ${vars.estimated_price || ''}</p>
-    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 16px 0;" />
+    <p><strong>Device:</strong> ${vars.device_model || ''}</p>
+    <p><strong>Issue:</strong> ${vars.issue_description || ''}</p>
     <p><strong>Customer:</strong> ${vars.customer_name || ''} (${vars.customer_phone || ''})</p>
-    <p><strong>Address:</strong> ${vars.customer_address || ''} (Pincode: ${vars.pincode || 'N/A'})</p>
-    <p><strong>Distance:</strong> ${vars.distance_km || 'Unknown'}</p>
-    <p style="color: #64748b; font-size: 12px;">Requested on: ${vars.booking_date || ''} &bull; Mode: ${vars.fulfillment_mode || ''}</p>
-  </div>
-</body>
-</html>`;
+    <p><strong>Address:</strong> ${vars.customer_address || ''} (${vars.pincode || ''})</p>
+    <p><strong>Slot:</strong> ${vars.preferred_slot || ''} &bull; Mode: ${vars.fulfillment_mode || ''}</p>
+    <h3>Estimated Quote: ${vars.estimated_price || ''}</h3>
+  </div></body></html>`;
+}
+
+function generateCustomerBookingHtml(vars) {
+  return `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0f172a;color:#334155;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:12px;">
+    <h2 style="color:#7c3aed;">📱 Appointment Confirmed #${vars.booking_id || ''}</h2>
+    <p>Hello ${vars.customer_name || ''}, your service appointment for <strong>${vars.service_name || ''}</strong> (${vars.device_model || ''}) is confirmed.</p>
+    <p><strong>Preferred Slot:</strong> ${vars.preferred_slot || ''}</p>
+    <p><strong>Mode:</strong> ${vars.fulfillment_mode || ''}</p>
+    <p><strong>Estimated Quote:</strong> ${vars.estimated_price || ''}</p>
+    <p style="color:#64748b;font-size:12px;">Our team will contact you at ${vars.customer_phone || ''}. Support: bhuvaneshwaranaj@gmail.com</p>
+  </div></body></html>`;
+}
+
+function loadTemplate(filename, fallbackFn, vars) {
+  try {
+    const templatePath = path.join(process.cwd(), 'email-templates', filename);
+    if (fs.existsSync(templatePath)) {
+      const raw = fs.readFileSync(templatePath, 'utf8');
+      return interpolateTemplate(raw, vars);
+    }
+  } catch (e) {
+    // fallback
+  }
+  return fallbackFn(vars);
+}
+
+// Helper to call Resend API
+async function sendResendMail(apiKey, fromEmail, toEmail, subject, htmlContent) {
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: fromEmail,
+      to: [toEmail],
+      subject,
+      html: htmlContent
+    })
+  });
+  const data = await response.json();
+  return { ok: response.ok, status: response.status, data };
 }
 
 module.exports = async function handler(req, res) {
@@ -76,12 +114,11 @@ module.exports = async function handler(req, res) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const defaultTo = process.env.RESEND_TO_EMAIL || 'bhuvaneshwaranaj@gmail.com';
+  const adminEmail = process.env.RESEND_TO_EMAIL || 'bhuvaneshwaranaj@gmail.com';
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'HiTech <onboarding@resend.dev>';
 
   try {
     const { type, recipient, subject, templateParams } = req.body || {};
-    const toEmail = recipient || defaultTo;
 
     if (!type || !templateParams) {
       return res.status(400).json({
@@ -90,78 +127,80 @@ module.exports = async function handler(req, res) {
     }
 
     if (!apiKey) {
-      console.warn('RESEND_API_KEY is not defined in environment variables.');
+      console.warn('RESEND_API_KEY is not defined in environment variables. Simulating email dispatch.');
       return res.status(200).json({
-        success: false,
+        success: true,
         simulated: true,
-        message: 'RESEND_API_KEY environment variable is not configured. Email simulated.'
+        message: 'RESEND_API_KEY is not configured. Email simulated locally.'
       });
     }
 
-    let htmlContent = '';
-    let emailSubject = subject || 'HiTech Notification';
+    const targetAdmin = recipient || adminEmail;
+    const customerEmail = templateParams.customer_email?.trim();
+    let adminResult = null;
+    let customerResult = null;
 
-    // Render HTML content based on notification type
     if (type === 'ORDER_NOTIFICATION') {
-      emailSubject = subject || `New Order Placed: #${templateParams.order_number || ''} - ${templateParams.customer_name || ''}`;
-      try {
-        const templatePath = path.join(process.cwd(), 'email-templates', 'order-notification.html');
-        if (fs.existsSync(templatePath)) {
-          const raw = fs.readFileSync(templatePath, 'utf8');
-          htmlContent = interpolateTemplate(raw, templateParams);
-        } else {
-          htmlContent = generateOrderHtml(templateParams);
+      // 1. Dispatch Admin Notification
+      const adminSubject = subject || `🛒 New Order Placed: #${templateParams.order_number || ''} - ${templateParams.customer_name || ''}`;
+      const adminHtml = loadTemplate('order-notification.html', generateAdminOrderHtml, templateParams);
+      adminResult = await sendResendMail(apiKey, fromEmail, targetAdmin, adminSubject, adminHtml);
+
+      // 2. Dispatch Customer Confirmation (if customer email provided and valid)
+      if (customerEmail && customerEmail.includes('@') && customerEmail !== targetAdmin) {
+        try {
+          const custSubject = `✅ Order Confirmation #${templateParams.order_number || ''} - HiTech Mobiles`;
+          const custHtml = loadTemplate('order-customer-confirmation.html', generateCustomerOrderHtml, templateParams);
+          customerResult = await sendResendMail(apiKey, fromEmail, customerEmail, custSubject, custHtml);
+          if (!customerResult.ok) {
+            console.warn(`Customer confirmation could not be sent to ${customerEmail}:`, customerResult.data?.message || customerResult.data);
+          }
+        } catch (err) {
+          console.warn(`Failed customer email delivery to ${customerEmail}:`, err?.message);
         }
-      } catch {
-        htmlContent = generateOrderHtml(templateParams);
       }
+
     } else if (type === 'SERVICE_BOOKING') {
-      emailSubject = subject || `Service Appointment: ${templateParams.service_name || ''} - ${templateParams.customer_name || ''}`;
-      try {
-        const templatePath = path.join(process.cwd(), 'email-templates', 'service-booking-notification.html');
-        if (fs.existsSync(templatePath)) {
-          const raw = fs.readFileSync(templatePath, 'utf8');
-          htmlContent = interpolateTemplate(raw, templateParams);
-        } else {
-          htmlContent = generateBookingHtml(templateParams);
+      // 1. Dispatch Admin Notification
+      const adminSubject = subject || `🔧 Service Appointment: ${templateParams.service_name || ''} - ${templateParams.customer_name || ''}`;
+      const adminHtml = loadTemplate('service-booking-notification.html', generateAdminBookingHtml, templateParams);
+      adminResult = await sendResendMail(apiKey, fromEmail, targetAdmin, adminSubject, adminHtml);
+
+      // 2. Dispatch Customer Confirmation
+      if (customerEmail && customerEmail.includes('@') && customerEmail !== targetAdmin) {
+        try {
+          const custSubject = `📱 Service Booking Confirmation #${templateParams.booking_id || ''} - HiTech Care`;
+          const custHtml = loadTemplate('service-booking-customer.html', generateCustomerBookingHtml, templateParams);
+          customerResult = await sendResendMail(apiKey, fromEmail, customerEmail, custSubject, custHtml);
+          if (!customerResult.ok) {
+            console.warn(`Customer booking confirmation could not be sent to ${customerEmail}:`, customerResult.data?.message || customerResult.data);
+          }
+        } catch (err) {
+          console.warn(`Failed customer email delivery to ${customerEmail}:`, err?.message);
         }
-      } catch {
-        htmlContent = generateBookingHtml(templateParams);
       }
     } else {
-      htmlContent = `<pre>${JSON.stringify(templateParams, null, 2)}</pre>`;
+      // Generic dispatch
+      const genericHtml = `<pre>${JSON.stringify(templateParams, null, 2)}</pre>`;
+      adminResult = await sendResendMail(apiKey, fromEmail, targetAdmin, subject || 'HiTech Notification', genericHtml);
     }
 
-    // Call Resend REST API
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        subject: emailSubject,
-        html: htmlContent
-      })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error('Resend API error:', data);
-      return res.status(response.status).json({
+    if (!adminResult || !adminResult.ok) {
+      console.error('Admin email dispatch error:', adminResult?.data);
+      return res.status(adminResult?.status || 500).json({
         success: false,
-        error: data.message || 'Failed to dispatch email via Resend'
+        error: adminResult?.data?.message || 'Failed to dispatch email via Resend'
       });
     }
 
     return res.status(200).json({
       success: true,
-      id: data.id,
+      id: adminResult.data?.id,
+      adminSent: true,
+      customerSent: !!(customerResult && customerResult.ok),
       simulated: false
     });
+
   } catch (error) {
     console.error('Serverless function error:', error);
     return res.status(500).json({

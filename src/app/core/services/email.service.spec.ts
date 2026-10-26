@@ -7,9 +7,14 @@ import { ServiceBookingRequest } from '../models/service.model';
 describe('EmailService', () => {
   let service: EmailService;
   let emailjsSendSpy: jasmine.Spy;
+  let originalFetch: typeof window.fetch;
 
   beforeEach(() => {
     localStorage.clear();
+    originalFetch = window.fetch;
+    // Default fetch to reject so EmailJS fallback path is tested by default
+    spyOn(window, 'fetch').and.rejectWith(new Error('Endpoint not available'));
+
     TestBed.configureTestingModule({
       providers: [EmailService]
     });
@@ -25,7 +30,35 @@ describe('EmailService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should send order notification via EmailJS', async () => {
+  it('should send order notification via Resend when serverless endpoint succeeds', async () => {
+    (window.fetch as jasmine.Spy).and.resolveTo({
+      ok: true,
+      json: async () => ({ success: true, id: 'resend_123', simulated: false })
+    } as any);
+
+    const mockOrder: Order = {
+      id: 'ord-resend-1',
+      orderNumber: 'ORD-RESEND-1',
+      items: [],
+      customer: { name: 'Resend User', phone: '1234567890', address: 'Test Addr' },
+      subtotal: 1500,
+      deliveryCharge: 0,
+      discount: 0,
+      totalAmount: 1500,
+      placedByRole: 'user',
+      createdAt: '2026-01-01',
+      status: 'Confirmed',
+      ownerNotifiedViaEmail: false
+    };
+
+    const result = await service.sendOrderNotification(mockOrder);
+    expect(result.success).toBeTrue();
+    expect(result.simulated).toBeFalse();
+    expect(service.logs()[0].status).toBe('SENT_VIA_RESEND');
+    expect(emailjsSendSpy).not.toHaveBeenCalled();
+  });
+
+  it('should send order notification via EmailJS when Resend fails', async () => {
     const mockOrder: Order = {
       id: 'ord-1',
       orderNumber: 'ORD-1234',
@@ -65,7 +98,7 @@ describe('EmailService', () => {
     expect(service.logs()[0].status).toBe('SENT_VIA_EMAILJS');
   });
 
-  it('should fallback to simulation when EmailJS fails on order notification', async () => {
+  it('should fallback to simulation when Resend and EmailJS both fail on order notification', async () => {
     emailjsSendSpy.and.rejectWith(new Error('Network error'));
 
     const mockOrder: Order = {
@@ -90,7 +123,7 @@ describe('EmailService', () => {
     expect(service.logs()[0].status).toBe('SIMULATED_LOCAL');
   });
 
-  it('should send service booking notification via EmailJS', async () => {
+  it('should send service booking notification via EmailJS when Resend fails', async () => {
     const mockBooking: ServiceBookingRequest = {
       id: 'srv-book-1',
       serviceId: 'srv-1',
@@ -119,7 +152,7 @@ describe('EmailService', () => {
     expect(service.logs()[0].status).toBe('SENT_VIA_EMAILJS');
   });
 
-  it('should fallback to simulation when EmailJS fails on service booking', async () => {
+  it('should fallback to simulation when Resend and EmailJS both fail on service booking', async () => {
     emailjsSendSpy.and.rejectWith(new Error('Quota exceeded'));
 
     const mockBooking: ServiceBookingRequest = {

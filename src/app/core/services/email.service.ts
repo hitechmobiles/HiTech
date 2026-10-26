@@ -12,7 +12,7 @@ export interface EmailLogEntry {
   subject: string;
   payload: any;
   sentAt: string;
-  status: 'SENT_VIA_EMAILJS' | 'SIMULATED_LOCAL';
+  status: 'SENT_VIA_RESEND' | 'SENT_VIA_EMAILJS' | 'SIMULATED_LOCAL';
 }
 
 const EMAIL_LOGS_KEY = 'hitech_email_logs';
@@ -26,11 +26,17 @@ export class EmailService {
   readonly logs = this._logs.asReadonly();
 
   /**
-   * Always reads configuration directly from environment.emailJs
-   * (Admin UI does not manage API credentials; configured in code)
+   * Reads configuration directly from environment
    */
-  private getConfig() {
+  private getEmailJsConfig() {
     return environment.emailJs;
+  }
+
+  private getResendConfig() {
+    return (environment as any).resend || {
+      apiEndpoint: '/api/send-email',
+      notificationEmail: 'bhuvaneshwaranaj@gmail.com'
+    };
   }
 
   private loadLogs(): EmailLogEntry[] {
@@ -56,11 +62,56 @@ export class EmailService {
   }
 
   /**
+   * Attempt dispatch via Vercel Resend Serverless endpoint
+   */
+  private async sendViaResend(
+    type: 'ORDER_NOTIFICATION' | 'SERVICE_BOOKING',
+    recipient: string,
+    subject: string,
+    templateParams: any
+  ): Promise<{ success: boolean; simulated: boolean }> {
+    const resendConfig = this.getResendConfig();
+    const endpoint = resendConfig.apiEndpoint || '/api/send-email';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          type,
+          recipient,
+          subject,
+          templateParams
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Resend endpoint returned status ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result.success && !result.simulated) {
+        return { success: true, simulated: false };
+      }
+      if (result.simulated) {
+        this.logger.info('EmailService', 'Resend simulated email response (API key not set in environment).');
+      }
+      return { success: false, simulated: true };
+    } catch (err: any) {
+      this.logger.warn('EmailService', `Resend dispatch failed or unavailable at ${endpoint}: ${err?.message || err}.`);
+      return { success: false, simulated: true };
+    }
+  }
+
+  /**
    * Send Order Details to the Shop Owner's email
    */
   async sendOrderNotification(order: Order): Promise<{ success: boolean; simulated: boolean }> {
-    const config = this.getConfig();
-    const ownerEmail = config.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
+    const emailJsConfig = this.getEmailJsConfig();
+    const resendConfig = this.getResendConfig();
+    const ownerEmail = resendConfig.notificationEmail || emailJsConfig.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
 
     const itemsSummary = order.items
       .map(i => `${i.name} (x${i.quantity}) - ₹${i.totalPrice.toLocaleString()}`)
@@ -82,20 +133,36 @@ export class EmailService {
       order_date: new Date().toLocaleString()
     };
 
-    const isConfigured = !!config.publicKey && config.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY';
+    const subject = `New Order Placed: #${order.orderNumber} - ${order.customer.name}`;
 
-    if (isConfigured) {
+    // 1. Try sending via Resend Serverless API
+    const resendResult = await this.sendViaResend('ORDER_NOTIFICATION', ownerEmail, subject, templateParams);
+    if (resendResult.success && !resendResult.simulated) {
+      this.addLog({
+        type: 'ORDER_NOTIFICATION',
+        recipient: ownerEmail,
+        subject,
+        payload: templateParams,
+        status: 'SENT_VIA_RESEND'
+      });
+      this.logger.info('EmailService', `Order notification sent via Resend to ${ownerEmail} for order #${order.orderNumber}`);
+      return { success: true, simulated: false };
+    }
+
+    // 2. Fallback to EmailJS if configured
+    const isEmailJsConfigured = !!emailJsConfig.publicKey && emailJsConfig.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY';
+    if (isEmailJsConfigured) {
       try {
         await emailjs.send(
-          config.serviceId,
-          config.orderTemplateId,
+          emailJsConfig.serviceId,
+          emailJsConfig.orderTemplateId,
           templateParams,
-          config.publicKey
+          emailJsConfig.publicKey
         );
         this.addLog({
           type: 'ORDER_NOTIFICATION',
           recipient: ownerEmail,
-          subject: `New Order Placed: #${order.orderNumber} - ${order.customer.name}`,
+          subject,
           payload: templateParams,
           status: 'SENT_VIA_EMAILJS'
         });
@@ -104,10 +171,9 @@ export class EmailService {
       } catch (err: any) {
         this.logger.warn('EmailService', `EmailJS dispatch failed for order #${order.orderNumber}: ${err?.text || err?.message || err}. Falling back to simulation.`, err);
       }
-    } else {
-      this.logger.info('EmailService', 'EmailJS public key not set in environment. Simulating order email dispatch.');
     }
 
+    // 3. Simulated Local Fallback
     this.addLog({
       type: 'ORDER_NOTIFICATION',
       recipient: ownerEmail,
@@ -123,8 +189,9 @@ export class EmailService {
    * Send Service Booking to Shop Owner
    */
   async sendServiceBookingNotification(booking: ServiceBookingRequest): Promise<{ success: boolean; simulated: boolean }> {
-    const config = this.getConfig();
-    const ownerEmail = config.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
+    const emailJsConfig = this.getEmailJsConfig();
+    const resendConfig = this.getResendConfig();
+    const ownerEmail = resendConfig.notificationEmail || emailJsConfig.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
 
     const templateParams = {
       to_email: ownerEmail,
@@ -143,21 +210,37 @@ export class EmailService {
       booking_date: new Date().toLocaleDateString('en-IN')
     };
 
-    const isConfigured = !!config.publicKey && config.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY';
+    const subject = `Service Appointment: ${booking.serviceName} - ${booking.customerName}`;
 
-    if (isConfigured) {
+    // 1. Try sending via Resend Serverless API
+    const resendResult = await this.sendViaResend('SERVICE_BOOKING', ownerEmail, subject, templateParams);
+    if (resendResult.success && !resendResult.simulated) {
+      this.addLog({
+        type: 'SERVICE_BOOKING',
+        recipient: ownerEmail,
+        subject,
+        payload: templateParams,
+        status: 'SENT_VIA_RESEND'
+      });
+      this.logger.info('EmailService', `Service booking email sent via Resend to ${ownerEmail} for booking #${booking.id}`);
+      return { success: true, simulated: false };
+    }
+
+    // 2. Fallback to EmailJS if configured
+    const isEmailJsConfigured = !!emailJsConfig.publicKey && emailJsConfig.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY';
+    if (isEmailJsConfigured) {
       try {
-        const templateId = (config as any).serviceBookingTemplateId || config.orderTemplateId;
+        const templateId = (emailJsConfig as any).serviceBookingTemplateId || emailJsConfig.orderTemplateId;
         await emailjs.send(
-          config.serviceId,
+          emailJsConfig.serviceId,
           templateId,
           templateParams,
-          config.publicKey
+          emailJsConfig.publicKey
         );
         this.addLog({
           type: 'SERVICE_BOOKING',
           recipient: ownerEmail,
-          subject: `Service Appointment: ${booking.serviceName} - ${booking.customerName}`,
+          subject,
           payload: templateParams,
           status: 'SENT_VIA_EMAILJS'
         });
@@ -166,10 +249,9 @@ export class EmailService {
       } catch (err: any) {
         this.logger.warn('EmailService', `EmailJS dispatch failed for booking #${booking.id}: ${err?.text || err?.message || err}. Falling back to simulation.`, err);
       }
-    } else {
-      this.logger.info('EmailService', 'EmailJS public key not configured in environment. Simulating service booking email dispatch.');
     }
 
+    // 3. Simulated Local Fallback
     this.addLog({
       type: 'SERVICE_BOOKING',
       recipient: ownerEmail,

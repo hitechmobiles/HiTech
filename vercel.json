@@ -7,6 +7,10 @@
   "cleanUrls": true,
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(data/.*|assets/.*|.*\\.(?:ico|png|jpg|jpeg|svg|webp|gif|css|js|woff|woff2|ttf|eot|webmanifest|xml|txt))",
       "headers": {
         "cache-control": "public, max-age=31536000, immutable"

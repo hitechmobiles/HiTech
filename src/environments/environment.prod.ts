@@ -14,6 +14,10 @@ export const environment = {
     serviceBookingTemplateId: 'template_service_booking',
     notificationEmail: 'bhuvaneshwaranaj@gmail.com'
   },
+  resend: {
+    apiEndpoint: '/api/send-email',
+    notificationEmail: 'bhuvaneshwaranaj@gmail.com'
+  },
   otpExpirySeconds: 60,
   hub: {
     name: 'Hi Tech Mobile Sales and Service',

@@ -223,24 +223,228 @@
   }
 }
 
-.empty-results {
-  text-align: center;
-  padding: 4rem 2rem;
-  max-width: 500px;
-  margin: 2rem auto;
+.brand-select-wrap {
+  display: flex;
+  align-items: center;
 
-  .empty-icon {
+  @media (max-width: 600px) {
+    width: 100%;
+    .filter-select {
+      width: 100%;
+      min-height: 42px;
+    }
+  }
+}
+
+.active-filter-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(var(--primary-accent-rgb), 0.15);
+    border: 1px solid rgba(var(--primary-accent-rgb), 0.3);
+    color: var(--text-primary);
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0;
+      margin-left: 2px;
+      line-height: 1;
+
+      &:hover {
+        color: #ef4444;
+      }
+    }
+  }
+
+  .clear-all-link {
+    background: transparent;
+    border: none;
+    color: var(--primary-accent);
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+/* Empty Search & Order Sourcing Form */
+.empty-results-container {
+  padding: 3rem 2rem;
+  max-width: 720px;
+  margin: 1.5rem auto;
+  border-radius: 20px;
+
+  @media (max-width: 640px) {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .empty-header-area {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .empty-icon-wrap {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .empty-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.sourcing-form-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 640px) {
+    padding: 1.25rem;
+  }
+
+  .form-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+
+    h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+    }
+  }
+}
+
+.request-grid-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+
+      .req {
+        color: #ef4444;
+      }
+    }
+
+    .form-input, .form-textarea {
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.95rem;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition-fast);
+
+      &:focus {
+        border-color: var(--primary-accent);
+        box-shadow: 0 0 0 3px rgba(var(--primary-accent-rgb), 0.15);
+      }
+    }
+  }
+
+  .form-actions-bar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.request-success-panel {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 16px;
+
+  .success-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
   }
 
   h3 {
-    font-size: 1.35rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    color: #34d399;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
   }
 
   p {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 520px;
+    margin: 0 auto 1.75rem;
+  }
+
+  .success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
   }
 }

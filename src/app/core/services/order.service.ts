@@ -127,12 +127,8 @@ export class OrderService {
       itemsCount: newOrder.items.length
     });
 
-    // Trigger immediate pipeline push if configured
-    if (this.publishService.isConfigured()) {
-      this.publishService.triggerImmediatePipeline(`Customer Order #${newOrder.orderNumber} placed`)
-        .catch(err => this.logger.warn('OrderService', 'Pipeline dispatch skipped: ' + err?.message));
-    }
-
+    // Note: Automatic pipeline dispatch removed as per midnight 1:00 AM scheduler requirement.
+    // Manual publish via admin dashboard remains available.
     return { success: true, order: newOrder };
   }
 
@@ -177,8 +173,15 @@ export class OrderService {
       ]
     };
 
-    // Send email notification to owner
-    await this.emailService.sendServiceBookingNotification(booking);
+    // Send email notification to owner (Standard vs Custom Issue)
+    if (bookingData.serviceId === 'srv-custom' || bookingData.serviceName.startsWith('Custom Repair')) {
+      await this.emailService.sendCustomIssueNotification({
+        ...booking,
+        customIssueTitle: bookingData.serviceName
+      });
+    } else {
+      await this.emailService.sendServiceBookingNotification(booking);
+    }
 
     this._bookings.update(list => {
       const updated = [booking, ...list];
@@ -194,12 +197,8 @@ export class OrderService {
       device: booking.deviceModel
     });
 
-    // Trigger immediate pipeline push if configured
-    if (this.publishService.isConfigured()) {
-      this.publishService.triggerImmediatePipeline(`Repair Booking #${booking.id} (${booking.serviceName})`)
-        .catch(err => this.logger.warn('OrderService', 'Pipeline dispatch skipped: ' + err?.message));
-    }
-
+    // Note: Automatic pipeline dispatch removed as per midnight 1:00 AM scheduler requirement.
+    // Manual publish via admin dashboard remains available.
     return { success: true, booking };
   }
 

@@ -20,6 +20,13 @@ export class ProductCardComponent {
   favService = inject(FavouritesService);
   toastService = inject(ToastService);
 
+  get discountPercent(): number {
+    if (this.product.originalPrice && this.product.originalPrice > this.product.price) {
+      return Math.round((1 - this.product.price / this.product.originalPrice) * 100);
+    }
+    return 0;
+  }
+
   addToCart(e: Event): void {
     e.stopPropagation();
     if (!this.product.inStock) {

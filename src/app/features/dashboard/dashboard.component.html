@@ -99,6 +99,114 @@
     </div>
   </section>
 
+  <!-- Festive Smartphone Brands Showcase (Pure CSS Designed Arches) -->
+  <section class="section-padding container brands-showcase-section animate-fade-in">
+    <div class="festive-banner-header">
+      <div class="festive-diya">🪔</div>
+      <div class="festive-title-wrap">
+        <span class="festive-sparkle">✤</span>
+        <h2 class="festive-title">Smartphone Brands</h2>
+        <span class="festive-sparkle">✤</span>
+      </div>
+      <div class="festive-diya">🪔</div>
+      <a routerLink="/products" [queryParams]="{category: 'phone'}" class="festive-view-all">
+        View All Brands
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <div class="brands-arch-grid">
+      @for (b of smartphoneBrands; track b.name) {
+        <button type="button" class="brand-arch-card" (click)="navigateToBrand(b.query)" [title]="'Browse ' + b.name + ' smartphones'">
+          <div class="arch-outer-frame">
+            <!-- Arched Temple Top Crown -->
+            <div class="arch-spire">
+              <span class="spire-peak"></span>
+            </div>
+            
+            <!-- Gold Metallic Arch Body -->
+            <div class="arch-gold-body">
+              <div class="arch-inner-border">
+                <div class="brand-logo-container">
+                  @switch (b.code) {
+                    @case ('apple') {
+                      <svg viewBox="0 0 170 170" width="34" height="34" fill="#000000" class="apple-svg">
+                        <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.08-7.61-7.8-11.73-14.14-5.34-8.24-9.59-17.76-12.74-28.57-3.15-10.81-4.73-21.2-4.73-31.18 0-14.93 3.83-27.1 11.5-36.5 7.67-9.41 17.15-14.24 28.43-14.51 5.38 0 11.16 1.44 17.34 4.34 6.18 2.89 10.15 4.39 11.9 4.49 1.43-.1 5.48-1.63 12.16-4.58 6.67-2.95 12.28-4.34 17.82-4.17 13.7.83 24.63 5.76 32.79 14.8-11.93 7.23-17.77 17.35-17.51 30.38.27 10.51 4.25 19.34 11.95 26.51 7.7 7.18 16.89 11.25 27.56 12.21-2.26 6.94-4.87 13.78-7.83 20.52zM119.22 33.15c0-7.72 2.76-14.88 8.28-21.49 5.53-6.61 12.22-10.97 20.09-13.08.13 1.15.2 2.14.2 2.97 0 7.55-2.92 14.76-8.75 21.63-5.83 6.87-12.82 11.12-20.97 12.75-.24-.91-.36-1.85-.36-2.78z"/>
+                      </svg>
+                    }
+                    @case ('aiplus') {
+                      <div class="logo-aiplus">Ai<span class="plus-sign">+</span></div>
+                    }
+                    @case ('hmd') {
+                      <div class="logo-hmd">HMD</div>
+                    }
+                    @case ('infinix') {
+                      <div class="logo-infinix">Infinix</div>
+                    }
+                    @case ('iqoo') {
+                      <div class="logo-iqoo">iQOO</div>
+                    }
+                    @case ('itel') {
+                      <div class="logo-itel">itel</div>
+                    }
+                    @case ('mivi') {
+                      <div class="logo-mivi">MIVI</div>
+                    }
+                    @case ('moto') {
+                      <div class="logo-moto-bat">
+                        <span class="moto-m">M</span>
+                      </div>
+                    }
+                    @case ('narzo') {
+                      <div class="logo-narzo">narzo</div>
+                    }
+                    @case ('nothing') {
+                      <div class="logo-nothing">NOTHING</div>
+                    }
+                    @case ('oneplus') {
+                      <div class="logo-oneplus">
+                        <span class="oneplus-icon">1+</span>
+                        <span class="oneplus-lbl">ONEPLUS</span>
+                      </div>
+                    }
+                    @case ('oppo') {
+                      <div class="logo-oppo">oppo</div>
+                    }
+                    @case ('poco') {
+                      <div class="logo-poco">POCO</div>
+                    }
+                    @case ('realme') {
+                      <div class="logo-realme">realme</div>
+                    }
+                    @case ('redmi') {
+                      <div class="logo-redmi">Redmi</div>
+                    }
+                    @case ('samsung') {
+                      <div class="logo-samsung">SAMSUNG</div>
+                    }
+                    @case ('lava') {
+                      <div class="logo-lava">LAVA</div>
+                    }
+                    @case ('villaon') {
+                      <div class="logo-villaon">
+                        <span class="villaon-icon">◆</span>
+                        <span class="villaon-lbl">VILLAON</span>
+                      </div>
+                    }
+                    @case ('vivo') {
+                      <div class="logo-vivo">vivo</div>
+                    }
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="arch-caption">{{ b.label }}</div>
+        </button>
+      }
+    </div>
+  </section>
+
   <!-- Featured Products Section -->
   <section class="section-padding container">
     <div class="section-header">

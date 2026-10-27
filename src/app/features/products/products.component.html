@@ -36,7 +36,17 @@
       </button>
     </div>
 
-    <!-- Subcategories (Only if accessories selected or all) -->
+    <!-- Brand Filter -->
+    <div class="brand-select-wrap">
+      <select [(ngModel)]="selectedBrand" class="filter-select">
+        <option value="all">All Brands (19)</option>
+        @for (b of availableBrands; track b) {
+          <option [value]="b">{{ b }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Subcategories (Only if accessories selected) -->
     @if (selectedCategory === 'accessory') {
       <div class="subcat-select-wrap">
         <select [(ngModel)]="selectedSubCategory" class="filter-select">
@@ -66,6 +76,31 @@
     </div>
   </div>
 
+  <!-- Active Filter Badges -->
+  @if (selectedBrand !== 'all' || searchQuery || selectedCategory !== 'all') {
+    <div class="active-filter-chips">
+      @if (selectedBrand !== 'all') {
+        <span class="filter-chip">
+          Brand: {{ selectedBrand }}
+          <button (click)="selectedBrand = 'all'">✕</button>
+        </span>
+      }
+      @if (searchQuery) {
+        <span class="filter-chip">
+          Search: "{{ searchQuery }}"
+          <button (click)="searchQuery = ''">✕</button>
+        </span>
+      }
+      @if (selectedCategory !== 'all') {
+        <span class="filter-chip">
+          Category: {{ selectedCategory }}
+          <button (click)="selectedCategory = 'all'">✕</button>
+        </span>
+      }
+      <button class="clear-all-link" (click)="resetFilters()">Clear all</button>
+    </div>
+  }
+
   <!-- Products Results Grid -->
   @if (filteredProducts.length > 0) {
     <div class="products-grid animate-fade-in">
@@ -74,12 +109,126 @@
       }
     </div>
   } @else {
-    <!-- Empty Search State -->
-    <div class="empty-results glass-panel animate-fade-in">
-      <div class="empty-icon">🔍</div>
-      <h3>No products matched your criteria</h3>
-      <p>Try searching for a different keyword or clearing your active filters.</p>
-      <button class="btn btn-primary" (click)="resetFilters()">Reset All Filters</button>
+    <!-- Empty Search State & Product Request Order Form -->
+    <div class="empty-results-container glass-panel animate-fade-in">
+      <div class="empty-header-area">
+        <div class="empty-icon-wrap">🔍</div>
+        <h3>No products found matching "{{ searchQuery || 'your filter criteria' }}"</h3>
+        <p class="empty-desc">
+          Can't find the phone or accessory you're looking for? Don't worry! Fill in the quick order request form below and our sourcing team will check wholesale inventory and email/call you shortly with an update.
+        </p>
+      </div>
+
+      @if (!requestSubmitted) {
+        <!-- Sourcing Order Request Form -->
+        <div class="sourcing-form-panel">
+          <div class="form-banner">
+            <span class="badge badge-cyan">Special Order Request</span>
+            <h4>Request Phone Sourcing & Quotation</h4>
+          </div>
+
+          <form (ngSubmit)="submitProductRequest()" class="request-grid-form">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Requested Phone / Model <span class="req">*</span></label>
+                <input
+                  type="text"
+                  [(ngModel)]="requestForm.requestedProduct"
+                  name="requestedProduct"
+                  placeholder="e.g. Vivo X100 Pro, OnePlus 12, iPhone 16 Plus..."
+                  required
+                  class="form-input" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Preferred Specs (Storage / Color)</label>
+                <input
+                  type="text"
+                  [(ngModel)]="requestForm.preferredSpecs"
+                  name="preferredSpecs"
+                  placeholder="e.g. 256GB Black, 12GB RAM"
+                  class="form-input" />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Your Name <span class="req">*</span></label>
+                <input
+                  type="text"
+                  [(ngModel)]="requestForm.customerName"
+                  name="customerName"
+                  placeholder="Enter full name"
+                  required
+                  class="form-input" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Phone Number (10 Digits) <span class="req">*</span></label>
+                <input
+                  type="tel"
+                  [(ngModel)]="requestForm.customerPhone"
+                  name="customerPhone"
+                  placeholder="10-digit mobile number"
+                  maxlength="10"
+                  required
+                  class="form-input" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address (To Receive Status Updates)</label>
+              <input
+                type="email"
+                [(ngModel)]="requestForm.customerEmail"
+                name="customerEmail"
+                placeholder="name@example.com (we'll email you with availability)"
+                class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Requirements / Urgent Notes</label>
+              <textarea
+                [(ngModel)]="requestForm.customerNotes"
+                name="customerNotes"
+                rows="2"
+                placeholder="Any special details, wholesale quantity, or target price..."
+                class="form-textarea"></textarea>
+            </div>
+
+            <div class="form-actions-bar">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg"
+                [disabled]="requestSubmitting || !requestForm.requestedProduct.trim() || !requestForm.customerName.trim() || !requestForm.customerPhone.trim()">
+                @if (requestSubmitting) {
+                  <span>Submitting Sourcing Request...</span>
+                } @else {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  <span>Submit Order Request & Email Me Update</span>
+                }
+              </button>
+
+              <button type="button" class="btn btn-outline" (click)="resetFilters()">
+                Reset All Filters
+              </button>
+            </div>
+          </form>
+        </div>
+      } @else {
+        <!-- Successful Request State -->
+        <div class="request-success-panel animate-fade-in">
+          <div class="success-icon">✅</div>
+          <h3>Order Request Registered for "{{ requestForm.requestedProduct }}"!</h3>
+          <p>
+            Thank you, <strong>{{ requestForm.customerName }}</strong>! Our procurement team has been alerted. We will check wholesale inventory and send an email update / contact you shortly at <strong>{{ requestForm.customerPhone }}</strong>.
+          </p>
+          <div class="success-actions">
+            <button class="btn btn-primary" (click)="resetFilters()">Browse All Available Catalog</button>
+            <button class="btn btn-outline" (click)="requestSubmitted = false">Submit Another Request</button>
+          </div>
+        </div>
+      }
     </div>
   }
 </div>

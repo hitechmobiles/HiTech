@@ -179,6 +179,70 @@ module.exports = async function handler(req, res) {
           console.warn(`Failed customer email delivery to ${customerEmail}:`, err?.message);
         }
       }
+    } else if (type === 'PRODUCT_SEARCH_REQUEST') {
+      // 1. Dispatch Admin Notification for Sourcing
+      const adminSubject = subject || `🔍 Customer Product Request: ${templateParams.requested_product || ''} - ${templateParams.customer_name || ''}`;
+      const adminHtml = loadTemplate('product-request-admin.html', vars => `
+        <div style="font-family:sans-serif;padding:20px;background:#0f172a;color:#f8fafc;border-radius:10px;">
+          <h2 style="color:#38bdf8;">🔍 New Product / Phone Request</h2>
+          <p><strong>Device:</strong> ${vars.requested_product || ''}</p>
+          <p><strong>Customer:</strong> ${vars.customer_name || ''} (${vars.customer_phone || ''})</p>
+          <p><strong>Email:</strong> ${vars.customer_email || 'N/A'}</p>
+          <p><strong>Notes:</strong> ${vars.customer_notes || 'N/A'}</p>
+          <p style="color:#94a3b8;font-size:12px;">Submitted on: ${vars.request_date || ''}</p>
+        </div>
+      `, templateParams);
+      adminResult = await sendResendMail(apiKey, fromEmail, targetAdmin, adminSubject, adminHtml);
+
+      // 2. Dispatch Customer Confirmation
+      if (customerEmail && customerEmail.includes('@') && customerEmail !== targetAdmin) {
+        try {
+          const custSubject = `📱 We Received Your Request: ${templateParams.requested_product || ''} - HiTech Mobiles`;
+          const custHtml = loadTemplate('product-request-customer.html', vars => `
+            <div style="font-family:sans-serif;padding:20px;background:#0f172a;color:#f8fafc;border-radius:10px;">
+              <h2 style="color:#38bdf8;">We Received Your Product Request! 📱</h2>
+              <p>Hello ${vars.customer_name || ''}, thank you for requesting <strong>${vars.requested_product || ''}</strong>.</p>
+              <p>Our team is checking wholesale availability and will contact you shortly at ${vars.customer_phone || ''}.</p>
+            </div>
+          `, templateParams);
+          customerResult = await sendResendMail(apiKey, fromEmail, customerEmail, custSubject, custHtml);
+        } catch (err) {
+          console.warn(`Failed customer email delivery to ${customerEmail}:`, err?.message);
+        }
+      }
+
+    } else if (type === 'CUSTOM_SERVICE_ISSUE') {
+      // 1. Dispatch Admin Notification for Custom Issue
+      const adminSubject = subject || `🔧 Custom Repair Booking: ${templateParams.custom_issue_title || templateParams.service_name || ''} - ${templateParams.customer_name || ''}`;
+      const adminHtml = loadTemplate('custom-issue-admin.html', vars => `
+        <div style="font-family:sans-serif;padding:20px;background:#0f172a;color:#f8fafc;border-radius:10px;">
+          <h2 style="color:#c084fc;">🔧 New Custom Issue Repair Booking #${vars.booking_id || ''}</h2>
+          <p><strong>Custom Issue:</strong> ${vars.custom_issue_title || ''}</p>
+          <p><strong>Device:</strong> ${vars.device_model || ''}</p>
+          <p><strong>Customer:</strong> ${vars.customer_name || ''} (${vars.customer_phone || ''})</p>
+          <p><strong>Description:</strong> ${vars.issue_description || ''}</p>
+          <p><strong>Preferred Slot:</strong> ${vars.preferred_slot || ''} &bull; Mode: ${vars.fulfillment_mode || ''}</p>
+        </div>
+      `, templateParams);
+      adminResult = await sendResendMail(apiKey, fromEmail, targetAdmin, adminSubject, adminHtml);
+
+      // 2. Dispatch Customer Confirmation
+      if (customerEmail && customerEmail.includes('@') && customerEmail !== targetAdmin) {
+        try {
+          const custSubject = `🔧 Custom Service Booking Confirmed #${templateParams.booking_id || ''} - HiTech Care`;
+          const custHtml = loadTemplate('custom-issue-customer.html', vars => `
+            <div style="font-family:sans-serif;padding:20px;background:#0f172a;color:#f8fafc;border-radius:10px;">
+              <h2 style="color:#c084fc;">Custom Repair Appointment Confirmed! 🔧</h2>
+              <p>Hello ${vars.customer_name || ''}, your custom repair for <strong>${vars.custom_issue_title || ''}</strong> (${vars.device_model || ''}) is booked.</p>
+              <p>A certified engineer will contact you shortly.</p>
+            </div>
+          `, templateParams);
+          customerResult = await sendResendMail(apiKey, fromEmail, customerEmail, custSubject, custHtml);
+        } catch (err) {
+          console.warn(`Failed customer email delivery to ${customerEmail}:`, err?.message);
+        }
+      }
+
     } else {
       // Generic dispatch
       const genericHtml = `<pre>${JSON.stringify(templateParams, null, 2)}</pre>`;

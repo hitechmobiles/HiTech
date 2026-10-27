@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0b1120; margin: 0; padding: 24px; color: #e2e8f0; }
+    .container { max-width: 600px; margin: 0 auto; background: #1e293b; border-radius: 16px; border: 1px solid #334155; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .header { background: linear-gradient(135deg, #0284c7, #06b6d4); padding: 28px; text-align: center; }
+    .header h1 { margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; }
+    .content { padding: 28px; }
+    .badge { display: inline-block; padding: 6px 12px; background: rgba(16, 185, 129, 0.2); color: #34d399; border-radius: 9999px; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 16px; }
+    .card { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 18px; margin-bottom: 18px; }
+    .requested-product { font-size: 18px; color: #38bdf8; font-weight: 700; margin: 6px 0; }
+    .highlight-box { background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 14px; margin: 16px 0; font-size: 14px; line-height: 1.5; color: #e2e8f0; }
+    .footer { text-align: center; padding: 20px; font-size: 12px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>We Received Your Product Request! 📱</h1>
+    </div>
+    <div class="content">
+      <div class="badge">Request Received</div>
+      <p style="margin-top:0; color:#cbd5e1;">Hello <strong>{{customer_name}}</strong>,</p>
+      <p style="color:#cbd5e1;">Thank you for reaching out to HiTech Mobiles. We have logged your request for the following product:</p>
+      
+      <div class="card">
+        <div style="color:#94a3b8; font-size:12px; text-transform:uppercase;">Requested Device / Item:</div>
+        <div class="requested-product">{{requested_product}}</div>
+        <div style="font-size:13px; color:#94a3b8; margin-top:4px;">Request ID: #{{request_id}} &bull; Date: {{request_date}}</div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>What happens next?</strong><br>
+        Our procurement team is currently verifying wholesale stock availability and the best discounted price for you. A specialist will call or email you shortly at <strong>{{customer_phone}}</strong> / <strong>{{customer_email}}</strong> to confirm pricing and delivery details.
+      </div>
+
+      <p style="font-size:13px; color:#94a3b8;">Need urgent support? Call us directly at <a href="tel:+919876543210" style="color:#38bdf8;text-decoration:none;">+91 98765 43210</a> or visit our store in Maniyarampatti, Trichy.</p>
+    </div>
+    <div class="footer">
+      HiTech Mobile Sales & Service • 100% Genuine Certified Devices & Spares
+    </div>
+  </div>
+</body>
+</html>

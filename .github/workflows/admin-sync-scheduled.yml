@@ -2,8 +2,8 @@ name: Scheduled Admin Catalog Sync
 
 on:
   schedule:
-    # Runs daily at 00:00 UTC (05:30 AM IST)
-    - cron: '0 0 * * *'
+    # Runs daily at 1:00 AM IST (19:30 UTC) for midnight customer orders and catalog sync
+    - cron: '30 19 * * *'
   workflow_dispatch:
     inputs:
       reason:

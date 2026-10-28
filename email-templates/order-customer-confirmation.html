@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your HiTech Order Confirmation #{{order_number}}</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #334155;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0f172a; padding: 30px 15px;">
+    <tr>
+      <td align="center">
+        <!-- Main Card Container -->
+        <table role="presentation" width="100%" style="max-width: 620px; background-color: #ffffff; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);">
+          
+          <!-- Brand Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #1a8fe3 0%, #0284c7 100%); padding: 32px 30px; text-align: center;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">HiTech</h1>
+              <p style="margin: 6px 0 0; color: #e0f2fe; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Order Confirmation & Receipt</p>
+            </td>
+          </tr>
+
+          <!-- Confirmation Banner -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 22px 30px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+              <span style="display: inline-block; background-color: #ecfdf5; color: #059669; font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid #a7f3d0;">
+                &#10003; We Have Received Your Order!
+              </span>
+              <h2 style="margin: 12px 0 4px; color: #0f172a; font-size: 22px; font-weight: 700;">Thank You, {{customer_name}}!</h2>
+              <p style="margin: 0; color: #64748b; font-size: 14px;">Order <strong>#{{order_number}}</strong> is confirmed and being prepared.</p>
+            </td>
+          </tr>
+
+          <!-- Delivery Details -->
+          <tr>
+            <td style="padding: 24px 30px 10px;">
+              <h3 style="margin: 0 0 12px; color: #0f172a; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #1a8fe3; padding-bottom: 6px; display: inline-block;">
+                Shipping & Contact Information
+              </h3>
+              <table role="presentation" width="100%" style="font-size: 14px; line-height: 1.6; color: #334155;">
+                <tr>
+                  <td width="35%" style="color: #64748b; padding: 4px 0;"><strong>Recipient:</strong></td>
+                  <td style="color: #0f172a; font-weight: 600; padding: 4px 0;">{{customer_name}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 4px 0;"><strong>Phone:</strong></td>
+                  <td style="color: #0f172a; font-weight: 600; padding: 4px 0;">{{customer_phone}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 4px 0; vertical-align: top;"><strong>Shipping Address:</strong></td>
+                  <td style="color: #0f172a; padding: 4px 0;">{{delivery_address}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 4px 0;"><strong>Order Date:</strong></td>
+                  <td style="color: #0f172a; padding: 4px 0;">{{order_date}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Items Ordered Summary -->
+          <tr>
+            <td style="padding: 15px 30px;">
+              <h3 style="margin: 0 0 12px; color: #0f172a; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #1a8fe3; padding-bottom: 6px; display: inline-block;">
+                Order Summary
+              </h3>
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px; font-family: monospace, Courier, sans-serif; font-size: 13px; line-height: 1.8; color: #0f172a; white-space: pre-line;">{{items_summary}}</div>
+            </td>
+          </tr>
+
+          <!-- Price Breakdown -->
+          <tr>
+            <td style="padding: 10px 30px 24px;">
+              <table role="presentation" width="100%" style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 14px;">
+                <tr>
+                  <td style="color: #64748b; padding: 4px 0;">Items Subtotal</td>
+                  <td align="right" style="color: #0f172a; font-weight: 600; padding: 4px 0;">{{subtotal}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 4px 0;">Delivery Fee</td>
+                  <td align="right" style="color: #0f172a; font-weight: 600; padding: 4px 0;">{{delivery_fee}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #059669; padding: 4px 0;">Discount Applied</td>
+                  <td align="right" style="color: #059669; font-weight: 600; padding: 4px 0;">- {{discount}}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="border-top: 2px solid #0f172a; padding-top: 10px; margin-top: 6px;"></td>
+                </tr>
+                <tr>
+                  <td style="color: #0f172a; font-size: 16px; font-weight: 800; padding: 4px 0;">Total Amount</td>
+                  <td align="right" style="color: #1a8fe3; font-size: 20px; font-weight: 800; padding: 4px 0;">{{total_amount}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Next Steps & Support -->
+          <tr>
+            <td style="background-color: #f0fdf4; border-top: 1px solid #bbf7d0; padding: 18px 30px; text-align: left; font-size: 13px; line-height: 1.6; color: #166534;">
+              <p style="margin: 0 0 6px;"><strong>📦 What's Next?</strong></p>
+              <p style="margin: 0;">Our dispatch team will verify and pack your items. If our delivery executive needs landmark assistance, they will call you at <strong>{{customer_phone}}</strong>.</p>
+            </td>
+          </tr>
+
+          <!-- Footer Information -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 22px 30px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6;">
+              <p style="margin: 0 0 6px;"><strong>HiTech Mobile & Accessories</strong></p>
+              <p style="margin: 0 0 6px;">Maniyarampatti, Trichy, Tamil Nadu - 621315 &bull; Support: bhuvaneshwaranaj@gmail.com</p>
+              <p style="margin: 0; color: #94a3b8;">Need help with your order? Reply directly to this email or contact support.</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

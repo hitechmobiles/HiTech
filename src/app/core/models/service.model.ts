@@ -29,6 +29,7 @@ export interface ServiceBookingRequest {
   issueDescription: string;
   customerName: string;
   customerPhone: string;
+  customerEmail?: string;
   customerAddress: string;
   pincode?: string;
   distanceKm?: number;

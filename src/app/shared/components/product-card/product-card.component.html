@@ -8,6 +8,9 @@
     <!-- Overlay Badges -->
     <div class="card-badges">
       <span class="badge badge-brand">{{ product.brand }}</span>
+      @if (discountPercent > 0) {
+        <span class="badge badge-discount">{{ discountPercent }}% OFF</span>
+      }
       @if (!product.inStock) {
         <span class="badge badge-danger">Out of Stock</span>
       } @else if (product.isFeatured) {

@@ -1,4 +1,4 @@
-name: Deploy to Render (Development)
+name: Development CI & Deployment Gate
 
 on:
   push:
@@ -7,29 +7,15 @@ on:
 
 jobs:
   quality-gate:
-    name: Quality Gate
+    name: Development Quality Gate
     uses: ./.github/workflows/ci.yml
 
-  deploy:
-    name: Deploy to Dev
+  notify-status:
+    name: Vercel Preview Deployment Check
     needs: quality-gate
     runs-on: ubuntu-latest
-
     steps:
-      - name: Trigger Render Dev Deployment Hook
-        if: env.RENDER_DEV_DEPLOY_HOOK != ''
-        env:
-          RENDER_DEV_DEPLOY_HOOK: ${{ secrets.RENDER_DEV_DEPLOY_HOOK }}
+      - name: Confirm Build Readiness
         run: |
-          curl -X POST "$RENDER_DEV_DEPLOY_HOOK"
-
-      - name: Alternative Render API Deploy
-        if: env.RENDER_API_KEY != '' && env.RENDER_DEV_SERVICE_ID != ''
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          RENDER_DEV_SERVICE_ID: ${{ secrets.RENDER_DEV_SERVICE_ID }}
-        run: |
-          curl -X POST "https://api.render.com/v1/services/$RENDER_DEV_SERVICE_ID/deploys" \
-            -H "Authorization: Bearer $RENDER_API_KEY" \
-            -H "Accept: application/json" \
-            -H "Content-Type: application/json"
+          echo "Quality gate passed successfully."
+          echo "Vercel automatically creates preview deployments for 'develop' branch."

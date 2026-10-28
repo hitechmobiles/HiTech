@@ -589,7 +589,7 @@
           <div>
             <h3 style="margin: 0; font-size: 1.15rem;">Dual-Mode CI/CD Sync & GitHub Direct Publishing</h3>
             <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.85rem;">
-              Manage how admin modifications reach your live Render static deployment. Supports both automated scheduled cron jobs and immediate manual publish.
+              Manage how admin modifications reach your live Vercel deployment. Supports both automated scheduled cron jobs and immediate manual publish.
             </p>
           </div>
         </div>
@@ -598,11 +598,11 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
           <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <span style="font-size: 1.25rem;">â°</span>
+              <span style="font-size: 1.25rem;">⏰</span>
               <strong style="color: var(--text-primary); font-size: 0.95rem;">Mode 1: Automated Scheduled Sync</strong>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.5rem; line-height: 1.4;">
-              Runs automatically every day at <strong>00:00 UTC (05:30 AM IST)</strong> via GitHub Actions (<code>admin-sync-scheduled.yml</code>). Validates all data JSON files and deploys to Render.
+              Runs automatically every day at <strong>00:00 UTC (05:30 AM IST)</strong> via GitHub Actions (<code>admin-sync-scheduled.yml</code>). Validates all data JSON files and deploys to Vercel.
             </p>
             <span class="badge badge-cyan" style="font-size: 0.7rem;">Active Cron: 0 0 * * *</span>
           </div>
@@ -1120,7 +1120,7 @@
             </h3>
             <p class="modal-subtitle">
               {{ publishModalMode === 'publish_catalog'
-                ? 'Review repository commit payload before triggering automated Render deployment'
+                ? 'Review repository commit payload before triggering automated Vercel deployment'
                 : 'Confirm manual GitHub Actions workflow dispatch' }}
             </p>
           </div>
@@ -1157,15 +1157,15 @@
               <strong style="color: #f59e0b; font-size: 0.85rem;">Deployment Flow:</strong>
               <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0 0; line-height: 1.4;">
                 1. GitHub API commits files to <code>{{ githubConfig.branch }}</code>.<br>
-                2. GitHub Actions dispatches <code>admin-publish-immediate.yml</code>.<br>
-                3. Render builds and rolls out changes to the live production static site.
+                2. GitHub Actions validates catalog data via <code>admin-publish-immediate.yml</code>.<br>
+                3. Vercel automatically builds and rolls out changes to the live production site.
               </p>
             </div>
           } @else {
             <div style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin-bottom: 1.25rem;">
               <strong style="color: #10b981; font-size: 0.85rem;">Pipeline Action:</strong>
               <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0 0; line-height: 1.4;">
-                Dispatches workflow <code>admin-publish-immediate.yml</code> via GitHub Actions to re-run automated tests, build static artifacts, and deploy to Render without changing code files.
+                Dispatches workflow <code>admin-publish-immediate.yml</code> via GitHub Actions to re-run automated tests, build static artifacts, and deploy to Vercel without changing code files.
               </p>
             </div>
           }

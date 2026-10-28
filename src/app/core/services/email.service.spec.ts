@@ -1,25 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import emailjs from '@emailjs/browser';
 import { EmailService } from './email.service';
 import { Order } from '../models/order.model';
 import { ServiceBookingRequest } from '../models/service.model';
 
 describe('EmailService', () => {
   let service: EmailService;
-  let emailjsSendSpy: jasmine.Spy;
-  let originalFetch: typeof window.fetch;
 
   beforeEach(() => {
     localStorage.clear();
-    originalFetch = window.fetch;
-    // Default fetch to reject so EmailJS fallback path is tested by default
     spyOn(window, 'fetch').and.rejectWith(new Error('Endpoint not available'));
 
     TestBed.configureTestingModule({
       providers: [EmailService]
     });
     service = TestBed.inject(EmailService);
-    emailjsSendSpy = spyOn(emailjs, 'send').and.resolveTo({ status: 200, text: 'OK' } as any);
   });
 
   afterEach(() => {
@@ -40,7 +34,7 @@ describe('EmailService', () => {
       id: 'ord-resend-1',
       orderNumber: 'ORD-RESEND-1',
       items: [],
-      customer: { name: 'Resend User', phone: '1234567890', address: 'Test Addr' },
+      customer: { name: 'Resend User', phone: '1234567890', address: 'Test Addr', email: 'customer@example.com' },
       subtotal: 1500,
       deliveryCharge: 0,
       discount: 0,
@@ -55,51 +49,10 @@ describe('EmailService', () => {
     expect(result.success).toBeTrue();
     expect(result.simulated).toBeFalse();
     expect(service.logs()[0].status).toBe('SENT_VIA_RESEND');
-    expect(emailjsSendSpy).not.toHaveBeenCalled();
   });
 
-  it('should send order notification via EmailJS when Resend fails', async () => {
-    const mockOrder: Order = {
-      id: 'ord-1',
-      orderNumber: 'ORD-1234',
-      items: [
-        {
-          productId: 'p1',
-          name: 'Item 1',
-          brand: 'BrandA',
-          price: 1000,
-          quantity: 2,
-          totalPrice: 2000,
-          image: ''
-        }
-      ],
-      customer: {
-        name: 'John Doe',
-        phone: '9876543210',
-        email: 'john@example.com',
-        address: '123 Street',
-        pincode: '600001'
-      },
-      subtotal: 2000,
-      deliveryCharge: 50,
-      discount: 100,
-      totalAmount: 1950,
-      placedByRole: 'user',
-      createdAt: '2026-01-01T00:00:00Z',
-      status: 'Confirmed',
-      ownerNotifiedViaEmail: false
-    };
-
-    const result = await service.sendOrderNotification(mockOrder);
-    expect(result.success).toBeTrue();
-    expect(result.simulated).toBeFalse();
-    expect(emailjsSendSpy).toHaveBeenCalled();
-    expect(service.logs()[0].type).toBe('ORDER_NOTIFICATION');
-    expect(service.logs()[0].status).toBe('SENT_VIA_EMAILJS');
-  });
-
-  it('should fallback to simulation when Resend and EmailJS both fail on order notification', async () => {
-    emailjsSendSpy.and.rejectWith(new Error('Network error'));
+  it('should fallback to simulation when Resend endpoint fails on order notification', async () => {
+    (window.fetch as jasmine.Spy).and.rejectWith(new Error('Network error'));
 
     const mockOrder: Order = {
       id: 'ord-shop-1',
@@ -123,7 +76,12 @@ describe('EmailService', () => {
     expect(service.logs()[0].status).toBe('SIMULATED_LOCAL');
   });
 
-  it('should send service booking notification via EmailJS when Resend fails', async () => {
+  it('should send service booking notification via Resend when serverless endpoint succeeds', async () => {
+    (window.fetch as jasmine.Spy).and.resolveTo({
+      ok: true,
+      json: async () => ({ success: true, id: 'resend_456', simulated: false })
+    } as any);
+
     const mockBooking: ServiceBookingRequest = {
       id: 'srv-book-1',
       serviceId: 'srv-1',
@@ -132,6 +90,7 @@ describe('EmailService', () => {
       issueDescription: 'Cracked screen',
       customerName: 'Alice',
       customerPhone: '9988776655',
+      customerEmail: 'alice@example.com',
       customerAddress: '45 Avenue',
       pincode: '600002',
       distanceKm: 12,
@@ -147,13 +106,12 @@ describe('EmailService', () => {
     const result = await service.sendServiceBookingNotification(mockBooking);
     expect(result.success).toBeTrue();
     expect(result.simulated).toBeFalse();
-    expect(emailjsSendSpy).toHaveBeenCalled();
     expect(service.logs()[0].type).toBe('SERVICE_BOOKING');
-    expect(service.logs()[0].status).toBe('SENT_VIA_EMAILJS');
+    expect(service.logs()[0].status).toBe('SENT_VIA_RESEND');
   });
 
-  it('should fallback to simulation when Resend and EmailJS both fail on service booking', async () => {
-    emailjsSendSpy.and.rejectWith(new Error('Quota exceeded'));
+  it('should fallback to simulation when Resend endpoint fails on service booking', async () => {
+    (window.fetch as jasmine.Spy).and.rejectWith(new Error('Quota exceeded'));
 
     const mockBooking: ServiceBookingRequest = {
       id: 'srv-book-2',

@@ -1,4 +1,4 @@
-name: Deploy to Render (Production)
+name: Production CI & Deployment Gate
 
 on:
   push:
@@ -7,29 +7,15 @@ on:
 
 jobs:
   quality-gate:
-    name: Quality Gate
+    name: Production Quality Gate
     uses: ./.github/workflows/ci.yml
 
-  deploy:
-    name: Deploy to Production
+  notify-status:
+    name: Vercel Production Deployment Check
     needs: quality-gate
     runs-on: ubuntu-latest
-
     steps:
-      - name: Trigger Render Production Deploy Hook
-        if: env.RENDER_PROD_DEPLOY_HOOK != ''
-        env:
-          RENDER_PROD_DEPLOY_HOOK: ${{ secrets.RENDER_PROD_DEPLOY_HOOK }}
+      - name: Confirm Build Readiness
         run: |
-          curl -X POST "$RENDER_PROD_DEPLOY_HOOK"
-
-      - name: Alternative Render API Deploy
-        if: env.RENDER_API_KEY != '' && env.RENDER_PROD_SERVICE_ID != ''
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          RENDER_PROD_SERVICE_ID: ${{ secrets.RENDER_PROD_SERVICE_ID }}
-        run: |
-          curl -X POST "https://api.render.com/v1/services/$RENDER_PROD_SERVICE_ID/deploys" \
-            -H "Authorization: Bearer $RENDER_API_KEY" \
-            -H "Accept: application/json" \
-            -H "Content-Type: application/json"
+          echo "Quality gate passed successfully."
+          echo "Vercel automatically deploys commits pushed to 'main' branch."

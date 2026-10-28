@@ -14,7 +14,7 @@ on:
 
 jobs:
   immediate-publish:
-    name: Immediate Build & Deploy Pipeline
+    name: Immediate Build & Verification Pipeline
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +36,7 @@ jobs:
           echo "Reason: ${{ github.event.inputs.trigger_reason }}"
           node -e "
             const fs = require('fs');
-            const files = ['products.json', 'accessories.json', 'services.json', 'shop-owners.json'];
+            const files = ['products.json', 'accessories.json', 'services.json', 'shop-owners.json', 'orders.json', 'bookings.json'];
             for (const f of files) {
               const p = 'public/data/' + f;
               if (fs.existsSync(p)) {
@@ -51,24 +51,9 @@ jobs:
             }
           "
 
-      - name: Production Build
+      - name: Production Build Validation
         run: npm run build -- --configuration=production
 
-      - name: Trigger Immediate Render Production Deploy
-        if: env.RENDER_PROD_DEPLOY_HOOK != ''
-        env:
-          RENDER_PROD_DEPLOY_HOOK: ${{ secrets.RENDER_PROD_DEPLOY_HOOK }}
+      - name: Report Publish Status
         run: |
-          echo "Triggering immediate Render deployment..."
-          curl -X POST "$RENDER_PROD_DEPLOY_HOOK"
-
-      - name: Alternative Render API Deploy
-        if: env.RENDER_API_KEY != '' && env.RENDER_PROD_SERVICE_ID != ''
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          RENDER_PROD_SERVICE_ID: ${{ secrets.RENDER_PROD_SERVICE_ID }}
-        run: |
-          curl -X POST "https://api.render.com/v1/services/$RENDER_PROD_SERVICE_ID/deploys" \
-            -H "Authorization: Bearer $RENDER_API_KEY" \
-            -H "Accept: application/json" \
-            -H "Content-Type: application/json"
+          echo "Build completed successfully. Committed changes are automatically deployed by Vercel."

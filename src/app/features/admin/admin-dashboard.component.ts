@@ -670,7 +670,7 @@ export class AdminDashboardComponent implements OnInit {
   copyOrderTemplateHtml(): void {
     if (navigator?.clipboard?.writeText) {
       navigator.clipboard.writeText(ORDER_NOTIFICATION_TEMPLATE_HTML).then(() => {
-        this.toastService.show('Order Notification HTML template copied! Paste it into EmailJS Code Editor.', 'success');
+        this.toastService.show('Order Notification HTML template copied to clipboard!', 'success');
       }).catch(() => {
         this.toastService.show('Please copy from email-templates/order-notification.html', 'info');
       });
@@ -682,7 +682,7 @@ export class AdminDashboardComponent implements OnInit {
   copyServiceTemplateHtml(): void {
     if (navigator?.clipboard?.writeText) {
       navigator.clipboard.writeText(SERVICE_BOOKING_TEMPLATE_HTML).then(() => {
-        this.toastService.show('Service Booking HTML template copied! Paste it into EmailJS Code Editor.', 'success');
+        this.toastService.show('Service Booking HTML template copied to clipboard!', 'success');
       }).catch(() => {
         this.toastService.show('Please copy from email-templates/service-booking-notification.html', 'info');
       });

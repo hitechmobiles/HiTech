@@ -6,14 +6,6 @@ export const environment = {
     passwordHash: '421d194eed97614f3a06a8867a1595ebb688432356d1d5ff0586be34ccb698e5',
     role: 'admin'
   },
-  emailJs: {
-    // Standard EmailJS credentials for order & service booking notifications
-    publicKey: 'J7n3H1W9g5lTOz_yn',
-    serviceId: 'service_4blnuwl',
-    orderTemplateId: 'template_x4bv6v9',
-    serviceBookingTemplateId: 'template_service_booking',
-    notificationEmail: 'bhuvaneshwaranaj@gmail.com'
-  },
   resend: {
     apiEndpoint: '/api/send-email',
     notificationEmail: 'bhuvaneshwaranaj@gmail.com'
@@ -29,7 +21,7 @@ export const environment = {
   github: {
     owner: 'hitechmobiles',
     repo: 'HiTech',
-    branch: 'develop',
+    branch: 'main',
     token: ''
   }
 };

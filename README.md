@@ -1,140 +1,143 @@
 # HiTech — Mobile Phones, Accessories & Expert Repair Services
 
-> Modern, high-performance, **pure static** Angular 19 E-Commerce & Service Booking Web Application featuring multi-role authentication (Customer, Shop Owner Partner, Super Admin), two-factor 1-minute email OTP verification, wholesale bulk discounting, and automated GitHub Actions CI/CD deployment to **Render**.
+> Modern, high-performance Angular 19 E-Commerce & Service Booking Platform featuring multi-role authentication (Customer, Wholesale Shop Partner, Super Admin), dual-recipient transactional email notifications via **Resend**, unified client/shop address autofill, GitHub PAT-based catalog publishing, and continuous deployment on **Vercel**.
 
 ---
 
 ## 🚀 Live Repository & Deployment
 
 - **GitHub Repository**: [https://github.com/BhuvaneshwaranMitrahsoft/HiTech.git](https://github.com/BhuvaneshwaranMitrahsoft/HiTech.git)
-- **Render Project Dashboard**: [https://dashboard.render.com/project/prj-dahretifngtc73donpkg](https://dashboard.render.com/project/prj-dahretifngtc73donpkg)
+- **Deployment Platform**: **Vercel** (Automatic CI/CD on Git push to `main` and `develop`)
+- **Serverless API**: Vercel Serverless Function at `/api/send-email` powered by **Resend**
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology |
-|---|---|
-| **Framework** | Angular 19 (Standalone Components, Signals Reactive State, Vite Application Builder) |
-| **Styling** | Custom Vanilla SCSS Design System (Obsidian Dark Cyber Theme, Glassmorphism, Responsive) |
-| **Typography** | Google Fonts: `Outfit` (Headings & Badges), `Inter` (UI & Body) |
-| **Email & OTP Delivery** | EmailJS (`@emailjs/browser`) with built-in development simulation fallback |
-| **Data Persistence** | Pure Static JSON Catalogs (`public/data/`) + Browser `localStorage` Overlays |
-| **CI / CD Pipeline** | GitHub Actions (`deploy-dev.yml` & `deploy-prod.yml`) targeting Render environments |
+| Layer | Technology | Description |
+|---|---|---|
+| **Framework** | Angular 19 | Standalone Components, Reactive Signals (`computed`, `signal`), OnPush Change Detection |
+| **Styling** | Vanilla SCSS | Obsidian Dark Cyber Theme, Glassmorphism, Responsive Grid System, CSS Brand Arches |
+| **Typography** | Google Fonts | `Outfit` (Headings, Badges, Numeric Displays), `Inter` (UI & Body Text) |
+| **Email Delivery** | **Resend** | Serverless function `/api/send-email` with responsive HTML templates & local simulation fallback |
+| **Hosting & CI/CD** | **Vercel** | Edge Network, automatic preview/production builds, zero-config SPA routing via `vercel.json` |
+| **Security** | Web Crypto API | SHA-256 password hashing, Content-Security-Policy (CSP), HTTP security headers, PAT masking |
+| **Data Architecture** | Pure Static + Git | JSON Catalogs (`public/data/`), browser `localStorage` overlays, GitHub PAT direct-commit publishing |
 
 ---
 
-## 📱 User Flows & Role Specifications
+## 📱 Core Application Flows & Features
 
 ### 1. Customer User Flow
-1. **Landing on Dashboard**:
-   - Hero banner with quick action triggers ("Purchase Products", "Book a Service", "Register Shop").
-   - Live trust stats (15,000+ repairs, 100% OEM spares, 60-min express fix, 10+ wholesale hubs).
-   - Category switcher & featured smartphones and accessories.
-2. **Product Catalog & Favourites**:
-   - Filter by brand, category (Smartphones vs Accessories), and subcategories (Cases, GaN Chargers, Earbuds, Screen Protectors).
-   - Bookmark any product to the **Favourites Wishlist** with a single click.
-3. **Cart & Mandatory Checkout**:
-   - Quantity controls with subtotal, tax, and free delivery thresholds (> ₹1,000).
-   - Mandatory personal details collection: **Full Name**, **10-Digit Mobile Number**, and **Complete Delivery Address**.
-4. **Order Confirmation & Email Notification**:
-   - Submitting an order triggers an automated email notification formatted and dispatched to the shop owner at **`bhuvaneshwaranaj@gmail.com`**.
-   - Displays the Order Success confirmation: *"Your Order Has Been Placed! Our team will contact you shortly."*
+1. **Interactive Dashboard**:
+   - Dynamic hero banner with quick CTA triggers ("Purchase Products", "Book a Service", "Register Shop").
+   - Live trust badges (15,000+ repairs, 100% OEM spares, 60-min express fix, 10+ wholesale hubs).
+   - 19 handcrafted CSS/SVG smartphone brand arches (Apple, Samsung, OnePlus, Nothing, Vivo, OPPO, Realme, etc.).
+2. **Product Catalog & Sourcing**:
+   - Filter by brand, price range, and subcategories (Flagship Phones, Chargers, Audio, Cases).
+   - Single-click **Favourites Wishlist** bookmarking.
+   - **Product Sourcing Form**: If a search query yields zero matches, an automated sourcing request form lets the customer request custom procurement with notifications sent to the admin.
+   - **🔔 Restock Alerts ("Notify Me")**: Out-of-stock items feature a prominent "Notify Me" trigger allowing customers to register for restock notifications.
+3. **Cart & Checkout**:
+   - Multi-item management with quantity adjustments and free delivery threshold calculation.
+   - Form validation for customer name, 10-digit mobile number, and delivery address.
+4. **Dual Email Notification**:
+   - On checkout, a transactional confirmation email is dispatched via Resend to **both** the customer and Super Admin (`bhuvaneshwaranaj@gmail.com`).
+
+---
 
 ### 2. Shop Owner Partner Flow (B2B Wholesale)
-1. **Registration**:
-   - From dashboard, click **"Register Shop"**.
-   - Fill out the partner onboarding form:
-     - **Mandatory**: Shop Name, Proprietor / Owner Name, Location / Address, Shop Storefront Photo (file upload with instant preview or choose from sample retail store presets).
-     - **Optional**: GST Number, Phone, Business Email, Additional Notes.
-   - On submission, an active shop record is provisioned with default login credentials (`Owner@HiTech123`) and a **15% Wholesale Discount Tier**.
-2. **Partner Portal & Bulk Order**:
-   - Log in using credentials -> receive 1-minute OTP -> access **Shop Owner Workspace**.
-   - The entire catalog automatically reflects partner pricing with **15% wholesale discount** deducted from all orders.
-
-### 3. Super Admin Flow
-1. **Secure Admin Authentication**:
-   - Click **"Admin / Owner"** in the top navigation.
-   - Credentials:
-     - **Email**: `bhuvaneshwaranaj@gmail.com`
-     - **Password**: `Bhuvi@02#1` (Protected by SHA-256 static cryptographic validation).
-   - Generates and dispatches a **6-digit OTP** with a strict **1-minute (60 seconds) live countdown timer**.
-2. **Admin Management Console**:
-   - **Products & Stock Control**: 1-click toggle switch to mark any smartphone or accessory **In Stock** or **Out of Stock** with instant persistence.
-   - **Unified Category-Wise Pricing Hub**: Audit and edit prices across Smartphones, Accessories, and Repair Services in a single page.
-   - **Shop Owner Directory**: Manage the 10 static accounts + newly registered partners, toggle active/suspended status, edit credentials, and 1-click "Share Access" to copy credentials.
-   - **Orders & Service Requests Desk**: Track customer retail and wholesale bulk orders, inspect delivery addresses, and change fulfillment status.
-   - **Data Sync & Static JSON Export**: Download updated `products.json`, `accessories.json`, `services.json`, or `shop-owners.json` to commit to Git for permanent global deployments.
+1. **Partner Registration & Onboarding**:
+   - Self-service partner enrollment via `/register-shop` with storefront image upload and GST details.
+   - Admin approval activates the shop account with tiered wholesale discounts (10% to 25% OFF).
+2. **Unified Booking & Purchase Forms with Address Autofill**:
+   - Shop owners use the exact same purchase and service booking forms as retail customers.
+   - When a logged-in shop partner accesses the checkout or service booking modal, an address toolbar appears:
+     - **📍 Use Default Shop Address**: One-click autofill with the partner's registered shop name, proprietor name, mobile number, and store address.
+     - **👤 Ship to Client Location**: One-click reset to empty fields so the shop partner can order or book repairs directly for client delivery.
+3. **Automated Attribution**:
+   - All orders and service requests created by shop owners are tagged with `placedByRole: 'shopowner'`, `shopOwnerId`, and `shopName` for B2B accounting.
 
 ---
 
-## 🔐 Credentials Cheat Sheet (Demo & Testing)
+### 3. Super Admin Management Console
+1. **Cryptographic 2-Factor Authentication**:
+   - Admin Email: `bhuvaneshwaranaj@gmail.com`
+   - Password: SHA-256 hashed comparison via Web Crypto API.
+   - Two-factor 6-digit OTP delivery with strict 60-second expiration timer.
+2. **Catalog & Price Management**:
+   - Instant in-stock / out-of-stock toggles for all devices and accessories.
+   - Unified pricing matrix for smartphones, accessories, and repair services.
+   - Shop owner directory management (approval, tier assignment, credential resets).
+3. **Orders & Repair Bookings Desk**:
+   - Full visibility into retail customer orders, wholesale restocks, and repair service requests.
+   - Status updates (Pending, Confirmed, In Progress, Completed, Cancelled) with audit logs.
+   - **Restock Alerts Tab**: Dedicated view of all customer restock notifications submitted via "🔔 Notify Me" with direct WhatsApp/phone contact triggers.
+4. **GitHub PAT-Based Direct Branch Publishing**:
+   - Admins can store a GitHub Personal Access Token (PAT) with `repo` scope securely in their browser (`localStorage`).
+   - Clicking **"Publish Catalog to GitHub"** directly commits updated `products.json`, `accessories.json`, `services.json`, and `shop-owners.json` to the active GitHub branch (`main` or `develop`).
+   - Clicking **"📤 Sync Orders & Bookings to Git"** commits accumulated orders and repair bookings to `public/data/orders.json` and `public/data/bookings.json`.
+   - Vercel automatically detects the Git commit and triggers an updated production build with zero manual intervention.
 
-| Role | Email | Password | OTP Flow |
+---
+
+## 🔐 Credentials Cheat Sheet (Testing & Demo)
+
+| Role | Email | Password | OTP Verification |
 |---|---|---|---|
-| **Super Admin** | `bhuvaneshwaranaj@gmail.com` | `Bhuvi@02#1` | 6-Digit OTP (1-minute countdown) |
-| **Shop Owner 1** | `owner1@hitech.com` | `Owner@HiTech123` | 6-Digit OTP (1-minute countdown) |
-| **Shop Owner 2** | `owner2@hitech.com` | `Owner@HiTech123` | 6-Digit OTP (1-minute countdown) |
-| *(Owners 3 to 10)* | `owner3@hitech.com` ... `owner10@hitech.com` | `Owner@HiTech123` | 6-Digit OTP (1-minute countdown) |
+| **Super Admin** | `bhuvaneshwaranaj@gmail.com` | `Bhuvi@02#1` | 6-Digit OTP (60s countdown) |
+| **Shop Owner 1** | `owner1@hitech.com` | `Owner@HiTech123` | 6-Digit OTP (60s countdown) |
+| **Shop Owner 2** | `owner2@hitech.com` | `Owner@HiTech123` | 6-Digit OTP (60s countdown) |
+| *(Owners 3 to 10)* | `owner3@hitech.com` ... `owner10@hitech.com` | `Owner@HiTech123` | 6-Digit OTP (60s countdown) |
 
-> 💡 **Developer Mode Helper**: If EmailJS keys have not yet been provided, the application runs in testing mode and automatically displays the generated 6-digit code in a high-visibility badge with a **"Click to Auto-Fill"** button so review is never blocked.
+> 💡 **Development Note**: When running locally without live Resend API keys, the application automatically displays the generated 6-digit OTP in a high-visibility badge with a **"Click to Auto-Fill"** button for uninterrupted testing.
 
 ---
 
-## 📦 How Data Works on a Pure Static Site
+## 📧 Email Architecture & Vercel Serverless Function
+
+HiTech uses **Resend** exclusively for transactional email delivery. The architecture consists of:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    HiTech Static Architecture               │
-├──────────────────────────────┬──────────────────────────────┤
-│ 1. Bundled JSON Catalogs     │ Ships in public/data/        │
-│ 2. localStorage Overlays     │ Admin edits apply instantly  │
-│ 3. Git-Backed Persistence    │ Admin exports updated JSON & │
-│                              │ commits to Git repo!         │
-└──────────────────────────────┴──────────────────────────────┘
+[ Angular App (Client) ] 
+       │
+       ▼ HTTP POST (JSON Payload)
+[ /api/send-email (Vercel Serverless Function) ]
+       │
+       ▼ Authorization: Bearer RESEND_API_KEY
+[ Resend API (https://api.resend.com/emails) ]
+       ├──▶ Customer Confirmation (HTML Template)
+       └──▶ Admin Alert to bhuvaneshwaranaj@gmail.com
 ```
 
-1. The site loads initial datasets from `public/data/` (`products.json`, `accessories.json`, `services.json`, `shop-owners.json`).
-2. When the Admin toggles stock availability, edits prices, or approves shop partners, changes are saved to `localStorage`.
-3. In the **Admin Console -> Data Sync**, the admin can click **"Download Updated JSON"** and commit the files back to GitHub. Once pushed, Render automatically redeploys with the updated baseline data.
+### Vercel Environment Variables
+Configure these in your [Vercel Project Dashboard](https://vercel.com/) under **Settings > Environment Variables**:
+
+| Variable Name | Required | Description | Example |
+|---|---|---|---|
+| `RESEND_API_KEY` | **Yes** | Your Resend API Key | `re_123456789abcdef` |
+| `RESEND_TO_EMAIL` | **Yes** | Admin notification recipient | `bhuvaneshwaranaj@gmail.com` |
+| `RESEND_FROM_EMAIL` | Optional | Verified sender email address | `orders@yourdomain.com` (defaults to `onboarding@resend.dev`) |
 
 ---
 
-## 🚀 GitHub Actions CI/CD Pipeline to Render
+## 🌐 Deploying to Vercel
 
-This project contains two automated GitHub Actions workflows under `.github/workflows/`:
+### Automatic Deployment (Recommended)
+1. Push changes to GitHub (`main` for production, `develop` for preview).
+2. Connect your GitHub repository in Vercel.
+3. Configure the Build & Development Settings:
+   - **Framework Preset**: Angular
+   - **Build Command**: `node scripts/build.js` (or `npx ng build`)
+   - **Output Directory**: `dist/hi-tech`
+4. Add the `RESEND_API_KEY` and `RESEND_TO_EMAIL` environment variables.
+5. Vercel will deploy automatically on every Git push.
 
-1. **`deploy-dev.yml`**: Triggers on push to `develop` branch.
-2. **`deploy-prod.yml`**: Triggers on push to `main` branch.
-
-### Configuring Secrets in GitHub
-In your GitHub repository ([Settings > Secrets and variables > Actions](https://github.com/BhuvaneshwaranMitrahsoft/HiTech/settings/secrets/actions)), add the following repository secrets:
-
-| Secret Name | Description | Where to Find |
-|---|---|---|
-| `RENDER_API_KEY` | Render Account API Token | Render Dashboard -> Account Settings -> API Keys |
-| `RENDER_DEV_SERVICE_ID` | Service ID for Development Static Site | Render Dashboard -> Dev Environment -> Service Settings |
-| `RENDER_PROD_SERVICE_ID` | Service ID for Production Static Site | Render Dashboard -> Production Environment -> Service Settings |
-| `RENDER_DEV_DEPLOY_HOOK` | (Optional) Deploy Hook URL for Dev | Render Service -> Settings -> Deploy Hook |
-| `RENDER_PROD_DEPLOY_HOOK` | (Optional) Deploy Hook URL for Prod | Render Service -> Settings -> Deploy Hook |
-
----
-
-## 🌐 Deploying Manually on Render (Static Site)
-
-1. Go to [Render Dashboard](https://dashboard.render.com/project/prj-dahretifngtc73donpkg).
-2. Click **New +** -> **Static Site**.
-3. Connect GitHub repository `BhuvaneshwaranMitrahsoft/HiTech`.
-4. Configure settings:
-   - **Branch**: `main` (for Production) or `develop` (for Dev)
-   - **Build Command**: `npm run build`
-   - **Publish Directory**: `dist/hi-tech`
-5. **SPA Routing Rule (Important)**:
-   - Go to **Redirects/Rewrites** in the Render service settings.
-   - Add rule:
-     - **Source**: `/*`
-     - **Destination**: `/index.html`
-     - **Action**: `Rewrite`
+### SPA Routing & Security Headers (`vercel.json`)
+The application includes a production-ready `vercel.json` configuration:
+- Global rewrites ensuring all client routes resolve to `/index.html`.
+- Strict HTTP security headers: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `X-XSS-Protection: 1; mode=block`, and `Referrer-Policy: strict-origin-when-cross-origin`.
+- Caching headers for static assets (`/assets/*`).
 
 ---
 
@@ -150,13 +153,20 @@ npm install
 
 # 3. Start local development server
 npm start
-# App will run at http://localhost:4200/
+# Application runs at http://localhost:4200/
 
-# 4. Production build check
-npm run build
+# 4. Run test suite (130 unit tests)
+npm run test:ci
+
+# 5. Run linter
+npm run lint
+
+# 6. Build production bundle
+npm run build:prod
 ```
 
 ---
 
 ## 📄 License & Attribution
+
 Designed and built for **HiTech Mobiles & Spares** by pair programming with Antigravity AI.

@@ -37,7 +37,8 @@ export class AdminDashboardComponent implements OnInit {
   pricingCategoryTab: 'phones' | 'accessories' | 'services' = 'phones';
   searchQuery: string = '';
   ownerFilter: 'all' | 'pending' | 'active' | 'suspended' = 'all';
-  ordersSubTab: 'orders' | 'services' = 'orders';
+  ordersSubTab: 'orders' | 'services' | 'restock' = 'orders';
+  notifyRequests: Array<{ productId?: string; productName: string; customerName: string; customerPhone: string; customerEmail?: string; timestamp: string }> = [];
 
   // --- Product Add / Edit Modal State ---
   showProductModal: boolean = false;
@@ -150,10 +151,31 @@ export class AdminDashboardComponent implements OnInit {
         console.error('Auto-archive failed', err);
       });
     }
+
+    this.loadNotifyRequests();
+  }
+
+  loadNotifyRequests(): void {
+    try {
+      this.notifyRequests = JSON.parse(localStorage.getItem('hitech_notify_requests') || '[]');
+    } catch {
+      this.notifyRequests = [];
+    }
+  }
+
+  clearNotifyRequests(): void {
+    if (confirm('Clear all recorded restock notification requests?')) {
+      localStorage.removeItem('hitech_notify_requests');
+      this.notifyRequests = [];
+      this.toastService.show('Restock alert requests cleared', 'info');
+    }
   }
 
   setTab(tab: 'products' | 'pricing' | 'owners' | 'orders' | 'settings'): void {
     this.activeTab = tab;
+    if (tab === 'orders') {
+      this.loadNotifyRequests();
+    }
   }
 
   // --- Product Management ---

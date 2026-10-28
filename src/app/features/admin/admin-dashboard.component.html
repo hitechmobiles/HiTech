@@ -404,6 +404,9 @@
           <button class="cat-pill-btn" [class.active]="ordersSubTab === 'services'" (click)="ordersSubTab = 'services'">
             🔧 Repair Bookings ({{ orderService.bookings().length }})
           </button>
+          <button class="cat-pill-btn" [class.active]="ordersSubTab === 'restock'" (click)="ordersSubTab = 'restock'">
+            🔔 Restock Alerts ({{ notifyRequests.length }})
+          </button>
         </div>
       </div>
 
@@ -565,6 +568,71 @@
           </div>
         } @else {
           <p class="no-data-msg">No repair service appointments requested yet.</p>
+        }
+      }
+
+      <!-- SUB-TAB 3: RESTOCK NOTIFICATION ALERTS -->
+      @if (ordersSubTab === 'restock') {
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <h3 class="sub-heading" style="margin-bottom: 0;">Customer Restock Alert Requests ({{ notifyRequests.length }})</h3>
+          @if (notifyRequests.length > 0) {
+            <button type="button" class="btn btn-sm btn-outline-danger" (click)="clearNotifyRequests()">
+              🗑️ Clear Requests History
+            </button>
+          }
+        </div>
+
+        @if (notifyRequests.length > 0) {
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Requested Product</th>
+                  <th>Customer Name</th>
+                  <th>Phone Number</th>
+                  <th>Email Address</th>
+                  <th>Requested On</th>
+                  <th>Direct Contact</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (req of notifyRequests; track $index) {
+                  <tr>
+                    <td>
+                      <strong class="text-gradient">{{ req.productName }}</strong>
+                      <div class="tbl-sub">ID: {{ req.productId || 'N/A' }}</div>
+                    </td>
+                    <td><strong>{{ req.customerName }}</strong></td>
+                    <td>
+                      <a [href]="'tel:' + req.customerPhone" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">
+                        📞 {{ req.customerPhone }}
+                      </a>
+                    </td>
+                    <td>
+                      @if (req.customerEmail) {
+                        <a [href]="'mailto:' + req.customerEmail" style="color: var(--text-secondary); text-decoration: none;">
+                          ✉️ {{ req.customerEmail }}
+                        </a>
+                      } @else {
+                        <span class="tbl-sub">Not provided</span>
+                      }
+                    </td>
+                    <td><span class="tbl-sub">{{ req.timestamp }}</span></td>
+                    <td>
+                      <a [href]="'https://wa.me/91' + req.customerPhone" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                        💬 WhatsApp
+                      </a>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        } @else {
+          <div class="no-data-msg" style="text-align: center; padding: 3rem 1rem;">
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 0.5rem;">No restock alerts requested yet.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">When customers click "🔔 Notify Me" on out-of-stock items, their details appear here and are emailed directly to you via Resend.</p>
+          </div>
         }
       }
     </div>

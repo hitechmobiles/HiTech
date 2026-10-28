@@ -67,6 +67,23 @@
                 class="form-control"></textarea>
             </div>
 
+            @if (authService.isShopOwner()) {
+              <div class="shopowner-address-bar glass-panel animate-fade-in">
+                <div class="bar-header">
+                  <span class="badge badge-purple">🏬 Shop Partner</span>
+                  <span class="bar-text">Booking repair for shop inventory or client device?</span>
+                </div>
+                <div class="bar-actions">
+                  <button type="button" class="btn-address-action btn-fill-shop" (click)="useShopAddress()">
+                    <span>📍</span> Use Default Shop Address
+                  </button>
+                  <button type="button" class="btn-address-action btn-client-addr" (click)="clearAddressForClient()">
+                    <span>👤</span> Service at Client Location
+                  </button>
+                </div>
+              </div>
+            }
+
             <div class="form-row">
               <div class="form-group">
                 <label>Customer Full Name <span class="required">*</span></label>

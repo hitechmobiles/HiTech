@@ -2,7 +2,7 @@
   <!-- Product Image Container with Overlaid Badges and Actions -->
   <div class="product-image-wrapper">
     <a [routerLink]="['/products', product.id]" class="product-img-link" [title]="product.name">
-      <img [src]="product.image" [alt]="product.name" loading="lazy" class="product-img" />
+      <img [src]="product.image" [alt]="product.name" loading="lazy" class="product-img" (error)="onImageError($event)" />
     </a>
 
     <!-- Overlay Badges -->
@@ -71,13 +71,58 @@
         }
       </div>
 
-      <button
-        class="btn btn-sm btn-primary add-cart-btn"
-        (click)="addToCart($event)"
-        [disabled]="!product.inStock">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        Add
-      </button>
+      @if (product.inStock) {
+        <button
+          class="btn btn-sm btn-primary add-cart-btn"
+          (click)="addToCart($event)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          Add
+        </button>
+      } @else {
+        <button
+          type="button"
+          class="btn btn-sm btn-notify-me"
+          (click)="openNotifyModal($event)">
+          🔔 Notify Me
+        </button>
+      }
     </div>
   </div>
+
+  <!-- In-Card Restock Notification Modal -->
+  @if (showNotifyModal) {
+    <div class="card-modal-backdrop" (click)="closeNotifyModal($event)">
+      <div class="card-modal-content glass-card" (click)="$event.stopPropagation()">
+        <div class="modal-head">
+          <h4>Restock Alert</h4>
+          <button type="button" class="btn-close" (click)="closeNotifyModal($event)">&times;</button>
+        </div>
+        <p class="modal-sub">We'll alert you via WhatsApp & Email when <strong>{{ product.name }}</strong> is back in stock.</p>
+
+        <form (ngSubmit)="submitNotifyRequest($event)">
+          <div class="m-group">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" [(ngModel)]="notifyForm.name" name="cName" placeholder="Full name" class="form-control" required />
+          </div>
+
+          <div class="m-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" [(ngModel)]="notifyForm.phone" name="cPhone" placeholder="10-digit mobile" maxlength="10" class="form-control" required />
+          </div>
+
+          <div class="m-group">
+            <label>Email (Optional)</label>
+            <input type="email" [(ngModel)]="notifyForm.email" name="cEmail" placeholder="you@example.com" class="form-control" />
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="closeNotifyModal($event)">Cancel</button>
+            <button type="submit" class="btn btn-sm btn-primary" [disabled]="isSubmittingNotify">
+              {{ isSubmittingNotify ? 'Registering...' : '🔔 Notify Me' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
 </div>

@@ -88,7 +88,9 @@ export class AdminDashboardComponent implements OnInit {
     branch: '',
     token: ''
   };
+  showPatToken: boolean = false;
   isPublishingGithub: boolean = false;
+  isSyncingOrders: boolean = false;
   isTriggeringPipeline: boolean = false;
   lastSyncTime: string = localStorage.getItem('hitech_last_sync_time') || '';
 
@@ -487,7 +489,9 @@ export class AdminDashboardComponent implements OnInit {
       { name: 'Products Catalog', path: 'public/data/products.json', count: this.dataService.products().length },
       { name: 'Accessories Catalog', path: 'public/data/accessories.json', count: this.dataService.accessories().length },
       { name: 'Repair Services', path: 'public/data/services.json', count: this.dataService.services().length },
-      { name: 'Shop Owners Registry', path: 'public/data/shop-owners.json', count: this.dataService.shopOwners().length }
+      { name: 'Shop Owners Registry', path: 'public/data/shop-owners.json', count: this.dataService.shopOwners().length },
+      { name: 'Customer Orders Ledger', path: 'public/data/orders.json', count: this.orderService.orders().length },
+      { name: 'Service Bookings Ledger', path: 'public/data/bookings.json', count: this.orderService.bookings().length }
     ];
     this.showPublishModal = true;
   }
@@ -545,10 +549,18 @@ export class AdminDashboardComponent implements OnInit {
         {
           path: 'public/data/shop-owners.json',
           content: JSON.stringify(this.dataService.shopOwners(), null, 2)
+        },
+        {
+          path: 'public/data/orders.json',
+          content: JSON.stringify(this.orderService.orders(), null, 2)
+        },
+        {
+          path: 'public/data/bookings.json',
+          content: JSON.stringify(this.orderService.bookings(), null, 2)
         }
       ];
 
-      const commitMsg = `feat(catalog): sync live catalog update from admin console [${new Date().toISOString()}]`;
+      const commitMsg = `feat(catalog): sync live catalog and orders from admin console [${new Date().toISOString()}]`;
       const res = await this.publishService.publishAllAndTriggerPipeline(
         files,
         commitMsg,
@@ -556,7 +568,7 @@ export class AdminDashboardComponent implements OnInit {
       );
 
       if (res.success) {
-        this.toastService.show(res.message, 'success', 'Catalog Published & Pipeline Triggered');
+        this.toastService.show(res.message, 'success', 'Catalog & Orders Published & Pipeline Triggered');
         this.lastSyncTime = new Date().toLocaleTimeString();
         localStorage.setItem('hitech_last_sync_time', this.lastSyncTime);
       } else {
@@ -566,6 +578,40 @@ export class AdminDashboardComponent implements OnInit {
       this.toastService.show(e?.message || 'Publishing to GitHub failed', 'danger');
     } finally {
       this.isPublishingGithub = false;
+    }
+  }
+
+  async syncOrdersToGithub(): Promise<void> {
+    if (!this.publishService.isConfigured()) {
+      this.toastService.show('Please configure your GitHub Personal Access Token (PAT) before syncing orders.', 'warning');
+      return;
+    }
+
+    this.isSyncingOrders = true;
+    try {
+      const files = [
+        {
+          path: 'public/data/orders.json',
+          content: JSON.stringify(this.orderService.orders(), null, 2)
+        },
+        {
+          path: 'public/data/bookings.json',
+          content: JSON.stringify(this.orderService.bookings(), null, 2)
+        }
+      ];
+
+      const commitMsg = `sync(orders): backup ${this.orderService.orders().length} orders and ${this.orderService.bookings().length} bookings [${new Date().toISOString()}]`;
+      const res = await this.publishService.publishFiles(files, commitMsg);
+
+      if (res.success) {
+        this.toastService.show(res.message, 'success', 'Orders & Bookings Synced to GitHub');
+      } else {
+        this.toastService.show(res.message, 'danger', 'Order Sync Failed');
+      }
+    } catch (e: any) {
+      this.toastService.show(e?.message || 'Syncing orders failed', 'danger');
+    } finally {
+      this.isSyncingOrders = false;
     }
   }
 

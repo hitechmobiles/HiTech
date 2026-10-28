@@ -91,6 +91,23 @@
             <h3 class="form-section-title">Delivery Details (Mandatory)</h3>
             <p class="form-hint">Our fulfillment desk will contact you via phone/WhatsApp to confirm dispatch.</p>
 
+            @if (authService.isShopOwner()) {
+              <div class="shopowner-address-bar glass-panel animate-fade-in">
+                <div class="bar-header">
+                  <span class="badge badge-purple">🏬 Shop Partner</span>
+                  <span class="bar-text">Ordering for store stock or delivering to client?</span>
+                </div>
+                <div class="bar-actions">
+                  <button type="button" class="btn-address-action btn-fill-shop" (click)="useShopAddress()">
+                    <span>📍</span> Use Default Shop Address
+                  </button>
+                  <button type="button" class="btn-address-action btn-client-addr" (click)="clearAddressForClient()">
+                    <span>👤</span> Ship to Client Location
+                  </button>
+                </div>
+              </div>
+            }
+
             <form (ngSubmit)="placeOrder()">
               <div class="form-group">
                 <label>Full Name <span class="required">*</span></label>

@@ -157,9 +157,15 @@ export class OrderService {
     }
 
     const nowStr = new Date().toLocaleString();
+    const session = this.authService.currentSession();
+    const isOwner = this.authService.isShopOwner();
+
     const booking: ServiceBookingRequest = {
       id: 'SRV-' + Math.floor(100000 + Math.random() * 900000),
       ...bookingData,
+      placedByRole: isOwner ? 'shopowner' : 'user',
+      shopOwnerId: session?.shopOwnerId,
+      shopName: session?.shopName,
       status: 'Pending',
       createdAt: nowStr,
       updatedAt: nowStr,
@@ -167,8 +173,8 @@ export class OrderService {
         {
           status: 'Pending',
           timestamp: nowStr,
-          note: `Repair requested for ${bookingData.deviceModel} (${bookingData.serviceName})`,
-          updatedBy: 'Customer'
+          note: `Repair requested for ${bookingData.deviceModel} (${bookingData.serviceName}) by ${isOwner ? 'Shop Partner (' + (session?.shopName || 'Wholesale') + ')' : bookingData.customerName}`,
+          updatedBy: isOwner ? 'Shop Owner' : 'Customer'
         }
       ]
     };

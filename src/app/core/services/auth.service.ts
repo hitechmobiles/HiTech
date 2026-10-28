@@ -2,6 +2,7 @@ import { Injectable, signal, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AuthSession, OtpState, UserRole } from '../models/auth.model';
+import { ShopOwner } from '../models/shop-owner.model';
 import { DataService } from './data.service';
 import { LoggerService } from './logger.service';
 
@@ -28,6 +29,14 @@ export class AuthService {
   readonly userRole = computed<UserRole>(() => this._session()?.role || 'user');
   readonly isAdmin = computed(() => this._session()?.role === 'admin');
   readonly isShopOwner = computed(() => this._session()?.role === 'shopowner');
+
+  readonly currentShopOwner = computed<ShopOwner | undefined>(() => {
+    const session = this._session();
+    if (!session || session.role !== 'shopowner') return undefined;
+    return this.dataService.shopOwners().find(
+      o => o.id === session.shopOwnerId || o.email.toLowerCase() === session.email.toLowerCase()
+    );
+  });
 
   private loadInitialSession(): AuthSession | null {
     try {

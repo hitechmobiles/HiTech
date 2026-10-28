@@ -621,6 +621,58 @@
           </div>
         </div>
 
+        <!-- GitHub PAT Configuration Form -->
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem;">
+          <h4 style="margin: 0 0 0.5rem; font-size: 0.95rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+            <span>🔑</span> GitHub Personal Access Token (PAT) Settings
+          </h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 1rem; line-height: 1.4;">
+            Your PAT token is stored securely in your browser's local storage and used directly with GitHub REST API to commit catalog updates to branch <code>{{ githubConfig.branch }}</code>. Requires <code>repo</code> scope.
+          </p>
+
+          <form (ngSubmit)="saveGithubConfig()">
+            <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 0.8rem;">Repository Owner</label>
+                <input type="text" [(ngModel)]="githubConfig.owner" name="ghOwner" class="form-control" placeholder="hitechmobiles" required />
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 0.8rem;">Repository Name</label>
+                <input type="text" [(ngModel)]="githubConfig.repo" name="ghRepo" class="form-control" placeholder="HiTech" required />
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 0.8rem;">Target Branch</label>
+                <input type="text" [(ngModel)]="githubConfig.branch" name="ghBranch" class="form-control" placeholder="main" required />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label style="font-size: 0.8rem;">GitHub PAT Token (repo scope)</label>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <input
+                  [type]="showPatToken ? 'text' : 'password'"
+                  [(ngModel)]="githubConfig.token"
+                  name="ghToken"
+                  class="form-control"
+                  placeholder="github_pat_... or ghp_..."
+                  style="flex: 1; min-width: 200px;"
+                  required />
+                <button type="button" class="btn btn-secondary btn-sm" (click)="showPatToken = !showPatToken" title="Toggle token visibility">
+                  {{ showPatToken ? '🙈 Hide' : '👁️ Show' }}
+                </button>
+                <button type="submit" class="btn btn-primary btn-sm">
+                  💾 Save Config
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div style="font-size: 0.75rem; color: #f59e0b; display: flex; align-items: center; gap: 0.4rem;">
+            <span>⚠️</span>
+            <span>Security Notice: This token remains client-side in this browser session. Never share or commit it into source files.</span>
+          </div>
+        </div>
+
         <!-- CI/CD Connection Status -->
         <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; padding: 0.85rem 1rem; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px;">
           <span [style.background]="publishService.isConfigured() ? '#10b981' : '#f59e0b'" style="width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px currentColor;"></span>
@@ -643,7 +695,15 @@
             @if (isPublishingGithub) {
               🚀 Publishing Live &amp; Triggering CI/CD...
             } @else {
-              🚀 Publish All Catalogs (Commit + CI/CD Deploy)
+              🚀 Publish All Catalogs (Commit + Deploy)
+            }
+          </button>
+
+          <button type="button" class="btn btn-secondary" (click)="syncOrdersToGithub()" [disabled]="isSyncingOrders">
+            @if (isSyncingOrders) {
+              📤 Syncing Orders to Git...
+            } @else {
+              📤 Sync Orders & Bookings to Git
             }
           </button>
 
@@ -732,6 +792,18 @@
             }
           </button>
         </div>
+
+        <div class="export-card glass-card" style="border-color: rgba(14, 165, 233, 0.4); background: rgba(14, 165, 233, 0.04);">
+          <h4>Git Orders &amp; Bookings Sync</h4>
+          <p>Commit current orders &amp; bookings directly to repository.</p>
+          <button class="btn btn-primary btn-sm" (click)="syncOrdersToGithub()" [disabled]="isSyncingOrders">
+            @if (isSyncingOrders) {
+              Syncing...
+            } @else {
+              📤 Sync to GitHub Now
+            }
+          </button>
+        </div>
       </div>
 
       <div class="settings-divider"></div>
@@ -786,9 +858,9 @@
       <div class="quick-template-copy-box" style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1.25rem; margin: 1.25rem 0;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <strong style="color: var(--text-white); font-size: 0.95rem;">Standard Clean EmailJS HTML Templates</strong>
+            <strong style="color: var(--text-white); font-size: 0.95rem;">Resend Production HTML Templates</strong>
             <p style="margin: 0.25rem 0 0; font-size: 0.8rem; color: var(--text-muted);">
-              In EmailJS Dashboard &rarr; <em>Email Templates</em> &rarr; Click <em>Edit Content</em> &rarr; Choose <strong>Code Editor</strong> &rarr; Paste and Save.
+              Templates located in <code>email-templates/</code> directory. Copy HTML markup to inspect or customize layout.
             </p>
           </div>
           <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">

@@ -10,7 +10,7 @@
       <!-- Media Column -->
       <div class="media-col glass-card">
         <div class="main-image-wrap">
-          <img [src]="product.image" [alt]="product.name" class="main-img" />
+          <img [src]="product.image" [alt]="product.name" loading="lazy" decoding="async" class="main-img" (error)="onImageError($event)" />
         </div>
         <div class="guarantee-box">
           <div class="g-item">
@@ -93,21 +93,31 @@
         }
 
         <!-- Quantity & Purchase Actions -->
+        <!-- Quantity & Purchase Actions -->
         <div class="action-dock">
-          <div class="qty-selector">
-            <button class="qty-btn" (click)="decrementQty()">-</button>
-            <span class="qty-num">{{ quantity }}</span>
-            <button class="qty-btn" (click)="incrementQty()">+</button>
-          </div>
+          @if (product.inStock) {
+            <div class="qty-selector">
+              <button class="qty-btn" (click)="decrementQty()">-</button>
+              <span class="qty-num">{{ quantity }}</span>
+              <button class="qty-btn" (click)="incrementQty()">+</button>
+            </div>
 
-          <button class="btn btn-lg btn-primary add-btn" (click)="addToCart()" [disabled]="!product.inStock">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-            Add to Cart
-          </button>
+            <button class="btn btn-lg btn-primary add-btn" (click)="addToCart()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+              Add to Cart
+            </button>
 
-          <button class="btn btn-lg btn-purple buy-btn" (click)="buyNow()" [disabled]="!product.inStock">
-            Buy Now
-          </button>
+            <button class="btn btn-lg btn-purple buy-btn" (click)="buyNow()">
+              Buy Now
+            </button>
+          } @else {
+            <div class="out-of-stock-notice">
+              <span class="badge badge-danger">Currently Out of Stock</span>
+              <button type="button" class="btn btn-lg btn-primary notify-large-btn" (click)="openNotifyModal()">
+                🔔 Notify Me When Available
+              </button>
+            </div>
+          }
 
           <button class="fav-action-btn" [class.is-fav]="favService.isFavourite(product.id)" (click)="toggleFav()">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
@@ -115,6 +125,43 @@
         </div>
       </div>
     </div>
+
+    <!-- Restock Alert Modal -->
+    @if (showNotifyModal) {
+      <div class="card-modal-backdrop" (click)="closeNotifyModal()">
+        <div class="card-modal-content glass-card" (click)="$event.stopPropagation()">
+          <div class="modal-head">
+            <h4>Restock Notification Alert</h4>
+            <button type="button" class="btn-close" (click)="closeNotifyModal()">&times;</button>
+          </div>
+          <p class="modal-sub">We'll alert you via WhatsApp & Email when <strong>{{ product.name }}</strong> is back in stock.</p>
+
+          <form (ngSubmit)="submitNotifyRequest()">
+            <div class="m-group">
+              <label>Your Name <span class="req">*</span></label>
+              <input type="text" [(ngModel)]="notifyForm.name" name="cName" placeholder="Full name" class="form-control" required />
+            </div>
+
+            <div class="m-group">
+              <label>Phone Number <span class="req">*</span></label>
+              <input type="tel" [(ngModel)]="notifyForm.phone" name="cPhone" placeholder="10-digit mobile" maxlength="10" class="form-control" required />
+            </div>
+
+            <div class="m-group">
+              <label>Email (Optional)</label>
+              <input type="email" [(ngModel)]="notifyForm.email" name="cEmail" placeholder="you@example.com" class="form-control" />
+            </div>
+
+            <div class="modal-actions">
+              <button type="button" class="btn btn-secondary" (click)="closeNotifyModal()">Cancel</button>
+              <button type="submit" class="btn btn-primary" [disabled]="isSubmittingNotify">
+                {{ isSubmittingNotify ? 'Registering...' : '🔔 Notify Me' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }
   } @else {
     <div class="empty-results glass-panel">
       <h3>Product Not Found</h3>

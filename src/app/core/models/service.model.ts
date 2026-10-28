@@ -42,4 +42,7 @@ export interface ServiceBookingRequest {
   createdAt: string;
   updatedAt?: string;
   statusHistory?: ServiceStatusHistoryItem[];
+  placedByRole?: 'user' | 'shopowner' | 'admin';
+  shopOwnerId?: string;
+  shopName?: string;
 }

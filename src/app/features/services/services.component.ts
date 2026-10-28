@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { OrderService } from '../../core/services/order.service';
+import { AuthService } from '../../core/services/auth.service';
 import { ToastService } from '../../core/services/toast.service';
 import { DistanceService, DistanceResult } from '../../core/services/distance.service';
 import { ServiceCardComponent } from '../../shared/components/service-card/service-card.component';
@@ -19,6 +20,7 @@ import { ServiceBookingItem, ServiceBookingRequest, ServiceFulfillmentMode } fro
 export class ServicesComponent implements OnInit {
   dataService = inject(DataService);
   orderService = inject(OrderService);
+  authService = inject(AuthService);
   toastService = inject(ToastService);
   distanceService = inject(DistanceService);
   private route = inject(ActivatedRoute);
@@ -85,6 +87,43 @@ export class ServicesComponent implements OnInit {
     this.confirmedBooking = null;
     this.distanceResult = { distanceKm: null, pickupEligible: false, source: 'unknown' };
     this.activeBookingModal = true;
+
+    if (this.authService.isShopOwner()) {
+      this.useShopAddress(false);
+    }
+  }
+
+  useShopAddress(showToast: boolean = true): void {
+    const owner = this.authService.currentShopOwner();
+    const session = this.authService.currentSession();
+    if (!session || session.role !== 'shopowner') return;
+
+    this.bookingForm.customerName = owner?.ownerName || session.name || session.shopName || '';
+    if (owner?.phone) this.bookingForm.customerPhone = owner.phone;
+    if (owner?.email || session.email) this.bookingForm.customerEmail = owner?.email || session.email;
+    if (owner?.location) this.bookingForm.customerAddress = owner.location;
+
+    if (owner?.location) {
+      const pinMatch = owner.location.match(/\b\d{6}\b/);
+      if (pinMatch) {
+        this.bookingForm.pincode = pinMatch[0];
+        this.onPincodeChange();
+      }
+    }
+
+    if (showToast) {
+      this.toastService.show('Default shop address applied to service booking!', 'success');
+    }
+  }
+
+  clearAddressForClient(): void {
+    this.bookingForm.customerName = '';
+    this.bookingForm.customerPhone = '';
+    this.bookingForm.customerEmail = '';
+    this.bookingForm.customerAddress = '';
+    this.bookingForm.pincode = '';
+    this.distanceResult = { distanceKm: null, pickupEligible: false, source: 'unknown' };
+    this.toastService.show('Cleared. Enter client address and location for repair pickup.', 'info');
   }
 
   closeBookingModal(): void {

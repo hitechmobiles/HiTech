@@ -34,16 +34,46 @@ export class CartComponent {
   };
 
   constructor() {
-    // If shop owner is logged in, prefill information and enable bulk discount mode!
     const session = this.authService.currentSession();
     if (session && session.role === 'shopowner') {
       const discount = session.bulkDiscountPercent || 10;
       this.cartService.setBulkMode(true, discount);
-      this.customerForm.name = session.name;
-      this.customerForm.email = session.email;
+      this.useShopAddress(false);
     } else {
       this.cartService.setBulkMode(false);
     }
+  }
+
+  useShopAddress(showToast: boolean = true): void {
+    const owner = this.authService.currentShopOwner();
+    const session = this.authService.currentSession();
+    if (!session || session.role !== 'shopowner') return;
+
+    this.customerForm.name = owner?.ownerName || session.name || session.shopName || '';
+    if (owner?.phone) this.customerForm.phone = owner.phone;
+    if (owner?.email || session.email) this.customerForm.email = owner?.email || session.email;
+    if (owner?.location) this.customerForm.address = owner.location;
+
+    if (owner?.location) {
+      const pinMatch = owner.location.match(/\b\d{6}\b/);
+      if (pinMatch) {
+        this.customerForm.pincode = pinMatch[0];
+      }
+    }
+
+    if (showToast) {
+      this.toastService.show('Default shop address applied to order delivery!', 'success');
+    }
+  }
+
+  clearAddressForClient(): void {
+    this.customerForm.name = '';
+    this.customerForm.phone = '';
+    this.customerForm.email = '';
+    this.customerForm.address = '';
+    this.customerForm.pincode = '';
+    this.customerForm.notes = '';
+    this.toastService.show('Cleared. Enter your client delivery details.', 'info');
   }
 
   updateQty(productId: string, quantity: number): void {
@@ -75,7 +105,7 @@ export class CartComponent {
     try {
       const result = await this.orderService.placeOrder(this.customerForm);
       if (result.success && result.order) {
-        this.toastService.show('Order placed successfully! Email sent to shop owner.', 'success', 'Order Confirmed');
+        this.toastService.show('Order placed successfully! Notification sent.', 'success', 'Order Confirmed');
         this.router.navigate(['/order-success']);
       } else {
         this.toastService.show(result.message || 'Failed to place order', 'danger');

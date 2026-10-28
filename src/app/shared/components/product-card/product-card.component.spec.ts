@@ -95,13 +95,15 @@ describe('ProductCardComponent', () => {
     expect(compiled.querySelector('.badge-danger')?.textContent).toContain('Out of Stock');
   });
 
-  it('should disable add-to-cart button when out of stock', () => {
+  it('should show notify-me button and hide add-to-cart button when out of stock', () => {
     const fixture = TestBed.createComponent(ProductCardComponent);
     fixture.componentInstance.product = { ...mockProduct, inStock: false };
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    const addBtn = compiled.querySelector('.add-cart-btn') as HTMLButtonElement;
-    expect(addBtn.disabled).toBeTrue();
+    const addBtn = compiled.querySelector('.add-cart-btn');
+    const notifyBtn = compiled.querySelector('.btn-notify-me');
+    expect(addBtn).toBeNull();
+    expect(notifyBtn).toBeTruthy();
   });
 
   it('should have favourite toggle button', () => {

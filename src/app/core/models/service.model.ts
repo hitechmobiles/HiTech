@@ -25,6 +25,7 @@ export interface ServiceBookingRequest {
   id: string;
   serviceId: string;
   serviceName: string;
+  customIssueTitle?: string;
   deviceModel: string;
   issueDescription: string;
   customerName: string;

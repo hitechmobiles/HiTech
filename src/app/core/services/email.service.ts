@@ -25,9 +25,10 @@ export class EmailService {
   readonly logs = this._logs.asReadonly();
 
   private getResendConfig() {
-    return environment.resend || {
+    return (environment as any).resend || {
       apiEndpoint: '/api/send-email',
-      notificationEmail: 'bhuvaneshwaranaj@gmail.com'
+      apiKey: '',
+      notificationEmail: 'hitechmobilesandservice@gmail.com'
     };
   }
 
@@ -57,8 +58,23 @@ export class EmailService {
     });
   }
 
+  private formatEmailHtml(type: string, subject: string, p: any): string {
+    return `<!DOCTYPE html><html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0b1120;padding:24px;color:#e2e8f0;">
+      <div style="max-width:600px;margin:auto;background:#1e293b;border-radius:14px;border:1px solid #334155;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.5);">
+        <div style="background:linear-gradient(135deg,#1a8fe3,#38bdf8);padding:24px;text-align:center;color:#ffffff;">
+          <h2 style="margin:0;font-size:20px;">${subject}</h2>
+        </div>
+        <div style="padding:24px;">
+          <div style="background:#0f172a;border:1px solid #334155;border-radius:10px;padding:16px;margin-bottom:16px;">
+            ${Object.entries(p).map(([k, v]) => `<p style="margin:6px 0;font-size:14px;"><strong style="color:#94a3b8;">${k.replace(/_/g, ' ').toUpperCase()}:</strong> <span style="color:#f8fafc;">${v}</span></p>`).join('')}
+          </div>
+          <p style="color:#64748b;font-size:12px;margin:0;text-align:center;">HiTech Mobiles & Repair Care Hub &bull; Notification Service</p>
+        </div>
+      </div></body></html>`;
+  }
+
   /**
-   * Attempt dispatch via Vercel Resend Serverless endpoint
+   * Attempt dispatch via Vercel Resend Serverless endpoint with direct Resend fallback
    */
   private async sendViaResend(
     type: 'ORDER_NOTIFICATION' | 'SERVICE_BOOKING' | 'PRODUCT_SEARCH_REQUEST' | 'CUSTOM_SERVICE_ISSUE',
@@ -69,6 +85,7 @@ export class EmailService {
     const resendConfig = this.getResendConfig();
     const endpoint = resendConfig.apiEndpoint || '/api/send-email';
 
+    // 1. Try Vercel Serverless Function
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -83,22 +100,44 @@ export class EmailService {
         })
       });
 
-      if (!response.ok) {
-        throw new Error(`Resend endpoint returned status ${response.status}`);
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success && !result.simulated) {
+          return { success: true, simulated: false };
+        }
       }
+    } catch {
+      // Serverless endpoint unavailable (e.g. running locally on port 4200)
+    }
 
-      const result = await response.json();
-      if (result.success && !result.simulated) {
+    // 2. Direct Resend API Fallback (runs in browser when direct client key is configured)
+    const directKey = (resendConfig as any).apiKey || localStorage.getItem('hitech_resend_api_key') || '';
+    const targetEmail = recipient || (resendConfig as any).notificationEmail || 'hitechmobilesandservice@gmail.com';
+
+    try {
+      const directResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${directKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'HiTech <onboarding@resend.dev>',
+          to: [targetEmail],
+          subject,
+          html: this.formatEmailHtml(type, subject, templateParams)
+        })
+      });
+
+      if (directResponse.ok) {
+        this.logger.info('EmailService', `Email dispatched directly via Resend to ${targetEmail}`);
         return { success: true, simulated: false };
       }
-      if (result.simulated) {
-        this.logger.info('EmailService', 'Resend simulated email response (API key not set in environment).');
-      }
-      return { success: false, simulated: true };
     } catch (err: any) {
-      this.logger.warn('EmailService', `Resend dispatch failed or unavailable at ${endpoint}: ${err?.message || err}.`);
-      return { success: false, simulated: true };
+      this.logger.warn('EmailService', `Direct Resend dispatch failed: ${err?.message || err}`);
     }
+
+    return { success: false, simulated: true };
   }
 
   /**

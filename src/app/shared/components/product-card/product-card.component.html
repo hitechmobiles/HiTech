@@ -5,16 +5,17 @@
       <img [src]="product.image" [alt]="product.name" loading="lazy" class="product-img" (error)="onImageError($event)" />
     </a>
 
-    <!-- Overlay Badges -->
+    <!-- Clean Overlay Badges (Non-Cluttered) -->
     <div class="card-badges">
-      <span class="badge badge-brand">{{ product.brand }}</span>
-      @if (discountPercent > 0) {
-        <span class="badge badge-discount">{{ discountPercent }}% OFF</span>
-      }
       @if (!product.inStock) {
-        <span class="badge badge-danger">Out of Stock</span>
-      } @else if (product.isFeatured) {
-        <span class="badge badge-cyan">Featured</span>
+        <span class="badge badge-stock-out">Out of Stock</span>
+      } @else {
+        @if (discountPercent > 0) {
+          <span class="badge badge-discount">{{ discountPercent }}% OFF</span>
+        }
+        @if (product.isFeatured) {
+          <span class="badge badge-featured">★ Featured</span>
+        }
       }
     </div>
 
@@ -34,6 +35,17 @@
 
   <!-- Product Details -->
   <div class="product-body">
+    <!-- Clean Brand & Subcategory Header -->
+    <div class="product-brand-row">
+      <span class="product-brand-tag">{{ product.brand }}</span>
+      <span class="product-sub-bullet">•</span>
+      <span class="product-sub-category">{{ product.subCategory }}</span>
+    </div>
+
+    <h3 class="product-name">
+      <a [routerLink]="['/products', product.id]">{{ product.name }}</a>
+    </h3>
+
     <div class="rating-row">
       <div class="stars">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -41,12 +53,6 @@
       </div>
       <span class="reviews-count">({{ product.reviewsCount }} reviews)</span>
     </div>
-
-    <h3 class="product-name">
-      <a [routerLink]="['/products', product.id]">{{ product.name }}</a>
-    </h3>
-
-    <p class="product-sub">{{ product.subCategory }}</p>
 
     <!-- Key Specs / Details -->
     @if (product.specs) {
@@ -56,9 +62,9 @@
         @if (product.specs.display) { <span class="spec-pill">{{ product.specs.display.split(' ')[0] }}</span> }
       </div>
     } @else if (product.compatibleWith) {
-      <p class="compatible-note">
+      <p class="compatible-note" [title]="product.compatibleWith">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        {{ product.compatibleWith }}
+        <span class="compatible-text">{{ product.compatibleWith }}</span>
       </p>
     }
 

@@ -145,13 +145,13 @@
                 <td>
                   <div class="btn-group-cell">
                     <button class="btn btn-sm btn-primary" (click)="openEditProductFull(p)" title="Edit complete product details">
-                      âœï¸ Edit
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit
                     </button>
                     <button class="btn btn-sm btn-outline" (click)="openEditPrice(p)" title="Quickly update price">
-                      ₹ Price
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Price
                     </button>
                     <button class="btn btn-sm btn-danger" (click)="deleteProductItem(p)" title="Delete product">
-                      🗑️
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                     </button>
                   </div>
                 </td>
@@ -206,7 +206,7 @@
                   <td><strong class="text-gradient">₹{{ item.price | number }}</strong></td>
                   <td><span class="partner-price">₹{{ (item.price * 0.85) | number:'1.0-0' }}</span></td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="openEditPrice(item)">âœï¸ Edit Price</button>
+                    <button class="btn btn-sm btn-primary" (click)="openEditPrice(item)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit Price</button>
                   </td>
                 </tr>
               }
@@ -236,7 +236,7 @@
                   <td><strong class="text-gradient">₹{{ item.price | number }}</strong></td>
                   <td><span class="partner-price">₹{{ (item.price * 0.85) | number:'1.0-0' }}</span></td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="openEditPrice(item)">âœï¸ Edit Price</button>
+                    <button class="btn btn-sm btn-primary" (click)="openEditPrice(item)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit Price</button>
                   </td>
                 </tr>
               }
@@ -268,7 +268,7 @@
                   <td>{{ srv.estimatedTime }}</td>
                   <td><span class="badge badge-cyan">{{ srv.warrantyPeriod }}</span></td>
                   <td>
-                    <button class="btn btn-sm btn-primary" (click)="openEditServicePrice(srv)">âœï¸ Edit Rate</button>
+                    <button class="btn btn-sm btn-primary" (click)="openEditServicePrice(srv)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit Rate</button>
                   </td>
                 </tr>
               }
@@ -294,7 +294,7 @@
               All ({{ dataService.shopOwners().length }})
             </button>
             <button class="cat-pill-btn" [class.active]="ownerFilter === 'pending'" (click)="ownerFilter = 'pending'">
-              â³ Pending ({{ dataService.pendingShopOwners().length }})
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 3px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Pending ({{ dataService.pendingShopOwners().length }})
             </button>
             <button class="cat-pill-btn" [class.active]="ownerFilter === 'active'" (click)="ownerFilter = 'active'">
               ✓ Active ({{ dataService.activeShopOwners().length }})
@@ -354,7 +354,7 @@
                 </td>
                 <td>
                   @if (owner.status === 'pending') {
-                    <span class="badge badge-warning">â³ Pending Approval</span>
+                    <span class="badge badge-warning"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 3px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Pending Approval</span>
                   } @else {
                     <button
                       class="status-toggle-badge"
@@ -375,7 +375,7 @@
                         📋 Share
                       </button>
                       <button class="btn btn-sm btn-secondary" (click)="openEditOwner(owner)">
-                        âœï¸ Edit
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit
                       </button>
                     }
                   </div>
@@ -468,7 +468,7 @@
                             'badge-danger': ord.status === 'Cancelled'
                           }">{{ ord.status }}</span>
                           <button type="button" class="btn-history-pill" (click)="viewOrderStatusHistory(ord)" title="View status tracking history">
-                            â±ï¸ {{ ord.statusHistory?.length || 1 }} logs
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 3px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>{{ ord.statusHistory?.length || 1 }} logs
                           </button>
                         </div>
                         @if (ord.updatedAt && ord.updatedAt !== ord.createdAt) {
@@ -553,7 +553,7 @@
                             'badge-danger': b.status === 'Cancelled'
                           }">{{ b.status }}</span>
                           <button type="button" class="btn-history-pill" (click)="viewBookingStatusHistory(b)" title="View status tracking history">
-                            â±ï¸ {{ b.statusHistory?.length || 1 }} logs
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 3px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>{{ b.statusHistory?.length || 1 }} logs
                           </button>
                         </div>
                         @if (b.updatedAt && b.updatedAt !== b.createdAt) {
@@ -710,7 +710,7 @@
               </div>
               <div class="form-group" style="margin-bottom: 0;">
                 <label style="font-size: 0.8rem;">Target Branch</label>
-                <input type="text" [(ngModel)]="githubConfig.branch" name="ghBranch" class="form-control" placeholder="main" required />
+                <input type="text" [(ngModel)]="githubConfig.branch" name="ghBranch" class="form-control" placeholder="develop" required />
               </div>
             </div>
 

@@ -138,6 +138,7 @@ export class OrderService {
   async bookRepairService(bookingData: {
     serviceId: string;
     serviceName: string;
+    customIssueTitle?: string;
     deviceModel: string;
     issueDescription: string;
     customerName: string;
@@ -180,10 +181,15 @@ export class OrderService {
     };
 
     // Send email notification to owner (Standard vs Custom Issue)
-    if (bookingData.serviceId === 'srv-custom' || bookingData.serviceName.startsWith('Custom Repair')) {
+    const isCustom = bookingData.serviceId === 'srv-custom' ||
+      bookingData.serviceId === 'custom-service' ||
+      !!bookingData.customIssueTitle ||
+      bookingData.serviceName.toLowerCase().includes('custom');
+
+    if (isCustom) {
       await this.emailService.sendCustomIssueNotification({
         ...booking,
-        customIssueTitle: bookingData.serviceName
+        customIssueTitle: bookingData.customIssueTitle || bookingData.serviceName
       });
     } else {
       await this.emailService.sendServiceBookingNotification(booking);

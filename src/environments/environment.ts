@@ -8,7 +8,8 @@ export const environment = {
   },
   resend: {
     apiEndpoint: '/api/send-email',
-    notificationEmail: 'bhuvaneshwaranaj@gmail.com'
+    apiKey: '',
+    notificationEmail: 'hitechmobilesandservice@gmail.com'
   },
   otpExpirySeconds: 60,
   hub: {
@@ -21,7 +22,7 @@ export const environment = {
   github: {
     owner: 'hitechmobiles',
     repo: 'HiTech',
-    branch: 'main',
+    branch: 'develop',
     token: ''
   }
 };

@@ -113,8 +113,8 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const adminEmail = process.env.RESEND_TO_EMAIL || 'bhuvaneshwaranaj@gmail.com';
+  const apiKey = process.env.RESEND_API_KEY || '';
+  const adminEmail = process.env.RESEND_TO_EMAIL || 'hitechmobilesandservice@gmail.com';
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'HiTech <onboarding@resend.dev>';
 
   try {

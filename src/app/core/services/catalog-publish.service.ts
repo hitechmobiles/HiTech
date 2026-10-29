@@ -27,20 +27,21 @@ export class CatalogPublishService {
 
   getConfig(): GithubPublishConfig {
     const defaults: GithubPublishConfig = {
-      owner: environment.github.owner,
-      repo: environment.github.repo,
-      branch: environment.github.branch,
+      owner: environment.github.owner || 'hitechmobiles',
+      repo: environment.github.repo || 'HiTech',
+      branch: environment.github.branch || 'develop',
       token: (environment.github as any).token || ''
     };
     try {
       const saved = localStorage.getItem(GITHUB_CONFIG_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
+        const savedBranch = parsed.branch === 'main' ? 'develop' : (parsed.branch || defaults.branch);
         return {
           ...defaults,
           ...parsed,
           token: defaults.token || parsed.token || '',
-          branch: defaults.branch || parsed.branch || 'main'
+          branch: savedBranch
         };
       }
     } catch {}

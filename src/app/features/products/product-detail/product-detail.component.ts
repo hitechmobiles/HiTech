@@ -86,40 +86,48 @@ export class ProductDetailComponent implements OnInit {
       type: 'front',
       url: p.image,
       caption: isPhone
-        ? `Front Display View: ${p.specs?.display || 'Bezel-less OLED Screen'}`
+        ? `Front Display: ${p.specs?.display || 'Super Retina XDR / AMOLED'}`
         : `Front View: ${p.name}`
     });
 
-    // 2. Back View (Camera bump, finish & housing)
-    views.push({
-      id: 'view-back',
-      label: 'Back View',
-      type: 'back',
-      url: this.getBackViewUrl(p),
-      caption: isPhone
-        ? `Back View: ${p.specs?.camera || 'AI Camera Module'} with Precision Finish`
-        : `Rear / In-Use View: ${p.name}`
-    });
+    // 2. Back View (Camera bump, finish & housing) — ONLY if authentic image is provided
+    const backUrl = (p.images && p.images[1]) ? p.images[1] : null;
+    if (backUrl) {
+      views.push({
+        id: 'view-back',
+        label: 'Back View',
+        type: 'back',
+        url: backUrl,
+        caption: isPhone
+          ? `Back View: ${p.specs?.camera || 'AI Camera Module'} with Precision Finish`
+          : `Rear / In-Use View: ${p.name}`
+      });
+    }
 
-    // 3. Side / Angle Profile View
-    views.push({
-      id: 'view-angle',
-      label: 'Side Profile',
-      type: 'angle',
-      url: this.getAngleViewUrl(p),
-      caption: isPhone
-        ? `Ergonomic Profile: Slim aerospace-grade frame & tactile controls`
-        : `Connector & Ports Detail View`
-    });
+    // 3. Side / Angle Profile View — ONLY if authentic image is provided
+    const angleUrl = (p.images && p.images[2]) ? p.images[2] : null;
+    if (angleUrl) {
+      views.push({
+        id: 'view-angle',
+        label: 'Side Profile',
+        type: 'angle',
+        url: angleUrl,
+        caption: isPhone
+          ? `Ergonomic Profile: Slim aerospace-grade frame & tactile controls`
+          : `Connector & Ports Detail View`
+      });
+    }
 
-    // 4. Specification Infographic View
-    views.push({
-      id: 'view-specs',
-      label: 'Specs Card',
-      type: 'specs',
-      url: this.generateSpecsInfographicSvg(p),
-      caption: `Verified Factory Specifications & Benchmark Overview`
-    });
+    // 4. Specification Infographic View (for devices with technical specs)
+    if (p.specs && (p.specs.ram || p.specs.storage || p.specs.display || p.specs.camera)) {
+      views.push({
+        id: 'view-specs',
+        label: 'Specs Card',
+        type: 'specs',
+        url: this.generateSpecsInfographicSvg(p),
+        caption: `Verified Factory Specifications & Benchmark Overview`
+      });
+    }
 
     this.productViews = views;
   }
@@ -237,36 +245,6 @@ export class ProductDetailComponent implements OnInit {
     } finally {
       this.isSubmittingNotify = false;
     }
-  }
-
-  private getBackViewUrl(p: ProductItem): string {
-    if (p.images && p.images[1]) return p.images[1];
-    const b = p.brand.toLowerCase();
-    if (b.includes('apple')) {
-      return 'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=700&q=80';
-    }
-    if (b.includes('samsung')) {
-      return 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=700&q=80';
-    }
-    if (b.includes('oneplus') || b.includes('nothing')) {
-      return 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=700&q=80';
-    }
-    if (p.category === 'accessory') {
-      return 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=700&q=80';
-    }
-    return 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=700&q=80';
-  }
-
-  private getAngleViewUrl(p: ProductItem): string {
-    if (p.images && p.images[2]) return p.images[2];
-    const b = p.brand.toLowerCase();
-    if (b.includes('apple')) {
-      return 'https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=700&q=80';
-    }
-    if (p.category === 'accessory') {
-      return 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80';
-    }
-    return 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=700&q=80';
   }
 
   private generateSpecsInfographicSvg(p: ProductItem): string {

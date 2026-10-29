@@ -20,27 +20,29 @@
     <div class="product-detail-grid">
       <!-- Media Column with Multi-View Gallery -->
       <div class="media-col glass-card">
-        <!-- View Angle Selector Pills -->
-        <div class="view-angle-pills">
-          @for (v of productViews; track v.id; let idx = $index) {
-            <button
-              type="button"
-              class="view-pill-btn"
-              [class.active]="selectedViewIndex === idx"
-              (click)="selectView(idx)">
-              @if (v.type === 'front') {
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              } @else if (v.type === 'back') {
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
-              } @else if (v.type === 'angle') {
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-              } @else if (v.type === 'specs') {
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              }
-              <span>{{ v.label }}</span>
-            </button>
-          }
-        </div>
+        <!-- View Angle Selector Pills (Shown when multiple views exist) -->
+        @if (productViews.length > 1) {
+          <div class="view-angle-pills">
+            @for (v of productViews; track v.id; let idx = $index) {
+              <button
+                type="button"
+                class="view-pill-btn"
+                [class.active]="selectedViewIndex === idx"
+                (click)="selectView(idx)">
+                @if (v.type === 'front') {
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                } @else if (v.type === 'back') {
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+                } @else if (v.type === 'angle') {
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                } @else if (v.type === 'specs') {
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                }
+                <span>{{ v.label }}</span>
+              </button>
+            }
+          </div>
+        }
 
         <!-- Main Display Frame with Skeleton Shimmer -->
         <div class="main-image-wrap" [class.is-loading]="isImageLoading">
@@ -70,20 +72,22 @@
           </div>
         </div>
 
-        <!-- Interactive Thumbnail Strip -->
-        <div class="thumbnail-strip">
-          @for (v of productViews; track v.id; let idx = $index) {
-            <button
-              type="button"
-              class="thumb-btn"
-              [class.active]="selectedViewIndex === idx"
-              (click)="selectView(idx)"
-              [title]="v.label">
-              <img [src]="v.url" [alt]="v.label" class="thumb-img" (error)="onImageError($event)" />
-              <span class="thumb-label">{{ v.label }}</span>
-            </button>
-          }
-        </div>
+        <!-- Interactive Thumbnail Strip (Shown when multiple views exist) -->
+        @if (productViews.length > 1) {
+          <div class="thumbnail-strip">
+            @for (v of productViews; track v.id; let idx = $index) {
+              <button
+                type="button"
+                class="thumb-btn"
+                [class.active]="selectedViewIndex === idx"
+                (click)="selectView(idx)"
+                [title]="v.label">
+                <img [src]="v.url" [alt]="v.label" class="thumb-img" (error)="onImageError($event)" />
+                <span class="thumb-label">{{ v.label }}</span>
+              </button>
+            }
+          </div>
+        }
 
         <!-- Trust Badges -->
         <div class="guarantee-box">

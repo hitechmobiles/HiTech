@@ -28,6 +28,8 @@ export class ServicesComponent implements OnInit {
   selectedCategory: string = 'all';
   activeBookingModal: boolean = false;
   selectedService: ServiceBookingItem | null = null;
+  isCustomService: boolean = false;
+  customIssueTitle: string = '';
   bookingSubmitted: boolean = false;
   confirmedBooking: ServiceBookingRequest | null = null;
   isSubmitting: boolean = false;
@@ -66,7 +68,9 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const srvId = params['selectedService'];
-      if (srvId) {
+      if (srvId === 'custom' || srvId === 'srv-custom') {
+        this.openCustomServiceBooking();
+      } else if (srvId) {
         const found = this.dataService.services().find(s => s.id === srvId);
         if (found) {
           this.openBookingModal(found);
@@ -82,7 +86,40 @@ export class ServicesComponent implements OnInit {
   }
 
   openBookingModal(service: ServiceBookingItem): void {
+    this.isCustomService = false;
+    this.customIssueTitle = '';
     this.selectedService = service;
+    this.bookingSubmitted = false;
+    this.confirmedBooking = null;
+    this.distanceResult = { distanceKm: null, pickupEligible: false, source: 'unknown' };
+    this.activeBookingModal = true;
+
+    if (this.authService.isShopOwner()) {
+      this.useShopAddress(false);
+    }
+  }
+
+  openCustomServiceBooking(): void {
+    this.isCustomService = true;
+    this.customIssueTitle = '';
+    this.selectedService = {
+      id: 'srv-custom',
+      name: 'Custom / Unlisted Repair Service',
+      category: 'custom',
+      startingPrice: 0,
+      estimatedTime: 'Diagnostics: 2-4 Hours',
+      warrantyPeriod: '6 Months Warranty',
+      description: 'Specialized motherboard fault, IC level soldering, button/housing repair or custom issue diagnosis.',
+      icon: '🔧',
+      isPopular: false,
+      available: true,
+      includedPoints: [
+        'Free doorstep diagnosis & quotation',
+        'Certified Level 4 micro-soldering technician',
+        'Genuine parts with 6-month warranty',
+        'Full testing before device return'
+      ]
+    };
     this.bookingSubmitted = false;
     this.confirmedBooking = null;
     this.distanceResult = { distanceKm: null, pickupEligible: false, source: 'unknown' };
@@ -206,6 +243,11 @@ export class ServicesComponent implements OnInit {
       return;
     }
 
+    if (this.isCustomService && !this.customIssueTitle.trim()) {
+      this.toastService.show('Please specify the custom issue or repair needed.', 'warning');
+      return;
+    }
+
     if (!this.bookingForm.deviceModel.trim()) {
       this.toastService.show('Please specify your mobile phone model.', 'warning');
       return;
@@ -224,9 +266,14 @@ export class ServicesComponent implements OnInit {
 
     this.isSubmitting = true;
     try {
+      const srvName = this.isCustomService
+        ? (this.customIssueTitle.trim() || 'Custom Repair Service')
+        : this.selectedService.name;
+
       const res = await this.orderService.bookRepairService({
-        serviceId: this.selectedService.id,
-        serviceName: this.selectedService.name,
+        serviceId: this.isCustomService ? 'srv-custom' : this.selectedService.id,
+        serviceName: srvName,
+        customIssueTitle: this.isCustomService ? this.customIssueTitle.trim() : undefined,
         deviceModel: this.bookingForm.deviceModel,
         issueDescription: this.bookingForm.issueDescription,
         customerName: this.bookingForm.customerName,
@@ -239,7 +286,7 @@ export class ServicesComponent implements OnInit {
         fulfillmentMode: this.bookingForm.fulfillmentMode,
         preferredDate: this.bookingForm.preferredDate,
         preferredTimeSlot: this.bookingForm.preferredTimeSlot,
-        estimatedPrice: this.selectedService.startingPrice
+        estimatedPrice: this.isCustomService ? 0 : this.selectedService.startingPrice
       });
 
       if (res.success && res.booking) {

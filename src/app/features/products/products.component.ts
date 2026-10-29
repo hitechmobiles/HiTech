@@ -162,6 +162,21 @@ export class ProductsComponent implements OnInit {
         customerNotes: this.requestForm.customerNotes.trim() || undefined
       });
 
+      // Save to notification requests for admin dashboard visibility
+      try {
+        const key = 'hitech_notify_requests';
+        const existing = JSON.parse(localStorage.getItem(key) || '[]');
+        existing.unshift({
+          productId: 'CUSTOM-REQ',
+          productName: this.requestForm.requestedProduct.trim() + (this.requestForm.preferredSpecs.trim() ? ` (${this.requestForm.preferredSpecs.trim()})` : ''),
+          customerName: this.requestForm.customerName.trim(),
+          customerPhone: this.requestForm.customerPhone.trim(),
+          customerEmail: this.requestForm.customerEmail.trim() || undefined,
+          timestamp: new Date().toLocaleString()
+        });
+        localStorage.setItem(key, JSON.stringify(existing.slice(0, 100)));
+      } catch {}
+
       this.requestSubmitted = true;
       this.toastService.show(
         `Order request for ${this.requestForm.requestedProduct} logged! We will reply shortly.`,

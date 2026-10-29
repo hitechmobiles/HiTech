@@ -122,20 +122,104 @@
   }
 }
 
+/* Touch-Friendly Subcategory Chips Bar */
+.accessories-chip-bar {
+  margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+
+  .chip-scroll-container {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    overflow-x: auto;
+    padding: 0.25rem 0.15rem 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .subcat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.95rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-pill);
+    color: var(--text-secondary);
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+    touch-action: manipulation;
+
+    svg {
+      color: var(--primary-accent);
+      flex-shrink: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .chip-count {
+      font-size: 0.72rem;
+      background: var(--bg-surface-elevated);
+      padding: 0.1rem 0.45rem;
+      border-radius: 9999px;
+      color: var(--text-muted);
+      font-weight: 700;
+      transition: all var(--transition-fast);
+    }
+
+    &:hover {
+      border-color: var(--primary-accent);
+      color: var(--text-white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(var(--primary-accent-rgb), 0.15);
+    }
+
+    &.active {
+      background: var(--grad-primary);
+      border-color: transparent;
+      color: var(--text-on-accent);
+      box-shadow: 0 3px 14px rgba(var(--primary-accent-rgb), 0.35);
+
+      svg {
+        color: var(--text-on-accent);
+      }
+
+      .chip-count {
+        background: rgba(0, 0, 0, 0.2);
+        color: var(--text-on-accent);
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    margin-top: -0.5rem;
+    margin-bottom: 1.15rem;
+
+    .subcat-chip {
+      padding: 0.45rem 0.75rem;
+      font-size: 0.78rem;
+
+      svg {
+        width: 13px;
+        height: 13px;
+      }
+    }
+  }
+}
+
 .subcat-select-wrap, .sort-wrap {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.subcat-select-wrap {
-  @media (max-width: 600px) {
-    width: 100%;
-    .filter-select {
-      width: 100%;
-      min-height: 42px;
-    }
-  }
 }
 
 .filter-select {

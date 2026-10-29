@@ -94,15 +94,20 @@
             @if (authService.isShopOwner()) {
               <div class="shopowner-address-bar glass-panel animate-fade-in">
                 <div class="bar-header">
-                  <span class="badge badge-purple">🏬 Shop Partner</span>
+                  <span class="badge badge-purple">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M2 7h20"/></svg>
+                    Shop Partner
+                  </span>
                   <span class="bar-text">Ordering for store stock or delivering to client?</span>
                 </div>
                 <div class="bar-actions">
                   <button type="button" class="btn-address-action btn-fill-shop" (click)="useShopAddress()">
-                    <span>📍</span> Use Default Shop Address
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Use Default Shop Address
                   </button>
                   <button type="button" class="btn-address-action btn-client-addr" (click)="clearAddressForClient()">
-                    <span>👤</span> Ship to Client Location
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Ship to Client Location
                   </button>
                 </div>
               </div>
@@ -173,9 +178,15 @@
               </button>
 
               <div class="security-badges">
-                <span>🔒 SSL Encrypted</span>
+                <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  SSL Encrypted
+                </span>
                 <span>•</span>
-                <span>📧 Instant Owner Notification</span>
+                <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  Instant Owner Notification
+                </span>
               </div>
             </form>
           </div>
@@ -184,7 +195,9 @@
     </div>
   } @else {
     <div class="empty-cart glass-panel animate-fade-in">
-      <div class="cart-icon">🛒</div>
+      <div class="cart-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </div>
       <h3>Your Shopping Cart is Empty</h3>
       <p>Discover flagship phones, authentic spare parts, and accessories today.</p>
       <a routerLink="/products" class="btn btn-primary btn-lg">Start Shopping</a>

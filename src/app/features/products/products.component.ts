@@ -125,6 +125,13 @@ export class ProductsComponent implements OnInit {
     this.requestSubmitted = false;
   }
 
+  getAccessoryCount(subCat: string): number {
+    if (subCat === 'all') {
+      return this.dataService.accessories().length;
+    }
+    return this.dataService.accessories().filter(a => a.subCategory === subCat).length;
+  }
+
   initRequestForm(): void {
     this.requestForm.requestedProduct = this.searchQuery.trim() || '';
     this.requestSubmitted = false;

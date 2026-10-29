@@ -11,7 +11,10 @@
           <span class="badge badge-success">{{ currentOwner?.bulkDiscountTier || 'Gold (15% OFF)' }}</span>
         </div>
         <h1 class="shop-name">{{ currentOwner?.shopName || 'Retail Partner Hub' }}</h1>
-        <p class="location-txt">📍 {{ currentOwner?.location }}</p>
+        <p class="location-txt" style="display: flex; align-items: center; gap: 0.35rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          {{ currentOwner?.location }}
+        </p>
         <p class="owner-txt">Proprietor: <strong>{{ currentOwner?.ownerName }}</strong> • {{ currentOwner?.email }}</p>
       </div>
     </div>

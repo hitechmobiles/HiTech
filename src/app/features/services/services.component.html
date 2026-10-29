@@ -70,15 +70,20 @@
             @if (authService.isShopOwner()) {
               <div class="shopowner-address-bar glass-panel animate-fade-in">
                 <div class="bar-header">
-                  <span class="badge badge-purple">🏬 Shop Partner</span>
+                  <span class="badge badge-purple">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M2 7h20"/></svg>
+                    Shop Partner
+                  </span>
                   <span class="bar-text">Booking repair for shop inventory or client device?</span>
                 </div>
                 <div class="bar-actions">
                   <button type="button" class="btn-address-action btn-fill-shop" (click)="useShopAddress()">
-                    <span>📍</span> Use Default Shop Address
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Use Default Shop Address
                   </button>
                   <button type="button" class="btn-address-action btn-client-addr" (click)="clearAddressForClient()">
-                    <span>👤</span> Service at Client Location
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Service at Client Location
                   </button>
                 </div>
               </div>
@@ -131,11 +136,12 @@
                     maxlength="6"
                     class="form-control"
                     required />
-                  <button type="button" class="btn btn-secondary btn-sm gps-btn" (click)="useCurrentLocation()" [disabled]="isLocating" title="Use current GPS coordinates">
+                  <button type="button" class="btn btn-secondary btn-sm gps-btn" (click)="useCurrentLocation()" [disabled]="isLocating" title="Use current GPS coordinates" style="display: inline-flex; align-items: center; gap: 0.35rem;">
                     @if (isLocating) {
                       <span class="spinner-inline"></span> Locating...
                     } @else {
-                      📍 GPS
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      GPS
                     }
                   </button>
                 </div>
@@ -186,7 +192,10 @@
                     [disabled]="distanceResult.distanceKm !== null && !distanceResult.pickupEligible" />
                   <div class="card-inner">
                     <div class="f-header">
-                      <span class="f-title">🚗 Doorstep Home Pickup</span>
+                      <span class="f-title" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                        Doorstep Home Pickup
+                      </span>
                       @if (distanceResult.distanceKm !== null && !distanceResult.pickupEligible) {
                         <span class="badge badge-danger">Outside 30 km</span>
                       } @else {
@@ -208,7 +217,10 @@
                     [(ngModel)]="bookingForm.fulfillmentMode" />
                   <div class="card-inner">
                     <div class="f-header">
-                      <span class="f-title">📦 Send via Courier / Parcel</span>
+                      <span class="f-title" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                        Send via Courier / Parcel
+                      </span>
                       <span class="badge badge-purple">All Locations</span>
                     </div>
                     <p class="f-desc">Pack and dispatch your phone via courier. We inspect, repair, and courier it back to your address.</p>
@@ -226,7 +238,10 @@
                     [(ngModel)]="bookingForm.fulfillmentMode" />
                   <div class="card-inner">
                     <div class="f-header">
-                      <span class="f-title">🏬 Direct Handover at Shop</span>
+                      <span class="f-title" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M2 7h20"/></svg>
+                        Direct Handover at Shop
+                      </span>
                       <span class="badge badge-cyan">Instant Diagnostics</span>
                     </div>
                     <p class="f-desc">Walk directly into our service hub: {{ hubConfig.name }}, {{ hubConfig.address }}.</p>
@@ -281,11 +296,20 @@
               <div><strong>Device:</strong> {{ confirmedBooking?.deviceModel }}</div>
               <div><strong>Fulfillment Mode:</strong>
                 @if (confirmedBooking?.fulfillmentMode === 'home_pickup') {
-                  <span class="badge badge-success">🚗 Doorstep Home Pickup @if (confirmedBooking?.distanceKm !== null && confirmedBooking?.distanceKm !== undefined) {({{ confirmedBooking?.distanceKm }} km)}</span>
+                  <span class="badge badge-success" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                    Doorstep Home Pickup @if (confirmedBooking?.distanceKm !== null && confirmedBooking?.distanceKm !== undefined) {({{ confirmedBooking?.distanceKm }} km)}
+                  </span>
                 } @else if (confirmedBooking?.fulfillmentMode === 'parcel') {
-                  <span class="badge badge-purple">📦 Courier / Parcel Dispatch</span>
+                  <span class="badge badge-purple" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                    Courier / Parcel Dispatch
+                  </span>
                 } @else {
-                  <span class="badge badge-cyan">🏬 Direct Handover at Service Hub</span>
+                  <span class="badge badge-cyan" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M2 7h20"/></svg>
+                    Direct Handover at Service Hub
+                  </span>
                 }
               </div>
               <div><strong>Slot:</strong> {{ confirmedBooking?.preferredDate }} ({{ confirmedBooking?.preferredTimeSlot }})</div>

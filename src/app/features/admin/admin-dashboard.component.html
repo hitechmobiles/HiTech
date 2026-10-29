@@ -148,7 +148,7 @@
                       âœï¸ Edit
                     </button>
                     <button class="btn btn-sm btn-outline" (click)="openEditPrice(p)" title="Quickly update price">
-                      â‚¹ Price
+                      ₹ Price
                     </button>
                     <button class="btn btn-sm btn-danger" (click)="deleteProductItem(p)" title="Delete product">
                       🗑️
@@ -794,7 +794,7 @@
           <h4>Products Catalog</h4>
           <p>Contains smartphones, specs, images, stock status, and prices.</p>
           <button class="btn btn-outline btn-sm" (click)="exportData('products')">
-            â¬‡ï¸ Download products.json
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>  Download products.json
           </button>
         </div>
 
@@ -802,7 +802,7 @@
           <h4>Accessories Catalog</h4>
           <p>Contains chargers, cases, earphones, and prices.</p>
           <button class="btn btn-outline btn-sm" (click)="exportData('accessories')">
-            â¬‡ï¸ Download accessories.json
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>  Download accessories.json
           </button>
         </div>
 
@@ -810,7 +810,7 @@
           <h4>Services Catalog</h4>
           <p>Contains phone repair services, estimates, and turnaround times.</p>
           <button class="btn btn-outline btn-sm" (click)="exportData('services')">
-            â¬‡ï¸ Download services.json
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>  Download services.json
           </button>
         </div>
 
@@ -818,7 +818,7 @@
           <h4>Shop Owners Database</h4>
           <p>Contains all active, pending, and static shop partner profiles.</p>
           <button class="btn btn-outline btn-sm" (click)="exportData('shop-owners')">
-            â¬‡ï¸ Download shop-owners.json
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>  Download shop-owners.json
           </button>
         </div>
       </div>
@@ -834,7 +834,7 @@
           <h4>Export Customer Orders</h4>
           <p>{{ orderService.orders().length }} active purchase orders recorded.</p>
           <button class="btn btn-outline btn-sm" (click)="exportOrders()">
-            â¬‡ï¸ Download orders.json
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>  Download orders.json
           </button>
         </div>
 
@@ -842,7 +842,7 @@
           <h4>Export Service Bookings</h4>
           <p>{{ orderService.bookings().length }} repair appointments recorded.</p>
           <button class="btn btn-outline btn-sm" (click)="exportBookings()">
-            â¬‡ï¸ Download bookings.json
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>  Download bookings.json
           </button>
         </div>
 
@@ -1039,12 +1039,12 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>Selling Price (â‚¹ INR) <span class="required">*</span></label>
+              <label>Selling Price (₹ INR) <span class="required">*</span></label>
               <input type="number" [(ngModel)]="productForm.price" name="prodPrice" class="form-control" required />
             </div>
 
             <div class="form-group">
-              <label>Original MRP (â‚¹ INR)</label>
+              <label>Original MRP (₹ INR)</label>
               <input type="number" [(ngModel)]="productForm.originalPrice" name="prodOriginalPrice" class="form-control" />
             </div>
           </div>
@@ -1181,7 +1181,7 @@
         <p class="tbl-sub">{{ editingProduct.brand }} (Current: ₹{{ editingProduct.price | number }})</p>
 
         <div class="form-group" style="margin-top: 1.5rem;">
-          <label>New Price (â‚¹ INR)</label>
+          <label>New Price (₹ INR)</label>
           <input type="number" [(ngModel)]="editingPriceValue" class="form-control" />
         </div>
 
@@ -1201,7 +1201,7 @@
         <p class="tbl-sub">{{ editingService.category }} (Current Starting: ₹{{ editingService.startingPrice | number }})</p>
 
         <div class="form-group" style="margin-top: 1.5rem;">
-          <label>New Starting Estimate (â‚¹ INR)</label>
+          <label>New Starting Estimate (₹ INR)</label>
           <input type="number" [(ngModel)]="editingServicePriceValue" class="form-control" />
         </div>
 
@@ -1255,7 +1255,7 @@
         <div class="modal-header-custom">
           <div>
             <h3 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
-              <span>⚠️ï¸</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> </span>
               {{ publishModalMode === 'publish_catalog' ? 'Confirm Live Catalog Publish' : 'Confirm CI/CD Pipeline Dispatch' }}
             </h3>
             <p class="modal-subtitle">
@@ -1271,7 +1271,7 @@
           <div class="target-repo-badge" style="background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.3); border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 1.25rem;">
             <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Target Code Repository</div>
             <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-top: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
-              <span>📁</span> {{ githubConfig.owner }}/{{ githubConfig.repo }}
+              <span style="color: var(--primary-accent); display: inline-flex; align-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></span> {{ githubConfig.owner }}/{{ githubConfig.repo }}
               <span class="badge badge-purple" style="font-size: 0.75rem;">branch: {{ githubConfig.branch }}</span>
             </div>
           </div>
@@ -1285,7 +1285,7 @@
               @for (file of publishFilesSummary; track file.path) {
                 <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 0.5rem 0.85rem;">
                   <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="font-size: 0.9rem;">📄</span>
+                    <span style="color: var(--text-secondary); display: inline-flex; align-items: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
                     <span style="font-family: monospace; font-size: 0.85rem; color: var(--text-primary);">{{ file.path }}</span>
                   </div>
                   <span class="badge badge-cyan" style="font-size: 0.7rem;">{{ file.count }} records</span>

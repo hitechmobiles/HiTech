@@ -501,388 +501,444 @@
   margin-bottom: 2rem;
 }
 
-.festive-banner-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(245, 158, 11, 0.06) 100%);
-  border: 1px solid rgba(234, 179, 8, 0.35);
-  border-radius: 18px;
-  padding: 1.25rem 2rem;
-  margin-bottom: 2rem;
+/* Smartphone Brands Showcase (Theme-Adapted Modern Design) */
+.brands-showcase-section {
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(234, 179, 8, 0.12);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #f59e0b, #fef08a, #f59e0b, #d97706);
-  }
+.brands-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
 
-  .festive-diya {
-    font-size: 1.8rem;
-    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.7));
-    animation: diyaPulse 2.5s ease-in-out infinite alternate;
-  }
+  .header-left {
+    max-width: 650px;
 
-  .festive-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-
-    .festive-sparkle {
-      color: #f59e0b;
-      font-size: 1.2rem;
+    .badge {
+      display: inline-block;
+      margin-bottom: 0.5rem;
     }
 
-    .festive-title {
-      font-size: 1.85rem;
+    .section-title {
+      font-size: 2rem;
       font-weight: 800;
-      color: #fef08a;
-      letter-spacing: 0.5px;
+      color: var(--text-white);
+      margin: 0.25rem 0 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
       margin: 0;
-      text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
     }
   }
 
-  .festive-view-all {
+  .view-all-brands-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: #fef08a;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    background: rgba(234, 179, 8, 0.18);
-    border: 1px solid rgba(234, 179, 8, 0.4);
+    white-space: nowrap;
+    border-radius: var(--radius-pill);
+    padding: 0.55rem 1.15rem;
+    font-weight: 600;
     transition: all var(--transition-fast);
 
     &:hover {
-      background: rgba(234, 179, 8, 0.35);
-      transform: translateX(4px);
+      background: var(--primary-accent);
       color: #ffffff;
+      border-color: var(--primary-accent);
+      transform: translateX(3px);
     }
   }
 
   @media (max-width: 768px) {
-    padding: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
 
-    .festive-title {
-      font-size: 1.4rem !important;
+    .section-title {
+      font-size: 1.6rem !important;
     }
 
-    .festive-view-all {
+    .view-all-brands-btn {
       width: 100%;
       justify-content: center;
     }
   }
 }
 
-@keyframes diyaPulse {
-  0% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.5)); }
-  100% { transform: scale(1.12); filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.9)); }
-}
-
-.brands-arch-grid {
+/* Brands Grid */
+.brands-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 1.5rem 1rem;
-  justify-items: center;
+  gap: 1.25rem;
 
   @media (max-width: 640px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem 0.5rem;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 380px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.brand-arch-card {
+/* Individual Brand Card */
+.brand-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: transparent;
-  border: none;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 0.75rem;
   cursor: pointer;
-  padding: 0;
-  outline: none;
-  transition: transform var(--transition-fast);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  min-height: 110px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 50% 0%, rgba(var(--primary-accent-rgb), 0.12), transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
 
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
+    border-color: var(--primary-accent);
+    box-shadow: var(--shadow-glow);
+    background: var(--bg-card-hover);
 
-    .arch-gold-body {
-      box-shadow: 0 12px 28px rgba(234, 179, 8, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      border-color: #fef08a;
+    &::before {
+      opacity: 1;
     }
 
-    .arch-caption {
-      color: #fef08a;
+    .brand-title {
+      color: var(--primary-accent);
+    }
+
+    .brand-logo-frame {
+      transform: scale(1.08);
     }
   }
 
   &:active {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
-}
-
-.arch-outer-frame {
-  width: 110px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
 
   @media (max-width: 640px) {
-    width: 95px;
+    padding: 0.9rem 0.5rem;
+    min-height: 95px;
   }
 }
 
-/* Arched Spire / Dome */
-.arch-spire {
-  width: 44px;
-  height: 14px;
-  position: relative;
-  margin-bottom: -2px;
-  z-index: 2;
-
-  .spire-peak {
-    display: block;
-    width: 0;
-    height: 0;
-    margin: 0 auto;
-    border-left: 14px solid transparent;
-    border-right: 14px solid transparent;
-    border-bottom: 14px solid #facc15;
-    filter: drop-shadow(0 -1px 2px rgba(180, 83, 9, 0.5));
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 6px;
-      background: #ca8a04;
-      border-radius: 50%;
-    }
-  }
-}
-
-/* Arched Golden Body */
-.arch-gold-body {
-  width: 100%;
-  height: 96px;
-  background: linear-gradient(180deg, #fef08a 0%, #facc15 25%, #eab308 65%, #ca8a04 100%);
-  border-radius: 28px 28px 10px 10px;
-  border: 2px solid #ca8a04;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.8), inset 0 -3px 6px rgba(180, 83, 9, 0.5);
-  padding: 5px;
+.brand-logo-frame {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
-
-  @media (max-width: 640px) {
-    height: 84px;
-  }
-}
-
-.arch-inner-border {
+  height: 48px;
   width: 100%;
-  height: 100%;
-  border-radius: 22px 22px 8px 8px;
-  border: 1.5px dashed rgba(180, 83, 9, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(254, 240, 138, 0.25);
-  padding: 4px;
+  margin-bottom: 0.5rem;
+  transition: transform var(--transition-fast);
 }
 
-.brand-logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.arch-caption {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--text-primary);
+.brand-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  margin-top: 8px;
   text-align: center;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Text Fallback when logo not visible/available */
+.brand-text-fallback {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: rgba(var(--primary-accent-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-accent-rgb), 0.2);
+
+  .fallback-initial {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--primary-accent);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fallback-name {
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--text-white);
+    letter-spacing: 0.3px;
+  }
+}
+
+/* Theme-Adapted Brand Logos */
+.brand-svg-apple {
+  color: var(--text-white);
   transition: color var(--transition-fast);
 }
 
-/* Individual Brand Logos Pure CSS Styling */
-.apple-svg {
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+.brand-text-logo {
+  display: inline-block;
+  line-height: 1;
+}
+
+.logo-samsung {
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  color: #034ea2;
+
+  [data-theme="dark"] & {
+    color: #38bdf8;
+  }
+}
+
+.logo-oneplus {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #eb0028;
+
+  .oneplus-icon {
+    font-weight: 900;
+    font-size: 0.85rem;
+    border: 1.5px solid #eb0028;
+    padding: 0 3px;
+    border-radius: 3px;
+    line-height: 1.1;
+  }
+
+  .oneplus-lbl {
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+.logo-nothing {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 1.8px;
+  color: var(--text-white);
+  border: 1px dashed var(--border-medium);
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
+.logo-moto {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .moto-m {
+    width: 28px;
+    height: 28px;
+    background: #0284c7;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  }
+
+  .moto-lbl {
+    font-weight: 800;
+    font-size: 0.78rem;
+    color: var(--text-white);
+    letter-spacing: -0.2px;
+  }
+}
+
+.logo-redmi {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+
+  .redmi-text {
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: #dc2626;
+    letter-spacing: -0.4px;
+  }
+
+  .by-mi {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+}
+
+.logo-realme {
+  background: #ffc915;
+  color: #111827;
+  font-weight: 900;
+  font-size: 0.95rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: -0.2px;
+  box-shadow: 0 2px 6px rgba(255, 201, 21, 0.3);
+}
+
+.logo-vivo {
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #415fff;
+  letter-spacing: -0.8px;
+
+  [data-theme="dark"] & {
+    color: #60a5fa;
+  }
+}
+
+.logo-oppo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #008450;
+  letter-spacing: -0.5px;
+
+  [data-theme="dark"] & {
+    color: #10b981;
+  }
+}
+
+.logo-iqoo {
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: #111827;
+  background: #facc15;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+
+  [data-theme="dark"] & {
+    color: #0f172a;
+    background: #f59e0b;
+  }
+}
+
+.logo-poco {
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: #111827;
+  background: #fde047;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+
+  [data-theme="dark"] & {
+    color: #000000;
+  }
+}
+
+.logo-infinix {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #16a34a;
+  letter-spacing: -0.2px;
+
+  [data-theme="dark"] & {
+    color: #4ade80;
+  }
 }
 
 .logo-aiplus {
   font-weight: 900;
-  font-size: 1.35rem;
-  color: #0f172a;
-  letter-spacing: -0.5px;
+  font-size: 1.2rem;
+  color: var(--text-white);
+  letter-spacing: -0.3px;
 
   .plus-sign {
-    color: #0f172a;
-    font-size: 1rem;
+    color: var(--primary-accent);
+    font-size: 0.95rem;
     vertical-align: super;
   }
 }
 
 .logo-hmd {
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #001e38;
   letter-spacing: 1px;
-}
 
-.logo-infinix {
-  font-weight: 800;
-  font-size: 1.15rem;
-  color: #15803d;
-  letter-spacing: -0.3px;
-}
-
-.logo-iqoo {
-  font-weight: 900;
-  font-size: 1.25rem;
-  color: #000000;
-  letter-spacing: -0.5px;
+  [data-theme="dark"] & {
+    color: #93c5fd;
+  }
 }
 
 .logo-itel {
   font-weight: 900;
   font-style: italic;
-  font-size: 1.35rem;
-  color: #dc2626;
-  border-bottom: 2.5px solid #dc2626;
-  padding: 0 2px;
+  font-size: 1.25rem;
+  color: #ef4444;
+  border-bottom: 2px solid #ef4444;
+  padding: 0 3px;
+  letter-spacing: -0.5px;
 }
 
 .logo-mivi {
-  background: #000000;
+  background: #111827;
   color: #10b981;
   font-weight: 900;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   padding: 3px 8px;
   border-radius: 4px;
-  letter-spacing: 0.5px;
-}
+  letter-spacing: 0.8px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
 
-.logo-moto-bat {
-  width: 36px;
-  height: 36px;
-  background: #0284c7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
-
-  .moto-m {
-    color: #ffffff;
-    font-weight: 900;
-    font-size: 1.15rem;
-    font-family: sans-serif;
+  [data-theme="dark"] & {
+    background: rgba(16, 185, 129, 0.15);
   }
 }
 
 .logo-narzo {
-  font-weight: 800;
-  font-size: 1.2rem;
+  font-weight: 900;
+  font-size: 1.15rem;
   color: #0284c7;
   letter-spacing: -0.5px;
-}
 
-.logo-nothing {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  color: #111827;
-  border: 1px dotted #111827;
-  padding: 2px 4px;
-}
-
-.logo-oneplus {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  color: #dc2626;
-
-  .oneplus-icon {
-    font-weight: 900;
-    font-size: 0.85rem;
-    border: 1.5px solid #dc2626;
-    padding: 0 2px;
-    border-radius: 2px;
+  [data-theme="dark"] & {
+    color: #38bdf8;
   }
-
-  .oneplus-lbl {
-    font-weight: 900;
-    font-size: 0.8rem;
-    letter-spacing: 0.3px;
-  }
-}
-
-.logo-oppo {
-  font-weight: 800;
-  font-size: 1.35rem;
-  color: #15803d;
-  letter-spacing: -1px;
-}
-
-.logo-poco {
-  font-weight: 900;
-  font-size: 1.25rem;
-  color: #000000;
-  letter-spacing: 1.5px;
-}
-
-.logo-realme {
-  background: #eab308;
-  color: #000000;
-  font-weight: 800;
-  font-size: 1.05rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.logo-redmi {
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: #dc2626;
-  letter-spacing: -0.3px;
-}
-
-.logo-samsung {
-  font-weight: 900;
-  font-size: 0.85rem;
-  color: #1d4ed8;
-  letter-spacing: 0.5px;
 }
 
 .logo-lava {
   font-weight: 900;
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #dc2626;
   letter-spacing: -0.5px;
 }
@@ -891,25 +947,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #000000;
+  color: var(--text-white);
 
   .villaon-icon {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1;
+    color: var(--primary-accent);
   }
 
   .villaon-lbl {
     font-weight: 900;
-    font-size: 0.72rem;
-    letter-spacing: 0.5px;
+    font-size: 0.7rem;
+    letter-spacing: 0.6px;
   }
 }
 
-.logo-vivo {
-  font-weight: 900;
-  font-size: 1.35rem;
-  color: #2563eb;
-  letter-spacing: -0.5px;
-}
 
 

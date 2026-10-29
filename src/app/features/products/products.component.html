@@ -38,25 +38,13 @@
 
     <!-- Brand Filter -->
     <div class="brand-select-wrap">
-      <select [(ngModel)]="selectedBrand" class="filter-select">
-        <option value="all">All Brands (19)</option>
+      <select [(ngModel)]="selectedBrand" class="filter-select" aria-label="Filter by brand">
+        <option value="all">All Brands ({{ availableBrands.length }})</option>
         @for (b of availableBrands; track b) {
           <option [value]="b">{{ b }}</option>
         }
       </select>
     </div>
-
-    <!-- Subcategories (Only if accessories selected) -->
-    @if (selectedCategory === 'accessory') {
-      <div class="subcat-select-wrap">
-        <select [(ngModel)]="selectedSubCategory" class="filter-select">
-          <option value="all">All Accessory Types</option>
-          @for (sub of subCategories; track sub) {
-            <option [value]="sub">{{ sub }}</option>
-          }
-        </select>
-      </div>
-    }
 
     <div class="right-controls">
       <label class="stock-checkbox">
@@ -66,7 +54,7 @@
 
       <div class="sort-wrap">
         <span class="sort-label">Sort:</span>
-        <select [(ngModel)]="sortBy" class="filter-select">
+        <select [(ngModel)]="sortBy" class="filter-select" aria-label="Sort products">
           <option value="featured">Featured First</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
@@ -75,6 +63,46 @@
       </div>
     </div>
   </div>
+
+  <!-- Touch-Friendly Subcategory Chips (Prominent for Accessories) -->
+  @if (selectedCategory === 'accessory') {
+    <div class="accessories-chip-bar animate-fade-in">
+      <div class="chip-scroll-container">
+        <button
+          type="button"
+          class="subcat-chip"
+          [class.active]="selectedSubCategory === 'all'"
+          (click)="selectedSubCategory = 'all'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+          <span>All Accessories</span>
+          <span class="chip-count">{{ getAccessoryCount('all') }}</span>
+        </button>
+
+        @for (sub of subCategories; track sub) {
+          <button
+            type="button"
+            class="subcat-chip"
+            [class.active]="selectedSubCategory === sub"
+            (click)="selectedSubCategory = sub">
+            @if (sub === 'Chargers & Cables') {
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8"/><path d="m4.93 10.93 4.24 4.24"/><path d="M2 12h8"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><circle cx="12" cy="12" r="3"/></svg>
+            } @else if (sub === 'Audio & Earphones') {
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+            } @else if (sub === 'Cases & Covers') {
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            } @else if (sub === 'Screen Protectors') {
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            } @else if (sub === 'Power Banks') {
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
+            }
+            <span>{{ sub }}</span>
+            <span class="chip-count">{{ getAccessoryCount(sub) }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  }
+
 
   <!-- Active Filter Badges -->
   @if (selectedBrand !== 'all' || searchQuery || selectedCategory !== 'all') {

@@ -1,34 +1,117 @@
 <div class="product-detail-page container section-padding">
-  <!-- Back Button -->
-  <a routerLink="/products" class="back-link">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    Back to Catalog
-  </a>
+  <!-- Back Button & Breadcrumbs -->
+  <div class="top-nav-bar">
+    <a routerLink="/products" class="back-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Catalog
+    </a>
+    @if (product) {
+      <div class="breadcrumb-trail">
+        <span class="crumb-part">Store</span>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-part">{{ product.category === 'phone' ? 'Smartphones' : 'Accessories' }}</span>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-part">{{ product.brand }}</span>
+      </div>
+    }
+  </div>
 
   @if (product) {
     <div class="product-detail-grid">
-      <!-- Media Column -->
+      <!-- Media Column with Multi-View Gallery -->
       <div class="media-col glass-card">
-        <div class="main-image-wrap">
-          <img [src]="product.image" [alt]="product.name" loading="lazy" decoding="async" class="main-img" (error)="onImageError($event)" />
+        <!-- View Angle Selector Pills -->
+        <div class="view-angle-pills">
+          @for (v of productViews; track v.id; let idx = $index) {
+            <button
+              type="button"
+              class="view-pill-btn"
+              [class.active]="selectedViewIndex === idx"
+              (click)="selectView(idx)">
+              @if (v.type === 'front') {
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              } @else if (v.type === 'back') {
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+              } @else if (v.type === 'angle') {
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              } @else if (v.type === 'specs') {
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              }
+              <span>{{ v.label }}</span>
+            </button>
+          }
         </div>
+
+        <!-- Main Display Frame with Skeleton Shimmer -->
+        <div class="main-image-wrap" [class.is-loading]="isImageLoading">
+          @if (isImageLoading) {
+            <div class="image-skeleton-shimmer animate-pulse">
+              <div class="skeleton-spinner"></div>
+              <span>Rendering {{ currentView?.label || 'View' }}...</span>
+            </div>
+          }
+
+          <img
+            [src]="currentView?.url || product.image"
+            [alt]="currentView?.caption || product.name"
+            class="main-img"
+            (load)="onImageLoaded()"
+            (error)="onImageError($event)" />
+
+          <!-- Zoom Lightbox Trigger -->
+          <button type="button" class="btn-zoom-preview" (click)="openZoomModal()" title="View High-Resolution Image">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+
+          <!-- Current View Caption Pill -->
+          <div class="view-caption-pill">
+            <span class="caption-indicator"></span>
+            <span>{{ currentView?.caption }}</span>
+          </div>
+        </div>
+
+        <!-- Interactive Thumbnail Strip -->
+        <div class="thumbnail-strip">
+          @for (v of productViews; track v.id; let idx = $index) {
+            <button
+              type="button"
+              class="thumb-btn"
+              [class.active]="selectedViewIndex === idx"
+              (click)="selectView(idx)"
+              [title]="v.label">
+              <img [src]="v.url" [alt]="v.label" class="thumb-img" (error)="onImageError($event)" />
+              <span class="thumb-label">{{ v.label }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Trust Badges -->
         <div class="guarantee-box">
           <div class="g-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>100% Genuine Certified</span>
+            <div>
+              <strong>100% Genuine Certified</strong>
+              <div class="g-sub">Direct authorized factory distribution</div>
+            </div>
           </div>
           <div class="g-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Express Dispatch in 24 Hrs</span>
+            <div>
+              <strong>Express Dispatch in 24 Hrs</strong>
+              <div class="g-sub">Safe sealed insured transit</div>
+            </div>
           </div>
           <div class="g-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Full Brand Warranty</span>
+            <div>
+              <strong>Full Manufacturer Warranty</strong>
+              <div class="g-sub">1 Year pan-India coverage</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Information Column -->
+      <!-- Information & Specs Column -->
       <div class="info-col">
         <div class="badge-row">
           <span class="badge badge-brand">{{ product.brand }}</span>
@@ -38,6 +121,10 @@
           } @else {
             <span class="badge badge-danger">Out of Stock</span>
           }
+          <button type="button" class="btn-fav-inline" (click)="toggleFav()" [class.is-fav]="favService.isFavourite(product.id)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span>{{ favService.isFavourite(product.id) ? 'Saved' : 'Save to Favourites' }}</span>
+          </button>
         </div>
 
         <h1 class="detail-title">{{ product.name }}</h1>
@@ -48,7 +135,9 @@
             <span class="rating-score">{{ product.rating }}</span>
           </div>
           <span class="dot-sep">•</span>
-          <span class="review-count">{{ product.reviewsCount }} Verified Reviews</span>
+          <span class="review-count">{{ product.reviewsCount }} Verified Buyers</span>
+          <span class="dot-sep">•</span>
+          <span class="badge badge-cyan" style="font-size: 0.72rem;">Authentic OEM</span>
         </div>
 
         <!-- Pricing Block -->
@@ -60,46 +149,184 @@
           @if (product.originalPrice && product.originalPrice > product.price) {
             <div class="orig-wrap">
               <span class="orig-val">₹{{ product.originalPrice | number }}</span>
-              <span class="save-badge">Save ₹{{ (product.originalPrice - product.price) | number }}</span>
+              <span class="save-badge">Save ₹{{ (product.originalPrice - product.price) | number }} ({{ (((product.originalPrice - product.price) / product.originalPrice) * 100) | number:'1.0-0' }}% OFF)</span>
             </div>
           }
-          <div class="tax-note">Inclusive of all taxes & GST invoice</div>
+          <div class="tax-note">Price includes GST invoice, express transit insurance, and warranty registration.</div>
         </div>
 
         <p class="detail-description">{{ product.description }}</p>
 
-        <!-- Hardware Specs Table if Phone -->
-        @if (product.specs) {
-          <div class="specs-section">
-            <h3 class="specs-title">Hardware Specifications</h3>
-            <div class="specs-grid">
-              @if (product.specs.ram) {
-                <div class="spec-cell"><span class="lbl">RAM:</span> <span class="v">{{ product.specs.ram }}</span></div>
-              }
-              @if (product.specs.storage) {
-                <div class="spec-cell"><span class="lbl">Storage:</span> <span class="v">{{ product.specs.storage }}</span></div>
-              }
-              @if (product.specs.display) {
-                <div class="spec-cell"><span class="lbl">Display:</span> <span class="v">{{ product.specs.display }}</span></div>
-              }
-              @if (product.specs.battery) {
-                <div class="spec-cell"><span class="lbl">Battery:</span> <span class="v">{{ product.specs.battery }}</span></div>
-              }
-              @if (product.specs.camera) {
-                <div class="spec-cell"><span class="lbl">Camera:</span> <span class="v">{{ product.specs.camera }}</span></div>
-              }
-            </div>
+        <!-- Hardware Specification Hub (Tabs + Categorized Cards) -->
+        <div class="specs-hub-container">
+          <div class="specs-tab-header">
+            <button
+              type="button"
+              class="tab-btn"
+              [class.active]="activeSpecsTab === 'specs'"
+              (click)="activeSpecsTab = 'specs'">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <span>Hardware Specifications</span>
+            </button>
+            <button
+              type="button"
+              class="tab-btn"
+              [class.active]="activeSpecsTab === 'features'"
+              (click)="activeSpecsTab = 'features'">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <span>In The Box</span>
+            </button>
+            <button
+              type="button"
+              class="tab-btn"
+              [class.active]="activeSpecsTab === 'warranty'"
+              (click)="activeSpecsTab = 'warranty'">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Warranty &amp; Service</span>
+            </button>
           </div>
-        }
 
-        <!-- Quantity & Purchase Actions -->
+          <!-- Tab Content: Hardware Specs -->
+          @if (activeSpecsTab === 'specs') {
+            <div class="specs-grid animate-fade-in">
+              <!-- Display -->
+              <div class="spec-card">
+                <div class="spec-icon" style="color: #38bdf8;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                </div>
+                <div class="spec-data">
+                  <span class="spec-lbl">Display &amp; Glass</span>
+                  <strong class="spec-val">{{ product.specs?.display || 'Super Retina XDR OLED / 120Hz' }}</strong>
+                  <span class="spec-sub">High dynamic range, true tone</span>
+                </div>
+              </div>
+
+              <!-- Camera Matrix -->
+              <div class="spec-card">
+                <div class="spec-icon" style="color: #c084fc;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                </div>
+                <div class="spec-data">
+                  <span class="spec-lbl">Camera System</span>
+                  <strong class="spec-val">{{ product.specs?.camera || '50MP AI Dual Matrix + Ultra-Wide' }}</strong>
+                  <span class="spec-sub">Optical stabilization (OIS), Night Mode</span>
+                </div>
+              </div>
+
+              <!-- Battery & Charging -->
+              <div class="spec-card">
+                <div class="spec-icon" style="color: #34d399;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="11" x2="6" y2="13"/><line x1="10" y1="11" x2="10" y2="13"/></svg>
+                </div>
+                <div class="spec-data">
+                  <span class="spec-lbl">Battery &amp; Charging</span>
+                  <strong class="spec-val">{{ product.specs?.battery || '5000 mAh All-Day Capacity' }}</strong>
+                  <span class="spec-sub">USB-C Fast Charging &amp; Power IQ</span>
+                </div>
+              </div>
+
+              <!-- Memory & Storage -->
+              <div class="spec-card">
+                <div class="spec-icon" style="color: #fbbf24;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v12"/><path d="M9 12v4"/><path d="M15 12v4"/></svg>
+                </div>
+                <div class="spec-data">
+                  <span class="spec-lbl">Memory &amp; Storage</span>
+                  <strong class="spec-val">{{ product.specs?.ram || '8 GB' }} RAM • {{ product.specs?.storage || '128 GB' }} Storage</strong>
+                  <span class="spec-sub">UFS high-speed read/write</span>
+                </div>
+              </div>
+
+              <!-- Compatibility / Model -->
+              <div class="spec-card">
+                <div class="spec-icon" style="color: #f43f5e;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div class="spec-data">
+                  <span class="spec-lbl">Chipset Architecture</span>
+                  <strong class="spec-val">{{ product.brand === 'Apple' ? 'Apple A-Series Bionic with Neural Engine' : 'Snapdragon / MediaTek 4nm Processor' }}</strong>
+                  <span class="spec-sub">High efficiency AI performance</span>
+                </div>
+              </div>
+
+              <!-- Connectivity -->
+              <div class="spec-card">
+                <div class="spec-icon" style="color: #06b6d4;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                </div>
+                <div class="spec-data">
+                  <span class="spec-lbl">Network &amp; Wireless</span>
+                  <strong class="spec-val">5G Dual SIM • Wi-Fi 6E • BT 5.3</strong>
+                  <span class="spec-sub">Ultra-wideband, NFC payment ready</span>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Tab Content: In the Box -->
+          @if (activeSpecsTab === 'features') {
+            <div class="tab-box-content animate-fade-in">
+              <div class="box-items-list">
+                <div class="box-item">
+                  <span class="box-icon">📦</span>
+                  <div>
+                    <strong>1x {{ product.name }}</strong>
+                    <div class="box-sub">Factory sealed retail package</div>
+                  </div>
+                </div>
+                <div class="box-item">
+                  <span class="box-icon">🔌</span>
+                  <div>
+                    <strong>1x USB-C Fast Charging Cable</strong>
+                    <div class="box-sub">Braided durable 1-meter high speed cable</div>
+                  </div>
+                </div>
+                <div class="box-item">
+                  <span class="box-icon">📄</span>
+                  <div>
+                    <strong>Documentation &amp; User Manual</strong>
+                    <div class="box-sub">Safety guide, quick start sheet &amp; SIM ejector tool</div>
+                  </div>
+                </div>
+                <div class="box-item">
+                  <span class="box-icon">🛡️</span>
+                  <div>
+                    <strong>Official GST Tax Invoice</strong>
+                    <div class="box-sub">Valid for manufacturer warranty registration across India</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Tab Content: Warranty -->
+          @if (activeSpecsTab === 'warranty') {
+            <div class="tab-warranty-content animate-fade-in">
+              <div class="warranty-card">
+                <div class="warranty-header">
+                  <span class="w-badge">12 MONTHS OFFICIAL WARRANTY</span>
+                  <strong style="font-size: 1.05rem; color: var(--text-white);">Covered by Authorized Service Centers</strong>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0.75rem 0; line-height: 1.5;">
+                  Your purchase comes with a full 1-year brand warranty covering hardware manufacturing defects and internal component repairs. In addition, HiTech provides free pickup and diagnostic assistance within our service network.
+                </p>
+                <div class="warranty-points">
+                  <div class="wp-item">✓ 100% Genuine Original Spare Parts Guarantee</div>
+                  <div class="wp-item">✓ Service centers accessible across India</div>
+                  <div class="wp-item">✓ 7-Day Replacement policy for transit or dead-on-arrival issues</div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
         <!-- Quantity & Purchase Actions -->
         <div class="action-dock">
           @if (product.inStock) {
             <div class="qty-selector">
-              <button class="qty-btn" (click)="decrementQty()">-</button>
+              <button class="qty-btn" (click)="decrementQty()" aria-label="Decrease quantity">-</button>
               <span class="qty-num">{{ quantity }}</span>
-              <button class="qty-btn" (click)="incrementQty()">+</button>
+              <button class="qty-btn" (click)="incrementQty()" aria-label="Increase quantity">+</button>
             </div>
 
             <button class="btn btn-lg btn-primary add-btn" (click)="addToCart()">
@@ -118,55 +345,82 @@
               </button>
             </div>
           }
-
-          <button class="fav-action-btn" [class.is-fav]="favService.isFavourite(product.id)" (click)="toggleFav()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          </button>
         </div>
       </div>
     </div>
+  }
 
-    <!-- Restock Alert Modal -->
-    @if (showNotifyModal) {
-      <div class="card-modal-backdrop" (click)="closeNotifyModal()">
-        <div class="card-modal-content glass-card" (click)="$event.stopPropagation()">
-          <div class="modal-head">
-            <h4>Restock Notification Alert</h4>
-            <button type="button" class="btn-close" (click)="closeNotifyModal()">&times;</button>
+  <!-- Lightbox Zoom Modal -->
+  @if (showZoomModal && currentView) {
+    <div class="zoom-modal-backdrop animate-fade-in" (click)="closeZoomModal()">
+      <div class="zoom-modal-card" (click)="$event.stopPropagation()">
+        <div class="zoom-modal-header">
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; color: #ffffff;">{{ currentView.label }} — {{ product?.name }}</h3>
+            <p style="margin: 0.2rem 0 0; font-size: 0.85rem; color: #94a3b8;">{{ currentView.caption }}</p>
           </div>
-          <p class="modal-sub">We'll alert you via WhatsApp & Email when <strong>{{ product.name }}</strong> is back in stock.</p>
+          <button type="button" class="btn-close-zoom" (click)="closeZoomModal()">&times;</button>
+        </div>
 
-          <form (ngSubmit)="submitNotifyRequest()">
-            <div class="m-group">
-              <label>Your Name <span class="req">*</span></label>
-              <input type="text" [(ngModel)]="notifyForm.name" name="cName" placeholder="Full name" class="form-control" required />
-            </div>
+        <div class="zoom-img-container">
+          <img [src]="currentView.url" [alt]="currentView.caption" class="zoom-high-res-img" />
+        </div>
 
-            <div class="m-group">
-              <label>Phone Number <span class="req">*</span></label>
-              <input type="tel" [(ngModel)]="notifyForm.phone" name="cPhone" placeholder="10-digit mobile" maxlength="10" class="form-control" required />
-            </div>
-
-            <div class="m-group">
-              <label>Email (Optional)</label>
-              <input type="email" [(ngModel)]="notifyForm.email" name="cEmail" placeholder="you@example.com" class="form-control" />
-            </div>
-
-            <div class="modal-actions">
-              <button type="button" class="btn btn-secondary" (click)="closeNotifyModal()">Cancel</button>
-              <button type="submit" class="btn btn-primary" [disabled]="isSubmittingNotify">
-                {{ isSubmittingNotify ? 'Registering...' : '🔔 Notify Me' }}
-              </button>
-            </div>
-          </form>
+        <div class="zoom-footer-switcher">
+          @for (v of productViews; track v.id; let idx = $index) {
+            <button
+              type="button"
+              class="zoom-switch-btn"
+              [class.active]="selectedViewIndex === idx"
+              (click)="selectView(idx)">
+              {{ v.label }}
+            </button>
+          }
         </div>
       </div>
-    }
-  } @else {
-    <div class="empty-results glass-panel">
-      <h3>Product Not Found</h3>
-      <p>The product you are looking for might have been retired.</p>
-      <a routerLink="/products" class="btn btn-primary">Return to Catalog</a>
+    </div>
+  }
+
+  <!-- Notify Me Modal -->
+  @if (showNotifyModal && product) {
+    <div class="card-modal-backdrop" (click)="closeNotifyModal()">
+      <div class="card-modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header-custom">
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem;">Notify Me When Available</h3>
+            <span class="badge badge-cyan" style="margin-top: 4px;">{{ product.name }}</span>
+          </div>
+          <button type="button" class="btn-close-modal" (click)="closeNotifyModal()">&times;</button>
+        </div>
+
+        <p class="modal-sub">
+          Leave your details below and our inventory team will notify you immediately via WhatsApp/Email when fresh stock arrives at HiTech.
+        </p>
+
+        <form (ngSubmit)="submitNotifyRequest()">
+          <div class="m-group">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" [(ngModel)]="notifyForm.name" name="cName" class="form-control" placeholder="Full Name" required />
+          </div>
+
+          <div class="m-group">
+            <label>WhatsApp / Phone Number <span class="req">*</span></label>
+            <input type="tel" [(ngModel)]="notifyForm.phone" name="cPhone" class="form-control" placeholder="10-digit mobile number" required />
+          </div>
+
+          <div class="m-group">
+            <label>Email Address (Optional)</label>
+            <input type="email" [(ngModel)]="notifyForm.email" name="cEmail" class="form-control" placeholder="name@example.com" />
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" (click)="closeNotifyModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isSubmittingNotify">
+              {{ isSubmittingNotify ? 'Registering...' : 'Register Alert' }}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   }
 </div>

@@ -242,6 +242,9 @@
   flex-wrap: wrap;
 
   .cat-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     padding: 0.45rem 1rem;
     border-radius: var(--radius-pill);
     background: rgba(255, 255, 255, 0.04);
@@ -250,6 +253,11 @@
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
+    transition: all var(--transition-fast);
+
+    svg {
+      flex-shrink: 0;
+    }
 
     &.active {
       background: var(--grad-purple);
@@ -293,7 +301,14 @@
 
 .btn-group-cell {
   display: flex;
+  align-items: center;
   gap: 0.4rem;
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
 }
 
 .sub-heading {
@@ -495,6 +510,9 @@
 }
 
 .btn-history-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--text-secondary);

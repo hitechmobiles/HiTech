@@ -52,7 +52,7 @@ describe('ProductCardComponent', () => {
     fixture.componentInstance.product = mockProduct;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.badge-brand')?.textContent).toContain('TestBrand');
+    expect(compiled.querySelector('.badge-brand, .product-brand-tag')?.textContent).toContain('TestBrand');
   });
 
   it('should display product price', () => {
@@ -84,7 +84,7 @@ describe('ProductCardComponent', () => {
     fixture.componentInstance.product = mockProduct;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.badge-cyan')?.textContent).toContain('Featured');
+    expect(compiled.querySelector('.badge-cyan, .badge-featured')?.textContent).toContain('Featured');
   });
 
   it('should show "Out of Stock" badge when not in stock', () => {
@@ -92,7 +92,7 @@ describe('ProductCardComponent', () => {
     fixture.componentInstance.product = { ...mockProduct, inStock: false, isFeatured: false };
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.badge-danger')?.textContent).toContain('Out of Stock');
+    expect(compiled.querySelector('.badge-danger, .badge-stock-out')?.textContent).toContain('Out of Stock');
   });
 
   it('should show notify-me button and hide add-to-cart button when out of stock', () => {

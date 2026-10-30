@@ -8,13 +8,13 @@
     <!-- Clean Overlay Badges (Non-Cluttered) -->
     <div class="card-badges">
       @if (!product.inStock) {
-        <span class="badge badge-stock-out">Out of Stock</span>
+        <span class="badge badge-stock-out badge-danger">Out of Stock</span>
       } @else {
         @if (discountPercent > 0) {
           <span class="badge badge-discount">{{ discountPercent }}% OFF</span>
         }
         @if (product.isFeatured) {
-          <span class="badge badge-featured">★ Featured</span>
+          <span class="badge badge-featured badge-cyan">★ Featured</span>
         }
       }
     </div>
@@ -37,7 +37,7 @@
   <div class="product-body">
     <!-- Clean Brand & Subcategory Header -->
     <div class="product-brand-row">
-      <span class="product-brand-tag">{{ product.brand }}</span>
+      <span class="product-brand-tag badge-brand">{{ product.brand }}</span>
       <span class="product-sub-bullet">•</span>
       <span class="product-sub-category">{{ product.subCategory }}</span>
     </div>

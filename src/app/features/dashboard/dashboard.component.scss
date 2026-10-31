@@ -656,12 +656,21 @@
   transition: transform var(--transition-fast);
 }
 
+.brand-info-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.15rem;
+}
+
 .brand-title {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
   text-align: center;
   transition: color var(--transition-fast);
   white-space: nowrap;

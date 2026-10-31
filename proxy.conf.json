@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://hi-tech-gray.vercel.app",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}

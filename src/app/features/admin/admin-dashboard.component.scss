@@ -63,6 +63,48 @@
   }
 }
 
+.pat-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+
+  &.connected {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.35);
+
+    &:hover {
+      background: rgba(16, 185, 129, 0.25);
+    }
+  }
+
+  &.not-configured {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.45);
+
+    &:hover {
+      background: rgba(245, 158, 11, 0.22);
+      border-color: #f59e0b;
+    }
+  }
+
+  .dot-amber {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f59e0b;
+    box-shadow: 0 0 6px #f59e0b;
+  }
+}
+
 .admin-quick-stats {
   display: flex;
   gap: 1rem;

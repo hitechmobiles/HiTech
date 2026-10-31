@@ -44,11 +44,20 @@
           <span>🚀 Publish Live (CI/CD)</span>
         }
       </button>
-      <div style="font-size: 0.75rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.35rem;">
-        <span [style.background]="publishService.isConfigured() ? '#10b981' : '#f59e0b'" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
-        <span>{{ publishService.isConfigured() ? 'CI/CD Connected' : 'Configuring...' }}</span>
+      <div class="admin-pat-status-row" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+        @if (publishService.isConfigured()) {
+          <button type="button" class="pat-status-pill connected" (click)="openPatSetupModal()" title="GitHub CI/CD Connected. Click to view or update token.">
+            <span class="dot-online"></span>
+            <span>✓ CI/CD Connected</span>
+          </button>
+        } @else {
+          <button type="button" class="pat-status-pill not-configured" (click)="openPatSetupModal()" title="GitHub Personal Access Token not configured. Click to setup.">
+            <span class="dot-amber"></span>
+            <span>⚠️ Token Not Configured (Setup)</span>
+          </button>
+        }
         @if (lastSyncTime) {
-          <span style="opacity: 0.7;">• Synced: {{ lastSyncTime }}</span>
+          <span style="font-size: 0.72rem; color: var(--text-secondary); opacity: 0.85;">• Synced: {{ lastSyncTime }}</span>
         }
       </div>
     </div>
@@ -1317,6 +1326,106 @@
             {{ publishModalMode === 'publish_catalog' ? '🚀 Confirm & Publish to Code' : '⚡ Confirm & Trigger Pipeline' }}
           </button>
         </div>
+      </div>
+    </div>
+  }
+
+  <!-- MODAL: GITHUB PAT TOKEN CONFIGURATION -->
+  @if (showPatModal) {
+    <div class="modal-backdrop animate-fade-in" (click)="closePatSetupModal()">
+      <div class="modal-card modal-lg glass-panel pat-config-modal" (click)="$event.stopPropagation()">
+        <div class="modal-header-custom">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span class="badge" [class.badge-emerald]="publishService.isConfigured()" [class.badge-warning]="!publishService.isConfigured()">
+                {{ publishService.isConfigured() ? '✓ Token Configured' : '⚠️ Setup Required' }}
+              </span>
+            </div>
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🔑</span> GitHub CI/CD Token Setup
+            </h3>
+            <p class="modal-subtitle">
+              Configure your Personal Access Token (PAT) to enable one-click publishing of catalog prices, inventory, and automated Vercel deploys.
+            </p>
+          </div>
+          <button type="button" class="btn-close-modal" (click)="closePatSetupModal()">&times;</button>
+        </div>
+
+        <!-- Step-by-Step Instructions Card -->
+        <div class="pat-guide-card" style="background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 10px; padding: 1rem 1.25rem; margin: 1rem 0;">
+          <h4 style="font-size: 0.95rem; color: #38bdf8; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+            <span>📘</span> How to Get Your GitHub PAT Token (in 1 minute):
+          </h4>
+          <ol style="font-size: 0.85rem; color: var(--text-secondary); margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+            <li>
+              Go to <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline; font-weight: 600;">GitHub Tokens Settings (github.com/settings/tokens)</a>
+            </li>
+            <li>Click <strong>Generate new token</strong> &rarr; <strong>Generate new token (classic)</strong>.</li>
+            <li>Note: name it <code>HiTech Admin Publisher</code>. Expiration: choose 90 days or custom.</li>
+            <li>Select the <strong><code>repo</code></strong> scope checkbox (allows updating catalog JSONs in repository).</li>
+            <li>Click <strong>Generate token</strong> at the bottom, copy the string starting with <code>ghp_...</code>, and paste it below.</li>
+          </ol>
+        </div>
+
+        <form (ngSubmit)="verifyAndSaveGithubConfig()">
+          <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem;">Repository Owner</label>
+              <input type="text" [(ngModel)]="githubConfig.owner" name="patOwner" class="form-control" placeholder="hitechmobiles" required />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem;">Repository Name</label>
+              <input type="text" [(ngModel)]="githubConfig.repo" name="patRepo" class="form-control" placeholder="HiTech" required />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem;">Target Branch</label>
+              <input type="text" [(ngModel)]="githubConfig.branch" name="patBranch" class="form-control" placeholder="develop" required />
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label style="font-size: 0.8rem; font-weight: 600;">GitHub Personal Access Token (PAT) <span class="required">*</span></label>
+            <div style="display: flex; gap: 0.5rem;">
+              <input
+                [type]="showPatToken ? 'text' : 'password'"
+                [(ngModel)]="githubConfig.token"
+                name="patToken"
+                class="form-control"
+                placeholder="ghp_... or github_pat_..."
+                style="flex: 1;"
+                required />
+              <button type="button" class="btn btn-secondary btn-sm" (click)="showPatToken = !showPatToken" title="Toggle visibility">
+                {{ showPatToken ? '🙈 Hide' : '👁️ Show' }}
+              </button>
+            </div>
+          </div>
+
+          @if (patVerificationMessage) {
+            <div class="animate-fade-in" style="padding: 0.65rem 0.85rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;"
+                 [style.background]="patVerificationSuccess ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)'"
+                 [style.border]="patVerificationSuccess ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid rgba(239, 68, 68, 0.4)'"
+                 [style.color]="patVerificationSuccess ? '#34d399' : '#f87171'">
+              <span>{{ patVerificationSuccess ? '✓' : '✗' }}</span>
+              <span>{{ patVerificationMessage }}</span>
+            </div>
+          }
+
+          <!-- Security Callout -->
+          <div style="font-size: 0.78rem; color: #f59e0b; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 6px; padding: 0.6rem 0.85rem; margin-bottom: 1.25rem;">
+            🔒 <strong>Client-Side Security:</strong> This token is stored exclusively in this browser's local encrypted storage session. It is never committed to GitHub code files or transmitted to third parties.
+          </div>
+
+          <div class="modal-btn-row" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+            <button type="button" class="btn btn-secondary" (click)="closePatSetupModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isVerifyingPat">
+              @if (isVerifyingPat) {
+                <span>⏳ Verifying with GitHub...</span>
+              } @else {
+                <span>🔐 Test &amp; Save Token</span>
+              }
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   }

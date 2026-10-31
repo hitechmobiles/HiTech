@@ -83,14 +83,22 @@ export class EmailService {
     templateParams: any
   ): Promise<{ success: boolean; simulated: boolean }> {
     const resendConfig = this.getResendConfig();
-    const endpoint = resendConfig.apiEndpoint || '/api/send-email';
+    const primaryEndpoint = resendConfig.apiEndpoint || '/api/send-email';
+    const isLocalhost = typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const cloudEndpoint = 'https://hi-tech-gray.vercel.app/api/send-email';
 
-    // 1. Try Vercel Serverless Function
+    // 1. Dispatch via primary endpoint (relative /api/send-email or configured API)
     try {
-      const response = await fetch(endpoint, {
+      const targetEndpoint = (isLocalhost && !primaryEndpoint.startsWith('http'))
+        ? primaryEndpoint
+        : primaryEndpoint;
+
+      let response = await fetch(targetEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'X-HiTech-Client': 'web-app'
         },
         body: JSON.stringify({
           type,
@@ -100,41 +108,59 @@ export class EmailService {
         })
       });
 
+      // If local dev server returned 404 (e.g. running ng serve without local serverless runner), fallback to live Vercel cloud function
+      if ((response.status === 404 || !response.ok) && isLocalhost && targetEndpoint !== cloudEndpoint) {
+        this.logger.info('EmailService', 'Local API returned non-200. Dispatching via secure cloud serverless endpoint...');
+        response = await fetch(cloudEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-HiTech-Client': 'web-app'
+          },
+          body: JSON.stringify({
+            type,
+            recipient,
+            subject,
+            templateParams
+          })
+        });
+      }
+
       if (response.ok) {
         const result = await response.json();
         if (result.success && !result.simulated) {
+          this.logger.info('EmailService', `Email dispatched successfully (ID: ${result.id || 'ok'})`);
           return { success: true, simulated: false };
         }
       }
-    } catch {
-      // Serverless endpoint unavailable (e.g. running locally on port 4200)
-    }
-
-    // 2. Direct Resend API Fallback (runs in browser when direct client key is configured)
-    const directKey = (resendConfig as any).apiKey || localStorage.getItem('hitech_resend_api_key') || '';
-    const targetEmail = recipient || (resendConfig as any).notificationEmail || 'hitechmobilesandservice@gmail.com';
-
-    try {
-      const directResponse = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${directKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: 'HiTech <onboarding@resend.dev>',
-          to: [targetEmail],
-          subject,
-          html: this.formatEmailHtml(type, subject, templateParams)
-        })
-      });
-
-      if (directResponse.ok) {
-        this.logger.info('EmailService', `Email dispatched directly via Resend to ${targetEmail}`);
-        return { success: true, simulated: false };
-      }
     } catch (err: any) {
-      this.logger.warn('EmailService', `Direct Resend dispatch failed: ${err?.message || err}`);
+      // If primary fetch failed (e.g. network/connection), attempt cloud fallback
+      if (isLocalhost) {
+        try {
+          const fallbackResp = await fetch(cloudEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-HiTech-Client': 'web-app'
+            },
+            body: JSON.stringify({
+              type,
+              recipient,
+              subject,
+              templateParams
+            })
+          });
+          if (fallbackResp.ok) {
+            const res = await fallbackResp.json();
+            if (res.success && !res.simulated) {
+              return { success: true, simulated: false };
+            }
+          }
+        } catch (fallbackErr: any) {
+          this.logger.warn('EmailService', `Cloud email dispatch fallback also failed: ${fallbackErr?.message}`);
+        }
+      }
+      this.logger.warn('EmailService', `Serverless email dispatch error: ${err?.message || err}`);
     }
 
     return { success: false, simulated: true };

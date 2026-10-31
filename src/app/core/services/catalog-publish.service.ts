@@ -59,6 +59,40 @@ export class CatalogPublishService {
     return !!cfg.token && !!cfg.owner && !!cfg.repo && !!cfg.branch;
   }
 
+  async verifyConnection(config?: Partial<GithubPublishConfig>): Promise<{ success: boolean; message: string; user?: string }> {
+    const cfg = config ? { ...this.getConfig(), ...config } : this.getConfig();
+    if (!cfg.token) {
+      return { success: false, message: 'GitHub token is missing.' };
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${cfg.token}`,
+      Accept: 'application/vnd.github+json'
+    });
+
+    try {
+      const userRes = await firstValueFrom(
+        this.http.get<{ login: string }>('https://api.github.com/user', { headers })
+      );
+
+      await firstValueFrom(
+        this.http.get<{ default_branch: string }>(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}`, { headers })
+      );
+
+      return {
+        success: true,
+        user: userRes.login,
+        message: `Connected successfully to ${cfg.owner}/${cfg.repo} as @${userRes.login}!`
+      };
+    } catch (err: any) {
+      const detail = err?.error?.message || err?.message || 'Access denied';
+      return {
+        success: false,
+        message: `GitHub verification failed: ${detail}`
+      };
+    }
+  }
+
   private toBase64(text: string): string {
     return btoa(unescape(encodeURIComponent(text)));
   }

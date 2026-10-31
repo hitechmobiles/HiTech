@@ -96,17 +96,36 @@ async function sendResendMail(apiKey, fromEmail, toEmail, subject, htmlContent) 
 }
 
 module.exports = async function handler(req, res) {
-  // CORS configuration
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  // 1. Standard-Compliant CORS Configuration & Origin Validation
+  const reqOrigin = req.headers.origin || '';
+  const isAllowedOrigin = (orig) => {
+    if (!orig) return true;
+    if (orig.includes('localhost') || orig.includes('127.0.0.1')) return true;
+    if (orig.endsWith('.vercel.app')) return true;
+    if (orig.includes('hitechmobiles') || orig.includes('hitech')) return true;
+    return false;
+  };
+
+  const allowedOrigin = isAllowedOrigin(reqOrigin) && reqOrigin ? reqOrigin : '*';
+
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  if (allowedOrigin !== '*') {
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    'Content-Type, Authorization, X-Requested-With, Accept, X-HiTech-Client, X-CSRF-Token'
   );
+  res.setHeader('Access-Control-Max-Age', '86400');
+  res.setHeader('Vary', 'Origin');
+
+  // Security Headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
 
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+    return res.status(204).end();
   }
 
   if (req.method !== 'POST') {

@@ -113,6 +113,12 @@ export class AdminDashboardComponent implements OnInit {
   publishModalMode: 'publish_catalog' | 'trigger_pipeline' = 'publish_catalog';
   publishFilesSummary: { name: string; path: string; count: number }[] = [];
 
+  // GitHub PAT Token Setup Modal State
+  showPatModal: boolean = false;
+  isVerifyingPat: boolean = false;
+  patVerificationMessage: string = '';
+  patVerificationSuccess: boolean = false;
+
   // Order & Booking Status History Modal State
   selectedOrderForHistory: Order | null = null;
   selectedBookingForHistory: ServiceBookingRequest | null = null;
@@ -496,6 +502,45 @@ export class AdminDashboardComponent implements OnInit {
 
   // --- GitHub Direct Publish & Backups ---
 
+  openPatSetupModal(): void {
+    this.githubConfig = this.publishService.getConfig();
+    this.patVerificationMessage = '';
+    this.showPatModal = true;
+  }
+
+  closePatSetupModal(): void {
+    this.showPatModal = false;
+  }
+
+  async verifyAndSaveGithubConfig(): Promise<void> {
+    if (!this.githubConfig.token?.trim()) {
+      this.toastService.show('Please enter your GitHub Personal Access Token (PAT).', 'warning');
+      return;
+    }
+    this.isVerifyingPat = true;
+    this.patVerificationMessage = '';
+    try {
+      const res = await this.publishService.verifyConnection(this.githubConfig);
+      this.patVerificationSuccess = res.success;
+      this.patVerificationMessage = res.message;
+      if (res.success) {
+        this.publishService.saveConfig(this.githubConfig);
+        this.toastService.show(res.message, 'success', 'GitHub Connected');
+        setTimeout(() => {
+          this.showPatModal = false;
+        }, 1500);
+      } else {
+        this.toastService.show(res.message, 'danger', 'Verification Failed');
+      }
+    } catch (err: any) {
+      this.patVerificationSuccess = false;
+      this.patVerificationMessage = err?.message || 'Connection test failed';
+      this.toastService.show(this.patVerificationMessage, 'danger');
+    } finally {
+      this.isVerifyingPat = false;
+    }
+  }
+
   saveGithubConfig(): void {
     this.publishService.saveConfig(this.githubConfig);
     this.toastService.show('GitHub configuration saved to this browser!', 'success');
@@ -503,7 +548,8 @@ export class AdminDashboardComponent implements OnInit {
 
   openPublishConfirmation(mode: 'publish_catalog' | 'trigger_pipeline'): void {
     if (!this.publishService.isConfigured()) {
-      this.toastService.show('Please provide a GitHub Personal Access Token (PAT) before publishing.', 'warning');
+      this.toastService.show('Please configure your GitHub Personal Access Token (PAT) before publishing.', 'warning');
+      this.openPatSetupModal();
       return;
     }
     this.publishModalMode = mode;

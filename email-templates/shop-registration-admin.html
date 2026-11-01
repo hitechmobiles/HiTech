@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Shop Partner Registration - HiTech</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #334155;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0f172a; padding: 30px 15px;">
+    <tr>
+      <td align="center">
+        <!-- Main Card Container -->
+        <table role="presentation" width="100%" style="max-width: 620px; background-color: #ffffff; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);">
+          
+          <!-- Brand Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #38bdf8 100%); padding: 32px 30px; text-align: center;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">HiTech Wholesale Network</h1>
+              <p style="margin: 6px 0 0; color: #f3e8ff; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Partner Onboarding & Retail Verification</p>
+            </td>
+          </tr>
+
+          <!-- Notification Status Banner -->
+          <tr>
+            <td style="background-color: #fdf4ff; padding: 18px 30px; border-bottom: 1px solid #f3e8ff; text-align: center;">
+              <span style="display: inline-block; background-color: #fae8ff; color: #9333ea; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid #e9d5ff;">
+                ★ New Wholesale Application Pending Review
+              </span>
+              <h2 style="margin: 12px 0 4px; color: #0f172a; font-size: 22px; font-weight: 800;">{{shop_name}}</h2>
+              <p style="margin: 0; color: #64748b; font-size: 13px;">Proprietor: <strong>{{owner_name}}</strong> &bull; Submitted on {{registration_date}}</p>
+            </td>
+          </tr>
+
+          <!-- Storefront Photo Preview -->
+          <tr>
+            <td style="padding: 24px 30px 10px; text-align: center;">
+              <h3 style="margin: 0 0 12px; color: #0f172a; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; border-bottom: 2px solid #a855f7; padding-bottom: 6px; display: inline-block;">
+                Storefront Photo Verification
+              </h3>
+              <div style="margin-top: 10px; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #0f172a; max-height: 240px; display: flex; align-items: center; justify-content: center;">
+                <img src="{{shop_photo}}" alt="{{shop_name}} Storefront" style="max-width: 100%; max-height: 240px; object-fit: cover; display: block;" onerror="this.style.display='none'" />
+              </div>
+            </td>
+          </tr>
+
+          <!-- Applicant Information -->
+          <tr>
+            <td style="padding: 16px 30px 10px;">
+              <h3 style="margin: 0 0 12px; color: #0f172a; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #a855f7; padding-bottom: 6px; display: inline-block;">
+                Retail Partner Details
+              </h3>
+              <table role="presentation" width="100%" style="font-size: 14px; line-height: 1.6; color: #334155;">
+                <tr>
+                  <td width="35%" style="color: #64748b; padding: 5px 0;"><strong>Outlet Name:</strong></td>
+                  <td style="color: #0f172a; font-weight: 700; padding: 5px 0;">{{shop_name}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>Proprietor:</strong></td>
+                  <td style="color: #0f172a; font-weight: 600; padding: 5px 0;">{{owner_name}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>Email Address:</strong></td>
+                  <td style="color: #7c3aed; font-weight: 600; padding: 5px 0;"><a href="mailto:{{applicant_email}}" style="color: #7c3aed; text-decoration: none;">{{applicant_email}}</a></td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>Phone / WhatsApp:</strong></td>
+                  <td style="color: #0f172a; font-weight: 600; padding: 5px 0;"><a href="tel:{{phone}}" style="color: #0f172a; text-decoration: none;">{{phone}}</a></td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>Store Location:</strong></td>
+                  <td style="color: #0f172a; font-weight: 500; padding: 5px 0;">{{location}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>GST Number:</strong></td>
+                  <td style="color: #0f172a; font-weight: 600; padding: 5px 0;">{{gst_number}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>Initial Discount Tier:</strong></td>
+                  <td style="color: #059669; font-weight: 700; padding: 5px 0;">{{discount_tier}}</td>
+                </tr>
+                <tr>
+                  <td style="color: #64748b; padding: 5px 0;"><strong>Additional Notes:</strong></td>
+                  <td style="color: #475569; font-style: italic; padding: 5px 0;">{{additional_notes}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Admin Action CTA -->
+          <tr>
+            <td style="padding: 24px 30px; text-align: center; background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0 0 16px; font-size: 13px; color: #64748b;">
+                Review the storefront and GST details on the admin dashboard to generate credentials and approve wholesale access.
+              </p>
+              <a href="https://hi-tech-gray.vercel.app/admin" style="display: inline-block; background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 8px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);">
+                Open Admin Portal to Review &rarr;
+              </a>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 20px 30px; background-color: #0f172a; color: #94a3b8; font-size: 12px; text-align: center; border-top: 1px solid #1e293b;">
+              <p style="margin: 0 0 6px;">HiTech Mobiles &bull; Sales, Wholesale Distribution & Expert Repair Hub</p>
+              <p style="margin: 0; color: #64748b;">Maniyarampatti, Trichy, Tamil Nadu - 621315 &bull; hitechmobilesandservice@gmail.com</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

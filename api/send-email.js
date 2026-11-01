@@ -63,6 +63,30 @@ function generateCustomerBookingHtml(vars) {
   </div></body></html>`;
 }
 
+function generateShopRegistrationAdminHtml(vars) {
+  return `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0f172a;color:#334155;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:12px;">
+    <h2 style="color:#7c3aed;">🏬 New Shop Registration: ${vars.shop_name || ''}</h2>
+    <p><strong>Proprietor:</strong> ${vars.owner_name || ''}</p>
+    <p><strong>Email:</strong> ${vars.applicant_email || ''}</p>
+    <p><strong>Phone:</strong> ${vars.phone || ''}</p>
+    <p><strong>Location:</strong> ${vars.location || ''}</p>
+    <p><strong>GST:</strong> ${vars.gst_number || 'Not Provided'}</p>
+    <p><strong>Date:</strong> ${vars.registration_date || ''}</p>
+    <hr/>
+    <p><a href="https://hi-tech-gray.vercel.app/admin" style="background:#7c3aed;color:#fff;padding:10px 16px;text-decoration:none;border-radius:6px;display:inline-block;">Open Admin Portal to Review</a></p>
+  </div></body></html>`;
+}
+
+function generateShopRegistrationApplicantHtml(vars) {
+  return `<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0f172a;color:#334155;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:24px;border-radius:12px;">
+    <h2 style="color:#1a8fe3;">🎉 Application Received: ${vars.shop_name || ''}</h2>
+    <p>Hello ${vars.owner_name || ''}, thank you for registering with HiTech Wholesale Network!</p>
+    <p>Our admin team is verifying your application and will dispatch your credentials shortly.</p>
+  </div></body></html>`;
+}
+
 function loadTemplate(filename, fallbackFn, vars) {
   try {
     const templatePath = path.join(process.cwd(), 'email-templates', filename);
@@ -259,6 +283,24 @@ module.exports = async function handler(req, res) {
           customerResult = await sendResendMail(apiKey, fromEmail, customerEmail, custSubject, custHtml);
         } catch (err) {
           console.warn(`Failed customer email delivery to ${customerEmail}:`, err?.message);
+        }
+      }
+
+    } else if (type === 'SHOP_REGISTRATION') {
+      // 1. Dispatch Admin Notification for Shop Registration
+      const adminSubject = subject || `🏬 New Shop Partner Registration: ${templateParams.shop_name || ''} - ${templateParams.owner_name || ''}`;
+      const adminHtml = loadTemplate('shop-registration-admin.html', generateShopRegistrationAdminHtml, templateParams);
+      adminResult = await sendResendMail(apiKey, fromEmail, targetAdmin, adminSubject, adminHtml);
+
+      // 2. Dispatch Applicant Confirmation
+      const applicantEmail = templateParams.applicant_email?.trim() || templateParams.customer_email?.trim();
+      if (applicantEmail && applicantEmail.includes('@') && applicantEmail !== targetAdmin) {
+        try {
+          const applicantSubject = `🎉 Wholesale Partner Application Received — ${templateParams.shop_name || ''} | HiTech Mobiles`;
+          const applicantHtml = loadTemplate('shop-registration-applicant.html', generateShopRegistrationApplicantHtml, templateParams);
+          customerResult = await sendResendMail(apiKey, fromEmail, applicantEmail, applicantSubject, applicantHtml);
+        } catch (err) {
+          console.warn(`Failed applicant email delivery to ${applicantEmail}:`, err?.message);
         }
       }
 

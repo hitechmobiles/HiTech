@@ -182,6 +182,26 @@ export class AdminDashboardComponent implements OnInit {
     if (tab === 'orders') {
       this.loadNotifyRequests();
     }
+    if (tab === 'owners') {
+      this.refreshShopOwnersList();
+    }
+  }
+
+  isRefreshingOwners: boolean = false;
+
+  async refreshShopOwnersList(): Promise<void> {
+    this.isRefreshingOwners = true;
+    try {
+      await this.dataService.refreshShopOwners();
+      const pendingCount = this.dataService.pendingShopOwners().length;
+      if (pendingCount > 0) {
+        this.toastService.show(`${pendingCount} partner application(s) pending review!`, 'info', 'Partner Sync');
+      }
+    } catch (err) {
+      this.toastService.show('Failed to refresh partners from server.', 'warning');
+    } finally {
+      this.isRefreshingOwners = false;
+    }
   }
 
   // --- Product Management ---

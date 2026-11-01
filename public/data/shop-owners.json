@@ -1,5 +1,20 @@
 [
   {
+    "id": "owner-ajshop-1793514000",
+    "email": "bhuvaneshwaranaj@gmail.com",
+    "defaultPasswordPlain": "",
+    "role": "shopowner",
+    "shopName": "AJSHOP",
+    "ownerName": "Bhuvaneshwaran",
+    "phone": "+91 98765 43210",
+    "location": "Trichy, Tamil Nadu - 621315",
+    "shopPhoto": "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80",
+    "gstNumber": "33AJSHOP1234F1Z9",
+    "status": "pending",
+    "registeredDate": "2026-11-01",
+    "bulkDiscountTier": "Silver (10% OFF)"
+  },
+  {
     "id": "owner-1",
     "email": "owner1@hitech.com",
     "passwordHash": "e3ca23c38fc6f909409c825d8d21328f167079c819f171c3b8e15d099f42ba38",

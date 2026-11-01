@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { ToastService } from '../../core/services/toast.service';
+import { EmailService } from '../../core/services/email.service';
 import { CatalogPublishService } from '../../core/services/catalog-publish.service';
 import { ShopOwner, ShopRegistrationForm } from '../../core/models/shop-owner.model';
 
@@ -17,6 +18,7 @@ import { ShopOwner, ShopRegistrationForm } from '../../core/models/shop-owner.mo
 export class ShopRegistrationComponent {
   dataService = inject(DataService);
   toastService = inject(ToastService);
+  emailService = inject(EmailService);
   publishService = inject(CatalogPublishService);
   private router = inject(Router);
 
@@ -83,7 +85,29 @@ export class ShopRegistrationComponent {
       const newOwner = this.dataService.registerNewShopOwner(this.form);
       this.registeredShop = newOwner;
 
-      // If GitHub integration is configured, sync the updated shop-owners file immediately
+      // 1. Dispatch Email notification to Admin and Confirmation to Applicant
+      try {
+        await this.emailService.sendShopRegistrationNotification(this.form, newOwner);
+      } catch (mailErr) {
+        console.warn('Direct email dispatch fallback notice:', mailErr);
+      }
+
+      // 2. Immediate Server-Side Trigger: Calls /api/register-shop to commit to GitHub and trigger workflow
+      try {
+        const isLocalhost = typeof window !== 'undefined' &&
+          (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        const endpoint = isLocalhost ? '/api/register-shop' : 'https://hi-tech-gray.vercel.app/api/register-shop';
+
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ form: this.form, owner: newOwner })
+        });
+      } catch (apiErr) {
+        console.warn('Serverless registration sync notice:', apiErr);
+      }
+
+      // 3. Client-side GitHub PAT fallback (if admin or configured client is executing)
       if (this.publishService.isConfigured()) {
         try {
           const ownersJson = JSON.stringify(this.dataService.shopOwners(), null, 2);
@@ -96,7 +120,7 @@ export class ShopRegistrationComponent {
       }
 
       this.isRegistered = true;
-      this.toastService.show('Application submitted! Your wholesale partner request is pending admin verification.', 'success', 'Application Received');
+      this.toastService.show('Application submitted! Your wholesale partner request has been sent to admin and is pending verification.', 'success', 'Application Received');
     } catch (e) {
       this.toastService.show('Failed to register shop. Please try again.', 'danger');
     } finally {

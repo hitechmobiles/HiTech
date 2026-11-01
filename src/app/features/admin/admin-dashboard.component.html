@@ -316,6 +316,13 @@
             </button>
           </div>
 
+          <button class="btn btn-secondary btn-sm" [disabled]="isRefreshingOwners" (click)="refreshShopOwnersList()" title="Sync registrations from server">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" [class.animate-spin]="isRefreshingOwners" style="margin-right: 4px; display: inline-block; vertical-align: middle;">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            {{ isRefreshingOwners ? 'Syncing...' : 'Sync Live' }}
+          </button>
+
           <a routerLink="/register-shop" class="btn btn-purple btn-sm">
             + Enroll New Shop Owner
           </a>

@@ -1,5 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { ProductItem } from '../models/product.model';
 import { ServiceBookingItem } from '../models/service.model';
 import { ShopOwner, ShopRegistrationForm } from '../models/shop-owner.model';
@@ -88,7 +89,9 @@ export class DataService {
       // 4. Load Shop Owners
       const localOwners = localStorage.getItem(STORAGE_KEYS.SHOP_OWNERS);
       if (localOwners) {
-        this._shopOwners.set(JSON.parse(localOwners));
+        try {
+          this._shopOwners.set(JSON.parse(localOwners));
+        } catch {}
       } else {
         this.http.get<ShopOwner[]>('data/shop-owners.json').subscribe({
           next: (data) => this._shopOwners.set(data),
@@ -341,6 +344,33 @@ export class DataService {
     });
 
     return newOwner;
+  }
+
+  async refreshShopOwners(): Promise<ShopOwner[]> {
+    try {
+      const remote = await firstValueFrom(
+        this.http.get<ShopOwner[]>('data/shop-owners.json')
+      );
+      if (Array.isArray(remote)) {
+        const current = this._shopOwners();
+        const merged = [...current];
+        for (const r of remote) {
+          const idx = merged.findIndex(o => o.id === r.id || o.email.toLowerCase() === r.email.toLowerCase());
+          if (idx === -1) {
+            merged.unshift(r);
+          } else {
+            merged[idx] = { ...merged[idx], ...r };
+          }
+        }
+        this._shopOwners.set(merged);
+        this.persistOwners(merged);
+        this.logger.info('DataService', `Shop owners refreshed: ${merged.length} partners loaded`);
+        return merged;
+      }
+    } catch (err) {
+      this.logger.warn('DataService', 'Failed to refresh remote shop owners', err);
+    }
+    return this._shopOwners();
   }
 
   // --- Helpers for Static Data Reset and Export ---

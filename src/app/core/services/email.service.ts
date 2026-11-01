@@ -2,11 +2,12 @@ import { Injectable, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Order } from '../models/order.model';
 import { ServiceBookingRequest } from '../models/service.model';
+import { ShopOwner, ShopRegistrationForm } from '../models/shop-owner.model';
 import { LoggerService } from './logger.service';
 
 export interface EmailLogEntry {
   id: string;
-  type: 'ORDER_NOTIFICATION' | 'SERVICE_BOOKING' | 'PRODUCT_SEARCH_REQUEST' | 'CUSTOM_SERVICE_ISSUE';
+  type: 'ORDER_NOTIFICATION' | 'SERVICE_BOOKING' | 'PRODUCT_SEARCH_REQUEST' | 'CUSTOM_SERVICE_ISSUE' | 'SHOP_REGISTRATION';
   recipient: string;
   subject: string;
   payload: any;
@@ -77,7 +78,7 @@ export class EmailService {
    * Attempt dispatch via Vercel Resend Serverless endpoint with direct Resend fallback
    */
   private async sendViaResend(
-    type: 'ORDER_NOTIFICATION' | 'SERVICE_BOOKING' | 'PRODUCT_SEARCH_REQUEST' | 'CUSTOM_SERVICE_ISSUE',
+    type: 'ORDER_NOTIFICATION' | 'SERVICE_BOOKING' | 'PRODUCT_SEARCH_REQUEST' | 'CUSTOM_SERVICE_ISSUE' | 'SHOP_REGISTRATION',
     recipient: string,
     subject: string,
     templateParams: any
@@ -391,6 +392,60 @@ export class EmailService {
     // 2. Simulated Local Fallback
     this.addLog({
       type: 'CUSTOM_SERVICE_ISSUE',
+      recipient: ownerEmail,
+      subject,
+      payload: templateParams,
+      status: 'SIMULATED_LOCAL'
+    });
+
+    return { success: true, simulated: true };
+  }
+
+  /**
+   * Send New Shop Registration to Admin & Applicant confirmation via Resend
+   */
+  async sendShopRegistrationNotification(
+    form: ShopRegistrationForm,
+    owner: ShopOwner
+  ): Promise<{ success: boolean; simulated: boolean }> {
+    const resendConfig = this.getResendConfig();
+    const ownerEmail = resendConfig.notificationEmail || 'hitechmobilesandservice@gmail.com';
+    const nowStr = new Date().toLocaleString();
+
+    const templateParams = {
+      to_email: ownerEmail,
+      shop_name: owner.shopName,
+      owner_name: owner.ownerName,
+      applicant_email: owner.email,
+      customer_email: owner.email,
+      phone: owner.phone,
+      location: owner.location,
+      gst_number: owner.gstNumber || 'Not Provided',
+      discount_tier: owner.bulkDiscountTier || 'Silver (10% OFF)',
+      additional_notes: form.additionalNotes || 'None',
+      shop_photo: owner.shopPhoto,
+      registration_date: nowStr
+    };
+
+    const subject = `🏬 New Shop Partner Registration: ${owner.shopName} - ${owner.ownerName}`;
+
+    // 1. Dispatch via Resend Serverless API
+    const resendResult = await this.sendViaResend('SHOP_REGISTRATION', ownerEmail, subject, templateParams);
+    if (resendResult.success && !resendResult.simulated) {
+      this.addLog({
+        type: 'SHOP_REGISTRATION',
+        recipient: ownerEmail,
+        subject,
+        payload: templateParams,
+        status: 'SENT_VIA_RESEND'
+      });
+      this.logger.info('EmailService', `Shop registration email sent via Resend for ${owner.shopName}`);
+      return { success: true, simulated: false };
+    }
+
+    // 2. Simulated Local Fallback
+    this.addLog({
+      type: 'SHOP_REGISTRATION',
       recipient: ownerEmail,
       subject,
       payload: templateParams,

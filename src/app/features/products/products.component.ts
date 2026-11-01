@@ -56,6 +56,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
       if (params['category']) {
         this.selectedCategory = params['category'];
       }

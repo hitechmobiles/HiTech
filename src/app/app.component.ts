@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, DestroyRef } from '@angular/core';
+import { Component, OnInit, inject, DestroyRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -21,6 +21,26 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
+  showScrollTop: boolean = false;
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (typeof window !== 'undefined') {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      this.showScrollTop = scrollY > 280;
+    }
+  }
+
+  scrollToTop(): void {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
+
   ngOnInit(): void {
     this.router.events
       .pipe(
@@ -28,6 +48,12 @@ export class AppComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((event: NavigationEnd) => {
+        // Universal scroll restoration: every page starts cleanly at the top
+        if (typeof window !== 'undefined') {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
         this.updateRouteSeo(event.urlAfterRedirects || event.url);
       });
   }

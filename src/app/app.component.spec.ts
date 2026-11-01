@@ -70,4 +70,25 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.toast-floating-wrapper')).toBeTruthy();
     expect(compiled.querySelector('.toast-message')?.textContent).toContain('Test notification');
   });
+
+  it('should render scroll-to-top button when showScrollTop is true', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.showScrollTop = true;
+    fixture.detectChanges();
+    const btn = fixture.nativeElement.querySelector('.scroll-to-top-btn');
+    expect(btn).toBeTruthy();
+  });
+
+  it('should call scrollToTop when scroll-to-top button is clicked', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.showScrollTop = true;
+    fixture.detectChanges();
+    spyOn(app, 'scrollToTop');
+    const btn = fixture.nativeElement.querySelector('.scroll-to-top-btn') as HTMLButtonElement;
+    btn.click();
+    expect(app.scrollToTop).toHaveBeenCalled();
+  });
 });
+

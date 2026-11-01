@@ -34,4 +34,18 @@
       </div>
     </div>
   }
+
+  <!-- Universal Scroll to Top Floating Action Button -->
+  @if (showScrollTop) {
+    <button
+      type="button"
+      class="scroll-to-top-btn animate-fade-in"
+      (click)="scrollToTop()"
+      title="Scroll back to top"
+      aria-label="Scroll back to top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6"/>
+      </svg>
+    </button>
+  }
 </div>

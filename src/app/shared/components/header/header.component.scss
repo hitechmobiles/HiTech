@@ -326,19 +326,36 @@
 }
 
 .btn-logout {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
   cursor: pointer;
-  padding: 0.35rem;
-  border-radius: 50%;
-  display: flex;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  transition: color var(--transition-fast);
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+
+  .logout-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
 
   &:hover {
-    color: var(--accent-danger);
+    background: #ef4444;
+    color: #ffffff;
+    border-color: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.25rem 0.45rem;
+    .logout-text {
+      display: none;
+    }
   }
 }
 

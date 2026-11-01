@@ -18,63 +18,42 @@
 
   @if (product) {
     <div class="product-detail-grid">
-      <!-- Media Column with Multi-View Gallery -->
+      <!-- Media Column with Fast Direct Image Rendering -->
       <div class="media-col glass-card">
-        <!-- View Angle Selector Pills (Shown when multiple views exist) -->
+        <!-- Optional Multi-View Selector (Desktop Only - Clean on Mobile) -->
         @if (productViews.length > 1) {
-          <div class="view-angle-pills">
+          <div class="view-angle-pills desktop-only-gallery">
             @for (v of productViews; track v.id; let idx = $index) {
               <button
                 type="button"
                 class="view-pill-btn"
                 [class.active]="selectedViewIndex === idx"
                 (click)="selectView(idx)">
-                @if (v.type === 'front') {
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                } @else if (v.type === 'back') {
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
-                } @else if (v.type === 'angle') {
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                } @else if (v.type === 'specs') {
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                }
                 <span>{{ v.label }}</span>
               </button>
             }
           </div>
         }
 
-        <!-- Main Display Frame with Skeleton Shimmer -->
-        <div class="main-image-wrap" [class.is-loading]="isImageLoading">
-          @if (isImageLoading) {
-            <div class="image-skeleton-shimmer animate-pulse">
-              <div class="skeleton-spinner"></div>
-              <span>Rendering {{ currentView?.label || 'View' }}...</span>
-            </div>
-          }
-
+        <!-- Main Display Frame with Fast Direct Rendering -->
+        <div class="main-image-wrap">
           <img
             [src]="currentView?.url || product.image"
-            [alt]="currentView?.caption || product.name"
+            [alt]="product.name"
             class="main-img"
-            (load)="onImageLoaded()"
+            loading="eager"
+            fetchpriority="high"
             (error)="onImageError($event)" />
 
           <!-- Zoom Lightbox Trigger -->
           <button type="button" class="btn-zoom-preview" (click)="openZoomModal()" title="View High-Resolution Image">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </button>
-
-          <!-- Current View Caption Pill -->
-          <div class="view-caption-pill">
-            <span class="caption-indicator"></span>
-            <span>{{ currentView?.caption }}</span>
-          </div>
         </div>
 
-        <!-- Interactive Thumbnail Strip (Shown when multiple views exist) -->
+        <!-- Optional Desktop Thumbnail Strip (Desktop Only - Clean on Mobile) -->
         @if (productViews.length > 1) {
-          <div class="thumbnail-strip">
+          <div class="thumbnail-strip desktop-only-gallery">
             @for (v of productViews; track v.id; let idx = $index) {
               <button
                 type="button"
@@ -161,7 +140,7 @@
 
         <p class="detail-description">{{ product.description }}</p>
 
-        <!-- Hardware Specification Hub (Tabs + Categorized Cards) -->
+        <!-- Hardware / Product Specification Hub -->
         <div class="specs-hub-container">
           <div class="specs-tab-header">
             <button
@@ -170,7 +149,7 @@
               [class.active]="activeSpecsTab === 'specs'"
               (click)="activeSpecsTab = 'specs'">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              <span>Hardware Specifications</span>
+              <span>{{ product.category === 'phone' ? 'Specs' : 'Details' }}</span>
             </button>
             <button
               type="button"
@@ -186,84 +165,127 @@
               [class.active]="activeSpecsTab === 'warranty'"
               (click)="activeSpecsTab = 'warranty'">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>Warranty &amp; Service</span>
+              <span>Warranty</span>
             </button>
           </div>
 
-          <!-- Tab Content: Hardware Specs -->
+          <!-- Tab Content: Hardware / Accessory Specs -->
           @if (activeSpecsTab === 'specs') {
             <div class="specs-grid animate-fade-in">
-              <!-- Display -->
-              <div class="spec-card">
-                <div class="spec-icon" style="color: #38bdf8;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              @if (product.category === 'phone') {
+                @if (product.specs?.display) {
+                  <div class="spec-card">
+                    <div class="spec-icon" style="color: #38bdf8;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="spec-data">
+                      <span class="spec-lbl">Display & Glass</span>
+                      <strong class="spec-val">{{ product.specs?.display }}</strong>
+                      <span class="spec-sub">High dynamic range, true tone</span>
+                    </div>
+                  </div>
+                }
+                @if (product.specs?.camera) {
+                  <div class="spec-card">
+                    <div class="spec-icon" style="color: #c084fc;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                    </div>
+                    <div class="spec-data">
+                      <span class="spec-lbl">Camera System</span>
+                      <strong class="spec-val">{{ product.specs?.camera }}</strong>
+                      <span class="spec-sub">AI night mode & stabilization</span>
+                    </div>
+                  </div>
+                }
+                @if (product.specs?.battery) {
+                  <div class="spec-card">
+                    <div class="spec-icon" style="color: #34d399;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="11" x2="6" y2="13"/><line x1="10" y1="11" x2="10" y2="13"/></svg>
+                    </div>
+                    <div class="spec-data">
+                      <span class="spec-lbl">Battery & Power</span>
+                      <strong class="spec-val">{{ product.specs?.battery }}</strong>
+                      <span class="spec-sub">Fast charging supported</span>
+                    </div>
+                  </div>
+                }
+                @if (product.specs?.ram || product.specs?.storage) {
+                  <div class="spec-card">
+                    <div class="spec-icon" style="color: #fbbf24;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v12"/><path d="M9 12v4"/><path d="M15 12v4"/></svg>
+                    </div>
+                    <div class="spec-data">
+                      <span class="spec-lbl">Memory & Storage</span>
+                      <strong class="spec-val">{{ product.specs?.ram || '8 GB' }} RAM • {{ product.specs?.storage || '128 GB' }} Storage</strong>
+                      <span class="spec-sub">High speed read/write performance</span>
+                    </div>
+                  </div>
+                }
+                <div class="spec-card">
+                  <div class="spec-icon" style="color: #06b6d4;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  </div>
+                  <div class="spec-data">
+                    <span class="spec-lbl">Network & Connectivity</span>
+                    <strong class="spec-val">{{ product.specs?.connectivity || '5G Dual SIM • Wi-Fi 6 • Bluetooth' }}</strong>
+                    <span class="spec-sub">Pan-India carrier certified</span>
+                  </div>
                 </div>
-                <div class="spec-data">
-                  <span class="spec-lbl">Display &amp; Glass</span>
-                  <strong class="spec-val">{{ product.specs?.display || 'Super Retina XDR OLED / 120Hz' }}</strong>
-                  <span class="spec-sub">High dynamic range, true tone</span>
+                <div class="spec-card">
+                  <div class="spec-icon" style="color: #a855f7;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div class="spec-data">
+                    <span class="spec-lbl">Authenticity & Warranty</span>
+                    <strong class="spec-val">100% Genuine Brand Unit</strong>
+                    <span class="spec-sub">1 Year Manufacturer Warranty</span>
+                  </div>
                 </div>
-              </div>
-
-              <!-- Camera Matrix -->
-              <div class="spec-card">
-                <div class="spec-icon" style="color: #c084fc;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+              } @else {
+                <!-- Accessories Specific Specs -->
+                @if (product.compatibleWith) {
+                  <div class="spec-card">
+                    <div class="spec-icon" style="color: #38bdf8;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div class="spec-data">
+                      <span class="spec-lbl">Device Compatibility</span>
+                      <strong class="spec-val">{{ product.compatibleWith }}</strong>
+                      <span class="spec-sub">Precision engineered fit</span>
+                    </div>
+                  </div>
+                }
+                <div class="spec-card">
+                  <div class="spec-icon" style="color: #c084fc;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  </div>
+                  <div class="spec-data">
+                    <span class="spec-lbl">Accessory Type</span>
+                    <strong class="spec-val">{{ product.subCategory }}</strong>
+                    <span class="spec-sub">Brand OEM certified</span>
+                  </div>
                 </div>
-                <div class="spec-data">
-                  <span class="spec-lbl">Camera System</span>
-                  <strong class="spec-val">{{ product.specs?.camera || '50MP AI Dual Matrix + Ultra-Wide' }}</strong>
-                  <span class="spec-sub">Optical stabilization (OIS), Night Mode</span>
+                <div class="spec-card">
+                  <div class="spec-icon" style="color: #34d399;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div class="spec-data">
+                    <span class="spec-lbl">Build Quality</span>
+                    <strong class="spec-val">OEM Grade Certified</strong>
+                    <span class="spec-sub">Drop-tested & flame retardant</span>
+                  </div>
                 </div>
-              </div>
-
-              <!-- Battery & Charging -->
-              <div class="spec-card">
-                <div class="spec-icon" style="color: #34d399;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="11" x2="6" y2="13"/><line x1="10" y1="11" x2="10" y2="13"/></svg>
+                <div class="spec-card">
+                  <div class="spec-icon" style="color: #10b981;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div class="spec-data">
+                    <span class="spec-lbl">Warranty Coverage</span>
+                    <strong class="spec-val">6-12 Months Brand Warranty</strong>
+                    <span class="spec-sub">Direct replacement assistance</span>
+                  </div>
                 </div>
-                <div class="spec-data">
-                  <span class="spec-lbl">Battery &amp; Charging</span>
-                  <strong class="spec-val">{{ product.specs?.battery || '5000 mAh All-Day Capacity' }}</strong>
-                  <span class="spec-sub">USB-C Fast Charging &amp; Power IQ</span>
-                </div>
-              </div>
-
-              <!-- Memory & Storage -->
-              <div class="spec-card">
-                <div class="spec-icon" style="color: #fbbf24;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v12"/><path d="M9 12v4"/><path d="M15 12v4"/></svg>
-                </div>
-                <div class="spec-data">
-                  <span class="spec-lbl">Memory &amp; Storage</span>
-                  <strong class="spec-val">{{ product.specs?.ram || '8 GB' }} RAM • {{ product.specs?.storage || '128 GB' }} Storage</strong>
-                  <span class="spec-sub">UFS high-speed read/write</span>
-                </div>
-              </div>
-
-              <!-- Compatibility / Model -->
-              <div class="spec-card">
-                <div class="spec-icon" style="color: #f43f5e;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                </div>
-                <div class="spec-data">
-                  <span class="spec-lbl">Chipset Architecture</span>
-                  <strong class="spec-val">{{ product.brand === 'Apple' ? 'Apple A-Series Bionic with Neural Engine' : 'Snapdragon / MediaTek 4nm Processor' }}</strong>
-                  <span class="spec-sub">High efficiency AI performance</span>
-                </div>
-              </div>
-
-              <!-- Connectivity -->
-              <div class="spec-card">
-                <div class="spec-icon" style="color: #06b6d4;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-                </div>
-                <div class="spec-data">
-                  <span class="spec-lbl">Network &amp; Wireless</span>
-                  <strong class="spec-val">5G Dual SIM • Wi-Fi 6E • BT 5.3</strong>
-                  <span class="spec-sub">Ultra-wideband, NFC payment ready</span>
-                </div>
-              </div>
+              }
             </div>
           }
 

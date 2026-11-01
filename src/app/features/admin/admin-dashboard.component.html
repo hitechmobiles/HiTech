@@ -11,7 +11,7 @@
           <span class="dot-online"></span>
         </div>
         <h1 class="admin-title">HiTech Management Console</h1>
-        <p class="admin-sub">Logged in as: <strong>bhuvaneshwaranaj&#64;gmail.com</strong></p>
+        <p class="admin-sub">Logged in as: <strong>{{ authService.currentSession()?.email || 'hitechmobilesandservice@gmail.com' }}</strong></p>
       </div>
     </div>
 
@@ -37,13 +37,19 @@
 
     <!-- Header Quick-Publish Button & Status -->
     <div class="admin-header-actions" style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
-      <button class="btn btn-primary btn-sm" (click)="openPublishConfirmation('publish_catalog')" [disabled]="isPublishingGithub" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; padding: 0.6rem 1.25rem; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);">
-        @if (isPublishingGithub) {
-          <span>🚀 Publishing Live...</span>
-        } @else {
-          <span>🚀 Publish Live (CI/CD)</span>
-        }
-      </button>
+      <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; justify-content: flex-end;">
+        <button class="btn btn-primary btn-sm" (click)="openPublishConfirmation('publish_catalog')" [disabled]="isPublishingGithub" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; padding: 0.6rem 1.25rem; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);">
+          @if (isPublishingGithub) {
+            <span>🚀 Publishing Live...</span>
+          } @else {
+            <span>🚀 Publish Live (CI/CD)</span>
+          }
+        </button>
+        <button type="button" class="btn btn-outline btn-sm" (click)="authService.logout()" title="Log out of Admin Console" style="display: flex; align-items: center; gap: 0.4rem; color: #ef4444; border-color: rgba(239, 68, 68, 0.35); padding: 0.6rem 0.95rem; font-weight: 600;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          <span>Log Out</span>
+        </button>
+      </div>
       <div class="admin-pat-status-row" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
         @if (publishService.isConfigured()) {
           <button type="button" class="pat-status-pill connected" (click)="openPatSetupModal()" title="GitHub CI/CD Connected. Click to view or update token.">

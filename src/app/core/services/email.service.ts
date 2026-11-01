@@ -171,7 +171,7 @@ export class EmailService {
    */
   async sendOrderNotification(order: Order): Promise<{ success: boolean; simulated: boolean }> {
     const resendConfig = this.getResendConfig();
-    const ownerEmail = resendConfig.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
+    const ownerEmail = resendConfig.notificationEmail || 'hitechmobilesandservice@gmail.com';
 
     const itemsSummary = order.items
       .map(i => `${i.name} (x${i.quantity}) - ₹${i.totalPrice.toLocaleString()}`)
@@ -230,7 +230,7 @@ export class EmailService {
    */
   async sendServiceBookingNotification(booking: ServiceBookingRequest): Promise<{ success: boolean; simulated: boolean }> {
     const resendConfig = this.getResendConfig();
-    const ownerEmail = resendConfig.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
+    const ownerEmail = resendConfig.notificationEmail || 'hitechmobilesandservice@gmail.com';
 
     const customerEmail = booking.customerEmail && booking.customerEmail.includes('@')
       ? booking.customerEmail.trim()
@@ -294,7 +294,7 @@ export class EmailService {
     customerNotes?: string;
   }): Promise<{ success: boolean; simulated: boolean }> {
     const resendConfig = this.getResendConfig();
-    const ownerEmail = resendConfig.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
+    const ownerEmail = resendConfig.notificationEmail || 'hitechmobilesandservice@gmail.com';
     const requestId = 'REQ-' + Date.now().toString().slice(-6);
     const nowStr = new Date().toLocaleString();
 
@@ -347,7 +347,7 @@ export class EmailService {
    */
   async sendCustomIssueNotification(booking: ServiceBookingRequest & { customIssueTitle?: string }): Promise<{ success: boolean; simulated: boolean }> {
     const resendConfig = this.getResendConfig();
-    const ownerEmail = resendConfig.notificationEmail || 'bhuvaneshwaranaj@gmail.com';
+    const ownerEmail = resendConfig.notificationEmail || 'hitechmobilesandservice@gmail.com';
     const nowStr = new Date().toLocaleString();
 
     const customerEmail = booking.customerEmail && booking.customerEmail.includes('@')

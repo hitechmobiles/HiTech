@@ -8,7 +8,7 @@ export const environment = {
   },
   resend: {
     apiEndpoint: '/api/send-email',
-    apiKey: '',
+    apiKey: 're_EBa6bKgi_PdixrfD7A4wwo5aJAAFZaQwc',
     notificationEmail: 'hitechmobilesandservice@gmail.com'
   },
   otpExpirySeconds: 60,
@@ -23,6 +23,6 @@ export const environment = {
     owner: 'hitechmobiles',
     repo: 'HiTech',
     branch: 'develop',
-    token: ''
+    token: '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'
   }
 };

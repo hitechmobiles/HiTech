@@ -1,4 +1,5 @@
-const { checkSecurity } = require('./_security');\r\nconst fs = require('fs');
+const { checkSecurity } = require('./_security');
+const fs = require('fs');
 const path = require('path');
 
 // Helper to fill template variables
@@ -119,7 +120,12 @@ async function sendResendMail(apiKey, fromEmail, toEmail, subject, htmlContent) 
   return { ok: response.ok, status: response.status, data };
 }
 
-module.exports = async function handler(req, res) {\r\n  // Enterprise Attack & DDoS Protection\r\n  const secCheck = checkSecurity(req, res);\r\n  if (!secCheck.allowed) {\r\n    return res.status(secCheck.status).json({ error: secCheck.error });\r\n  }
+module.exports = async function handler(req, res) {
+  // Enterprise Attack & DDoS Protection
+  const secCheck = checkSecurity(req, res);
+  if (!secCheck.allowed) {
+    return res.status(secCheck.status).json({ error: secCheck.error });
+  }
   // 1. Standard-Compliant CORS Configuration & Origin Validation
   const reqOrigin = req.headers.origin || '';
   const isAllowedOrigin = (orig) => {
@@ -171,7 +177,8 @@ module.exports = async function handler(req, res) {\r\n  // Enterprise Attack & 
 
     if (!apiKey) {
       console.warn('RESEND_API_KEY is not defined in environment variables. Simulating email dispatch.');
-      console.log(JSON.stringify({ timestamp: new Date().toISOString(), level: 'info', event: 'EMAIL_DISPATCH_SUCCESS', type, adminEmail: targetAdmin }));\r\n      return res.status(200).json({
+      console.log(JSON.stringify({ timestamp: new Date().toISOString(), level: 'info', event: 'EMAIL_DISPATCH_SUCCESS', type, adminEmail: targetAdmin }));
+      return res.status(200).json({
         success: true,
         simulated: true,
         message: 'RESEND_API_KEY is not configured. Email simulated locally.'

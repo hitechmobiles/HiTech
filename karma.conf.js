@@ -32,22 +32,12 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml'],
     browsers: ['ChromeHeadlessNoSandbox'],
     customLaunchers: {
-      ChromeHeadless: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-gpu',
-          '--disable-dev-shm-usage',
-          '--remote-debugging-port=9222'
-        ]
-      },
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         flags: [
           '--no-sandbox',
           '--disable-gpu',
-          '--disable-dev-shm-usage',
-          '--remote-debugging-port=9222'
+          '--disable-dev-shm-usage'
         ]
       }
     },

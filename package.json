@@ -10,8 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
-    "test:coverage": "ng test --watch=false --browsers=ChromeHeadless --code-coverage"
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox",
+    "test:coverage": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage"
   },
   "private": true,
   "dependencies": {

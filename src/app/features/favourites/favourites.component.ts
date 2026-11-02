@@ -34,6 +34,16 @@ export class FavouritesComponent {
     this.toastService.show(`Moved ${product.name} to Cart`, 'success', 'Added to Cart');
   }
 
+  moveAllToCart(): void {
+    const inStockItems = this.favouriteProducts.filter(p => p.inStock);
+    if (inStockItems.length === 0) {
+      this.toastService.show('No in-stock items available to move.', 'warning');
+      return;
+    }
+    inStockItems.forEach(item => this.cartService.addToCart(item));
+    this.toastService.show(`Moved ${inStockItems.length} items to your cart!`, 'success', 'Cart Updated');
+  }
+
   removeFav(product: ProductItem): void {
     this.favService.removeFavourite(product.id);
     this.toastService.show(`Removed from favourites`, 'info');

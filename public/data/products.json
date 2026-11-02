@@ -20,7 +20,12 @@
     "rating": 4.9,
     "reviewsCount": 324,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-apple-16",
@@ -43,7 +48,12 @@
     "rating": 4.6,
     "reviewsCount": 497,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-apple-17",
@@ -66,7 +76,12 @@
     "rating": 4.6,
     "reviewsCount": 339,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-ai-nova2",
@@ -89,7 +104,12 @@
     "reviewsCount": 482,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-ai-pulse",
@@ -112,7 +132,12 @@
     "reviewsCount": 308,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-ai-pulse2",
@@ -135,7 +160,12 @@
     "reviewsCount": 180,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-ai-nova2neo",
@@ -158,7 +188,12 @@
     "reviewsCount": 234,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-hmd-vibe2",
@@ -181,7 +216,12 @@
     "reviewsCount": 368,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-hot60i",
@@ -204,7 +244,12 @@
     "reviewsCount": 271,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-note-edge",
@@ -227,7 +272,12 @@
     "rating": 4.9,
     "reviewsCount": 478,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-note60pro",
@@ -250,7 +300,12 @@
     "rating": 4.7,
     "reviewsCount": 462,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-smart20",
@@ -273,7 +328,12 @@
     "reviewsCount": 465,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-hot70pro",
@@ -296,7 +356,12 @@
     "reviewsCount": 325,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-note-jbl",
@@ -319,7 +384,12 @@
     "reviewsCount": 293,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-infinix-smart20hd",
@@ -342,7 +412,12 @@
     "reviewsCount": 388,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-iqoo-z11x",
@@ -365,7 +440,12 @@
     "reviewsCount": 240,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-iqoo-z11",
@@ -388,7 +468,12 @@
     "rating": 4.7,
     "reviewsCount": 327,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-iqoo-z11lite",
@@ -411,7 +496,12 @@
     "reviewsCount": 537,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-itel-a100c",
@@ -434,7 +524,12 @@
     "reviewsCount": 147,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-itel-a100pro",
@@ -457,7 +552,12 @@
     "reviewsCount": 464,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-itel-a100",
@@ -480,7 +580,12 @@
     "reviewsCount": 397,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-itel-a300c",
@@ -503,7 +608,12 @@
     "reviewsCount": 159,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-itel-care2800",
@@ -524,7 +634,12 @@
     "reviewsCount": 561,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-mivi-one",
@@ -547,7 +662,12 @@
     "reviewsCount": 206,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-g37power",
@@ -570,7 +690,12 @@
     "reviewsCount": 293,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-pad60neo",
@@ -593,7 +718,12 @@
     "reviewsCount": 404,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-g37",
@@ -616,7 +746,12 @@
     "reviewsCount": 568,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-g77power",
@@ -639,7 +774,12 @@
     "reviewsCount": 324,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-edge60fusion",
@@ -662,7 +802,12 @@
     "rating": 4.6,
     "reviewsCount": 370,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-g06power",
@@ -685,7 +830,12 @@
     "reviewsCount": 419,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-g67power",
@@ -708,7 +858,12 @@
     "reviewsCount": 219,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-moto-edge70fusion",
@@ -731,7 +886,12 @@
     "rating": 4.7,
     "reviewsCount": 182,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-narzo-90x",
@@ -754,7 +914,12 @@
     "reviewsCount": 542,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-narzo-100x",
@@ -777,7 +942,12 @@
     "reviewsCount": 255,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-narzo-100lite",
@@ -800,7 +970,12 @@
     "reviewsCount": 544,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oneplus-nord-ce6",
@@ -823,7 +998,12 @@
     "rating": 4.7,
     "reviewsCount": 411,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oneplus-n6",
@@ -846,7 +1026,12 @@
     "reviewsCount": 314,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1570891836654-d4961a7b6929?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oneplus-nord-ce6lite",
@@ -869,7 +1054,12 @@
     "reviewsCount": 429,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oneplus-n6x",
@@ -892,7 +1082,12 @@
     "reviewsCount": 274,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1570891836654-d4961a7b6929?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-nothing-3alite",
@@ -915,7 +1110,12 @@
     "reviewsCount": 398,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-nothing-2a",
@@ -938,7 +1138,12 @@
     "rating": 4.7,
     "reviewsCount": 343,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-nothing-4b",
@@ -961,7 +1166,12 @@
     "reviewsCount": 214,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-f33",
@@ -984,7 +1194,12 @@
     "reviewsCount": 210,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-a6c",
@@ -1007,7 +1222,12 @@
     "reviewsCount": 421,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-f33pro",
@@ -1030,7 +1250,12 @@
     "rating": 4.7,
     "reviewsCount": 192,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-f35",
@@ -1053,7 +1278,12 @@
     "reviewsCount": 169,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-f35pro",
@@ -1076,7 +1306,12 @@
     "rating": 4.8,
     "reviewsCount": 370,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-a6",
@@ -1099,7 +1334,12 @@
     "reviewsCount": 251,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1609081219090-a6d8173087ec?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-a6s",
@@ -1122,7 +1362,12 @@
     "reviewsCount": 132,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-k14",
@@ -1145,7 +1390,12 @@
     "reviewsCount": 482,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1609081219090-a6d8173087ec?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-a6x",
@@ -1168,7 +1418,12 @@
     "reviewsCount": 451,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-a6pro",
@@ -1191,7 +1446,12 @@
     "reviewsCount": 545,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1609081219090-a6d8173087ec?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-oppo-k14x",
@@ -1214,7 +1474,12 @@
     "reviewsCount": 209,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-poco-m8",
@@ -1237,7 +1502,12 @@
     "reviewsCount": 224,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1569770218135-bea267ed7e84?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-poco-c81",
@@ -1260,7 +1530,12 @@
     "reviewsCount": 307,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-poco-c85x",
@@ -1283,7 +1558,12 @@
     "reviewsCount": 510,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1569770218135-bea267ed7e84?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-poco-c81x",
@@ -1306,7 +1586,12 @@
     "reviewsCount": 378,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-poco-m8power",
@@ -1329,7 +1614,12 @@
     "rating": 4.8,
     "reviewsCount": 128,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1569770218135-bea267ed7e84?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-poco-m8x",
@@ -1352,7 +1642,12 @@
     "reviewsCount": 507,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-p4x",
@@ -1375,7 +1670,12 @@
     "reviewsCount": 411,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-16proplus",
@@ -1398,7 +1698,12 @@
     "rating": 4.8,
     "reviewsCount": 511,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-16pro",
@@ -1421,7 +1726,12 @@
     "reviewsCount": 281,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-p4lite",
@@ -1444,7 +1754,12 @@
     "reviewsCount": 484,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-16",
@@ -1467,7 +1782,12 @@
     "reviewsCount": 404,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-c100x",
@@ -1490,7 +1810,12 @@
     "reviewsCount": 549,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-c100i",
@@ -1513,7 +1838,12 @@
     "reviewsCount": 133,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-c83",
@@ -1536,7 +1866,12 @@
     "reviewsCount": 144,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-realme-p4r",
@@ -1559,7 +1894,12 @@
     "reviewsCount": 268,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-a7pro",
@@ -1582,7 +1922,12 @@
     "reviewsCount": 228,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-17",
@@ -1605,7 +1950,12 @@
     "reviewsCount": 417,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-a7",
@@ -1628,7 +1978,12 @@
     "reviewsCount": 231,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-note17",
@@ -1651,7 +2006,12 @@
     "rating": 4.7,
     "reviewsCount": 397,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-15c",
@@ -1674,7 +2034,12 @@
     "reviewsCount": 133,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-15a",
@@ -1697,7 +2062,12 @@
     "reviewsCount": 246,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-note15se",
@@ -1720,7 +2090,12 @@
     "reviewsCount": 564,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-redmi-17c",
@@ -1743,7 +2118,12 @@
     "reviewsCount": 477,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-a17",
@@ -1766,7 +2146,12 @@
     "rating": 4.8,
     "reviewsCount": 382,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-m07",
@@ -1789,7 +2174,12 @@
     "reviewsCount": 358,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-a07",
@@ -1812,7 +2202,12 @@
     "reviewsCount": 463,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-f07",
@@ -1835,7 +2230,12 @@
     "reviewsCount": 534,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-m06",
@@ -1858,7 +2258,12 @@
     "reviewsCount": 374,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-m17e",
@@ -1881,7 +2286,12 @@
     "reviewsCount": 252,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-f70e",
@@ -1904,7 +2314,12 @@
     "reviewsCount": 147,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-samsung-f06",
@@ -1927,7 +2342,12 @@
     "reviewsCount": 435,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-smart4plus",
@@ -1950,7 +2370,12 @@
     "reviewsCount": 242,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-virat-v1-5g",
@@ -1973,7 +2398,12 @@
     "reviewsCount": 336,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-shariq",
@@ -1996,7 +2426,12 @@
     "reviewsCount": 543,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-bold-n2lite",
@@ -2019,7 +2454,12 @@
     "reviewsCount": 476,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-virat-v1-4g",
@@ -2042,7 +2482,12 @@
     "reviewsCount": 499,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-smart4",
@@ -2065,7 +2510,12 @@
     "reviewsCount": 279,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-bold-n4lite",
@@ -2088,7 +2538,12 @@
     "reviewsCount": 214,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-lava-virat-v1pro",
@@ -2111,7 +2566,12 @@
     "rating": 4.7,
     "reviewsCount": 383,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-villaon-f30",
@@ -2134,7 +2594,12 @@
     "reviewsCount": 398,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-villaon-x50",
@@ -2157,7 +2622,12 @@
     "reviewsCount": 262,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-y05",
@@ -2180,7 +2650,12 @@
     "reviewsCount": 178,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-t5pro",
@@ -2203,7 +2678,12 @@
     "rating": 4.7,
     "reviewsCount": 353,
     "inStock": true,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-t5lite",
@@ -2226,7 +2706,12 @@
     "reviewsCount": 461,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-t5e",
@@ -2249,7 +2734,12 @@
     "reviewsCount": 566,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-y31t",
@@ -2272,7 +2762,12 @@
     "reviewsCount": 532,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-s2",
@@ -2295,7 +2790,12 @@
     "reviewsCount": 483,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-t5",
@@ -2318,7 +2818,12 @@
     "reviewsCount": 514,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-t4lite",
@@ -2341,7 +2846,12 @@
     "reviewsCount": 515,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-y11",
@@ -2364,7 +2874,12 @@
     "reviewsCount": 171,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-t5x",
@@ -2387,7 +2902,12 @@
     "reviewsCount": 423,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "phone-vivo-y21",
@@ -2410,6 +2930,11 @@
     "reviewsCount": 310,
     "inStock": true,
     "isFeatured": false,
-    "bulkDiscountPercent": 12
+    "bulkDiscountPercent": 12,
+    "images": [
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
+    ]
   }
 ]

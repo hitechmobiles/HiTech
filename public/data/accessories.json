@@ -13,7 +13,12 @@
     "compatibleWith": "iPhone 11/12/13/14/15/16 series, iPad, AirPods",
     "inStock": true,
     "isFeatured": true,
-    "description": "Original Apple 20W fast charging wall adapter with universal Type-C interface and surge protection."
+    "description": "Original Apple 20W fast charging wall adapter with universal Type-C interface and surge protection.",
+    "images": [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-ap-pro2",
@@ -29,7 +34,12 @@
     "compatibleWith": "iPhone, iPad, Mac, Apple Watch, and Bluetooth devices",
     "inStock": true,
     "isFeatured": true,
-    "description": "H2 silicon chip, up to 2x more Active Noise Cancellation, Adaptive Audio, USB-C case, and precision finding."
+    "description": "H2 silicon chip, up to 2x more Active Noise Cancellation, Adaptive Audio, USB-C case, and precision finding.",
+    "images": [
+      "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-ms-chg",
@@ -45,7 +55,12 @@
     "compatibleWith": "iPhone 12/13/14/15/16 Series & Qi enabled accessories",
     "inStock": true,
     "isFeatured": false,
-    "description": "Perfect magnetic alignment for up to 15W wireless charging on compatible iPhones with 1m integrated woven cable."
+    "description": "Perfect magnetic alignment for up to 15W wireless charging on compatible iPhones with 1m integrated woven cable.",
+    "images": [
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-ap-35w",
@@ -61,7 +76,12 @@
     "compatibleWith": "Simultaneous charging for iPhone, iPad, MacBook Air, and Apple Watch",
     "inStock": true,
     "isFeatured": false,
-    "description": "Compact dual USB-C ports with intelligent power negotiation allowing you to charge two devices at the same time."
+    "description": "Compact dual USB-C ports with intelligent power negotiation allowing you to charge two devices at the same time.",
+    "images": [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-2",
@@ -77,7 +97,12 @@
     "compatibleWith": "Apple iPhone 15 Pro / iPhone 16 Pro",
     "inStock": true,
     "isFeatured": true,
-    "description": "Clear anti-yellowing hybrid case with military grade air-cushion drop defense and strong MagSafe ring."
+    "description": "Clear anti-yellowing hybrid case with military grade air-cushion drop defense and strong MagSafe ring.",
+    "images": [
+      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-spg-ta",
@@ -93,7 +118,12 @@
     "compatibleWith": "Samsung Galaxy S24 Ultra",
     "inStock": true,
     "isFeatured": false,
-    "description": "Dual-layer extreme shock absorption with impact foam technology, raised bezels, and reinforced built-in kickstand."
+    "description": "Dual-layer extreme shock absorption with impact foam technology, raised bezels, and reinforced built-in kickstand.",
+    "images": [
+      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-spg-ez",
@@ -109,7 +139,12 @@
     "compatibleWith": "Apple iPhone 15 / 16 Series & Samsung S24 Series",
     "inStock": true,
     "isFeatured": false,
-    "description": "9H hardness tempered glass with auto-alignment installer tray ensuring 100% bubble-free perfect placement."
+    "description": "9H hardness tempered glass with auto-alignment installer tray ensuring 100% bubble-free perfect placement.",
+    "images": [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-sg-45w",
@@ -125,7 +160,12 @@
     "compatibleWith": "Galaxy S24/S23/S22 Ultra, Galaxy Tab S9, Galaxy Book, Type-C laptops",
     "inStock": true,
     "isFeatured": true,
-    "description": "Super Fast Charging 2.0 with GaN technology, Power Delivery 3.0 PPS, and thick 5A braided Type-C cable."
+    "description": "Super Fast Charging 2.0 with GaN technology, Power Delivery 3.0 PPS, and thick 5A braided Type-C cable.",
+    "images": [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-sg-buds3p",
@@ -141,7 +181,12 @@
     "compatibleWith": "Samsung Galaxy devices, Android 10+, iOS Bluetooth",
     "inStock": true,
     "isFeatured": true,
-    "description": "Blade lights design, 2-way dual amplifier speakers, 24-bit 96kHz Hi-Fi audio, and Adaptive Noise Control with Galaxy AI."
+    "description": "Blade lights design, 2-way dual amplifier speakers, 24-bit 96kHz Hi-Fi audio, and Adaptive Noise Control with Galaxy AI.",
+    "images": [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-sg-pb",
@@ -157,7 +202,12 @@
     "compatibleWith": "Simultaneous wired & Qi wireless charging for smartphones and Galaxy Watch",
     "inStock": true,
     "isFeatured": false,
-    "description": "Eco-friendly UL-certified recycled materials, 25W super-fast wired output and top wireless charging pad."
+    "description": "Eco-friendly UL-certified recycled materials, 25W super-fast wired output and top wireless charging pad.",
+    "images": [
+      "https://images.unsplash.com/photo-1609592426867-0c7f12e84860?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-sg-tag2",
@@ -173,7 +223,12 @@
     "compatibleWith": "Samsung Galaxy phones & tablets with SmartThings Find",
     "inStock": true,
     "isFeatured": false,
-    "description": "Compact metal ring design, up to 500 days battery life, IP67 water resistance, and Compass View with UWB."
+    "description": "Compact metal ring design, up to 500 days battery life, IP67 water resistance, and Compass View with UWB.",
+    "images": [
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-op-100w",
@@ -189,7 +244,12 @@
     "compatibleWith": "OnePlus 12/11/10 series, OPPO, realme, PD laptops & tablets",
     "inStock": true,
     "isFeatured": true,
-    "description": "Dual USB-A and USB-C output ports with GaN architecture, supporting SUPERVOOC 100W and 65W PD fast charging."
+    "description": "Dual USB-A and USB-C output ports with GaN architecture, supporting SUPERVOOC 100W and 65W PD fast charging.",
+    "images": [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-op-buds3",
@@ -205,7 +265,12 @@
     "compatibleWith": "OnePlus, Android, iOS, Windows, Mac devices",
     "inStock": true,
     "isFeatured": false,
-    "description": "Co-created with Dynaudio, dual DACs, 50dB adaptive noise cancellation, spatial audio with head tracking, and 43h playtime."
+    "description": "Co-created with Dynaudio, dual DACs, 50dB adaptive noise cancellation, spatial audio with head tracking, and 43h playtime.",
+    "images": [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-3",
@@ -221,7 +286,12 @@
     "compatibleWith": "Android, iOS, Windows, Mac Bluetooth devices",
     "inStock": true,
     "isFeatured": true,
-    "description": "Industry-leading active noise cancelling with LDAC high-res audio, Dynamic Driver X, and 24-hour battery life."
+    "description": "Industry-leading active noise cancelling with LDAC high-res audio, Dynamic Driver X, and 24-hour battery life.",
+    "images": [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-sony-wh5",
@@ -237,7 +307,12 @@
     "compatibleWith": "All Bluetooth audio devices with multipoint connection",
     "inStock": true,
     "isFeatured": true,
-    "description": "Two processors and 8 microphones for unparalleled noise cancellation, 30-hour battery life, and crystal clear hands-free calls."
+    "description": "Two processors and 8 microphones for unparalleled noise cancellation, 30-hour battery life, and crystal clear hands-free calls.",
+    "images": [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-px-buds2",
@@ -253,7 +328,12 @@
     "compatibleWith": "Google Pixel, Android 6.0+, iOS devices",
     "inStock": true,
     "isFeatured": false,
-    "description": "First earbuds powered by Google Tensor A1 chip, Silent Seal 2.0 cancellation, twist-to-adjust stabilizer wing, and Gemini live."
+    "description": "First earbuds powered by Google Tensor A1 chip, Silent Seal 2.0 cancellation, twist-to-adjust stabilizer wing, and Gemini live.",
+    "images": [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-px-std2",
@@ -269,7 +349,12 @@
     "compatibleWith": "Pixel 6/7/8/9 Pro & Qi-certified mobile devices",
     "inStock": true,
     "isFeatured": false,
-    "description": "Up to 23W ultra-fast wireless charging with nearly silent cooling fan, turn your Pixel into a smart home nest display."
+    "description": "Up to 23W ultra-fast wireless charging with nearly silent cooling fan, turn your Pixel into a smart home nest display.",
+    "images": [
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-4",
@@ -285,7 +370,12 @@
     "compatibleWith": "Laptops, MacBooks, iPhones, Galaxy, Steam Deck",
     "inStock": true,
     "isFeatured": true,
-    "description": "Equipped with Power Delivery 3.1 and bi-directional technology to quickly recharge the portable charger or get a 140W max charge."
+    "description": "Equipped with Power Delivery 3.1 and bi-directional technology to quickly recharge the portable charger or get a 140W max charge.",
+    "images": [
+      "https://images.unsplash.com/photo-1609592426867-0c7f12e84860?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-ank-p200",
@@ -301,7 +391,12 @@
     "compatibleWith": "Laptops, MacBooks, Tablets, Phones, and Handheld Consoles",
     "inStock": true,
     "isFeatured": false,
-    "description": "Two high-powered USB-C ports with 100W each and one USB-A port for simultaneous 200W total output with smart display."
+    "description": "Two high-powered USB-C ports with 100W each and one USB-A port for simultaneous 200W total output with smart display.",
+    "images": [
+      "https://images.unsplash.com/photo-1609592426867-0c7f12e84860?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-ank-nano",
@@ -317,7 +412,12 @@
     "compatibleWith": "iPhone 16/15/14, iPad, Galaxy S24/S23, Pixel, MacBook Air",
     "inStock": true,
     "isFeatured": false,
-    "description": "Ultra-compact design 70% smaller than standard 30W chargers with ActiveShield 2.0 intelligent temperature monitor."
+    "description": "Ultra-compact design 70% smaller than standard 30W chargers with ActiveShield 2.0 intelligent temperature monitor.",
+    "images": [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-nth-ear",
@@ -333,7 +433,12 @@
     "compatibleWith": "Android, iOS, Nothing Phone, Windows, Mac",
     "inStock": true,
     "isFeatured": true,
-    "description": "Ceramic dynamic driver, LDAC & LHDC 5.0 high-res audio certification, 45dB Smart ANC, and transparent signature design."
+    "description": "Ceramic dynamic driver, LDAC & LHDC 5.0 high-res audio certification, 45dB Smart ANC, and transparent signature design.",
+    "images": [
+      "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-cmf-65w",
@@ -349,7 +454,12 @@
     "compatibleWith": "Universal 3-in-1 charger for laptops, tablets, and phones",
     "inStock": true,
     "isFeatured": false,
-    "description": "Two USB-C and one USB-A port with GaN semiconductor technology for compact, ultra-cool 65W multi-device charging."
+    "description": "Two USB-C and one USB-A port with GaN semiconductor technology for compact, ultra-cool 65W multi-device charging.",
+    "images": [
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-blk-3in1",
@@ -365,7 +475,12 @@
     "compatibleWith": "iPhone 16/15/14/13/12, Apple Watch Ultra/Series 9/8, and AirPods Case",
     "inStock": true,
     "isFeatured": true,
-    "description": "Architectural stainless steel tree stand delivering official 15W MagSafe charging to iPhone, Apple Watch fast charging, and AirPods."
+    "description": "Architectural stainless steel tree stand delivering official 15W MagSafe charging to iPhone, Apple Watch fast charging, and AirPods.",
+    "images": [
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     "id": "acc-boat-cm",
@@ -381,6 +496,11 @@
     "compatibleWith": "All Qi wireless charging Android & iPhone devices",
     "inStock": true,
     "isFeatured": false,
-    "description": "Smart infrared sensor auto-locking arms with 15W fast wireless charging pad and 360-degree dashboard/air vent ball joint."
+    "description": "Smart infrared sensor auto-locking arms with 15W fast wireless charging pad and 360-degree dashboard/air vent ball joint.",
+    "images": [
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    ]
   }
 ]

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { checkSecurity } = require('./_security');\r\nconst fs = require('fs');
 const path = require('path');
 
 function interpolateTemplate(templateHtml, variables) {
@@ -62,7 +62,7 @@ async function sendResendMail(apiKey, fromEmail, toEmail, subject, htmlContent) 
   return { ok: response.ok, status: response.status, data };
 }
 
-module.exports = async function handler(req, res) {
+module.exports = async function handler(req, res) {\r\n  // Enterprise Attack & DDoS Protection\r\n  const secCheck = checkSecurity(req, res);\r\n  if (!secCheck.allowed) {\r\n    return res.status(secCheck.status).json({ error: secCheck.error });\r\n  }
   const reqOrigin = req.headers.origin || '';
   const isAllowedOrigin = (orig) => {
     if (!orig) return true;
@@ -222,7 +222,7 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  return res.status(200).json({
+  console.log(JSON.stringify({ timestamp: new Date().toISOString(), level: 'info', event: 'SHOP_REGISTRATION_SUCCESS', shopName: form.shopName, email: form.email }));\r\n      return res.status(200).json({
     success: true,
     owner: newOwner,
     adminEmailed: adminEmailResult ? adminEmailResult.ok : false,

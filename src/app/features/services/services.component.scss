@@ -526,3 +526,173 @@
     }
   }
 }
+
+/* SEO Buying Guide & FAQs */
+.seo-buying-guide-section {
+  margin-top: 3.5rem;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .seo-header {
+    max-width: 800px;
+    margin-bottom: 2rem;
+
+    .seo-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .seo-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+  }
+
+  .seo-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .seo-guide-card {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    .guide-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-white);
+    }
+
+    p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .seo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.75rem;
+
+      li strong {
+        color: var(--primary-accent);
+      }
+    }
+
+    &.highlight-card {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+    }
+
+    .comparison-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: auto;
+      padding-top: 0.75rem;
+
+      .comp-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-primary);
+
+        .comp-check {
+          color: #10b981;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+
+  .seo-faq-area {
+    border-top: 1px solid var(--border-medium);
+    padding-top: 2rem;
+
+    .faq-section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .faq-item {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+
+      &[open] .faq-chevron {
+        transform: rotate(180deg);
+      }
+
+      .faq-question {
+        padding: 1rem 1.25rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-white);
+
+        &::-webkit-details-marker {
+          display: none;
+        }
+
+        .faq-chevron {
+          transition: transform 0.2s ease;
+          color: var(--primary-accent);
+          font-size: 1.2rem;
+        }
+      }
+
+      .faq-answer {
+        padding: 0 1.25rem 1.25rem;
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+    }
+  }
+}

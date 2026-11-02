@@ -23,6 +23,10 @@ export class ProductCardComponent {
   toastService = inject(ToastService);
   emailService = inject(EmailService);
 
+  currentImageIndex: number = 0;
+  imageLoaded: { [idx: number]: boolean } = {};
+  imageFailed: { [idx: number]: boolean } = {};
+
   showNotifyModal: boolean = false;
   isSubmittingNotify: boolean = false;
   notifyForm = {
@@ -31,6 +35,18 @@ export class ProductCardComponent {
     email: ''
   };
 
+  get productImages(): string[] {
+    if (this.product.images && this.product.images.length > 0) {
+      return this.product.images.slice(0, 3);
+    }
+    return [this.product.image];
+  }
+
+  get currentImage(): string {
+    const list = this.productImages;
+    return list[this.currentImageIndex] || this.product.image;
+  }
+
   get discountPercent(): number {
     if (this.product.originalPrice && this.product.originalPrice > this.product.price) {
       return Math.round((1 - this.product.price / this.product.originalPrice) * 100);
@@ -38,13 +54,38 @@ export class ProductCardComponent {
     return 0;
   }
 
-  onImageError(event: Event): void {
-    const img = event.target as HTMLImageElement;
-    if (img && !img.dataset['fallback']) {
-      img.dataset['fallback'] = 'true';
-      const brand = encodeURIComponent(this.product.brand || 'HiTech');
-      img.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="100%" height="100%" fill="%230f172a"/><circle cx="150" cy="130" r="45" fill="%231e293b"/><path d="M125 185 h50 a15 15 0 0 1 15 15 v20 h-80 v-20 a15 15 0 0 1 15 -15 z" fill="%231e293b"/><text x="150" y="250" font-family="sans-serif" font-size="14" fill="%2338bdf8" text-anchor="middle" font-weight="600">${brand}</text></svg>`;
+      onImageLoaded(idx: number): void {
+        this.imageLoaded[idx] = true;
+        this.imageFailed[idx] = false;
+      }
+
+      onImageError(idx: number): void {
+        this.imageFailed[idx] = true;
+        this.imageLoaded[idx] = false;
+      }
+
+      nextImage(e: Event): void {
+        e.stopPropagation();
+        e.preventDefault();
+        const total = this.productImages.length;
+        if(total > 1) {
+        this.currentImageIndex = (this.currentImageIndex + 1) % total;
+      }
     }
+
+    prevImage(e: Event): void {
+      e.stopPropagation();
+      e.preventDefault();
+      const total = this.productImages.length;
+      if(total > 1) {
+      this.currentImageIndex = (this.currentImageIndex - 1 + total) % total;
+    }
+  }
+
+  selectImage(idx: number, e: Event): void {
+    e.stopPropagation();
+    e.preventDefault();
+    this.currentImageIndex = idx;
   }
 
   addToCart(e: Event): void {
@@ -99,26 +140,11 @@ export class ProductCardComponent {
         preferredSpecs: this.product.specs?.storage || this.product.specs?.ram || 'Standard model',
         customerNotes: 'Restock notification request for out-of-stock item'
       });
-
-      // Save to localStorage list of notification requests for admin visibility
-      try {
-        const key = 'hitech_notify_requests';
-        const existing = JSON.parse(localStorage.getItem(key) || '[]');
-        existing.unshift({
-          productId: this.product.id,
-          productName: this.product.name,
-          customerName: this.notifyForm.name.trim(),
-          customerPhone: this.notifyForm.phone.trim(),
-          customerEmail: this.notifyForm.email.trim(),
-          timestamp: new Date().toLocaleString()
-        });
-        localStorage.setItem(key, JSON.stringify(existing.slice(0, 100)));
-      } catch {}
-
-      this.toastService.show(`We will alert you as soon as ${this.product.name} is back in stock!`, 'success', 'Alert Registered');
-      this.showNotifyModal = false;
+      this.toastService.show(`Notification registered! We will update you as soon as ${this.product.name} is restocked.`, 'success', 'Alert Created');
+      this.closeNotifyModal();
+      this.notifyForm = { name: '', phone: '', email: '' };
     } catch {
-      this.toastService.show('Failed to register notification request. Please try again.', 'danger');
+      this.toastService.show('Failed to register notification. Please try again later.', 'danger');
     } finally {
       this.isSubmittingNotify = false;
     }

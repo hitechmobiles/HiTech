@@ -23,6 +23,6 @@ export const environment = {
     owner: 'hitechmobiles',
     repo: 'HiTech',
     branch: 'develop',
-    token: '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'
+    token: ''
   }
 };

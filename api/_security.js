@@ -110,7 +110,7 @@ function inspectPayloadForAttacks(obj) {
  * Core Security Shield Middleware
  * Returns { allowed: true } or { allowed: false, status: number, error: string }
  */
-function checkSecurity(req, res) {
+function checkSecurity(req, res, options = {}) {
   const ip = getClientIp(req);
   const now = Date.now();
   const userAgent = req.headers['user-agent'] || '';
@@ -164,13 +164,14 @@ function checkSecurity(req, res) {
   }
 
   // 5. Sliding-Window Rate Limiting & Burst Protection
+  const maxReqs = options.maxRequestsPerWindow || MAX_REQUESTS_PER_WINDOW;
   const timestamps = (ipRequestWindow.get(ip) || []).filter(t => now - t < RATE_LIMIT_WINDOW_MS);
   timestamps.push(now);
   ipRequestWindow.set(ip, timestamps);
 
   // Check aggressive burst (DDoS signature)
   const recentBurstCount = timestamps.filter(t => now - t < BURST_WINDOW_MS).length;
-  if (recentBurstCount > BURST_LIMIT) {
+  if (!options.allowBurst && recentBurstCount > BURST_LIMIT) {
     jailedIps.set(ip, now + JAIL_DURATION_MS);
     logSecurityEvent('BLOCKED_DDOS_BURST', req, { burstCount: recentBurstCount });
     return {
@@ -181,31 +182,32 @@ function checkSecurity(req, res) {
   }
 
   // Standard rate limit check
-  if (timestamps.length > MAX_REQUESTS_PER_WINDOW) {
+  if (timestamps.length > maxReqs) {
     const retryAfter = Math.ceil((timestamps[0] + RATE_LIMIT_WINDOW_MS - now) / 1000);
     res.setHeader('Retry-After', retryAfter);
-    res.setHeader('X-RateLimit-Limit', MAX_REQUESTS_PER_WINDOW);
+    res.setHeader('X-RateLimit-Limit', maxReqs);
     res.setHeader('X-RateLimit-Remaining', 0);
     logSecurityEvent('RATE_LIMITED', req, { requestCount: timestamps.length, retryAfter });
     return {
       allowed: false,
       status: 429,
-      error: `Too Many Requests: Rate limit exceeded (${MAX_REQUESTS_PER_WINDOW}/min). Please retry after ${retryAfter} seconds.`
+      error: `Too Many Requests: Rate limit exceeded (${maxReqs}/min). Please retry after ${retryAfter} seconds.`
     };
   }
 
-  res.setHeader('X-RateLimit-Limit', MAX_REQUESTS_PER_WINDOW);
-  res.setHeader('X-RateLimit-Remaining', Math.max(0, MAX_REQUESTS_PER_WINDOW - timestamps.length));
+  res.setHeader('X-RateLimit-Limit', maxReqs);
+  res.setHeader('X-RateLimit-Remaining', Math.max(0, maxReqs - timestamps.length));
 
   // 6. Payload Inspection on POST/PUT requests
   if (req.method === 'POST' || req.method === 'PUT') {
+    const maxPayload = options.maxPayloadSize || MAX_PAYLOAD_SIZE_BYTES;
     const bodyStr = JSON.stringify(req.body || '');
-    if (bodyStr.length > MAX_PAYLOAD_SIZE_BYTES) {
-      logSecurityEvent('BLOCKED_OVERSIZED_PAYLOAD', req, { size: bodyStr.length });
+    if (bodyStr.length > maxPayload) {
+      logSecurityEvent('BLOCKED_OVERSIZED_PAYLOAD', req, { size: bodyStr.length, max: maxPayload });
       return {
         allowed: false,
         status: 413,
-        error: 'Payload Too Large: Maximum allowed payload is 64KB.'
+        error: `Payload Too Large: Maximum allowed payload is ${Math.round(maxPayload / 1024)}KB.`
       };
     }
 
@@ -219,16 +221,18 @@ function checkSecurity(req, res) {
       };
     }
 
-    // Inspect content for SQLi / XSS injection
-    const attackFound = inspectPayloadForAttacks(req.body);
-    if (attackFound) {
-      jailedIps.set(ip, now + JAIL_DURATION_MS);
-      logSecurityEvent('ATTACK_SIGNATURE_DETECTED', req, { pattern: attackFound });
-      return {
-        allowed: false,
-        status: 403,
-        error: 'Malicious input signature detected. Request blocked by Web Application Firewall.'
-      };
+    // Inspect content for SQLi / XSS injection (can be skipped for trusted admin JSON catalog data)
+    if (!options.skipAttackInspection) {
+      const attackFound = inspectPayloadForAttacks(req.body);
+      if (attackFound) {
+        jailedIps.set(ip, now + JAIL_DURATION_MS);
+        logSecurityEvent('ATTACK_SIGNATURE_DETECTED', req, { pattern: attackFound });
+        return {
+          allowed: false,
+          status: 403,
+          error: 'Malicious input signature detected. Request blocked by Web Application Firewall.'
+        };
+      }
     }
   }
 

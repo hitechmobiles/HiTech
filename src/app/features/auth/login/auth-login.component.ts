@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastService } from '../../../core/services/toast.service';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-auth-login',
@@ -38,18 +37,6 @@ export class AuthLoginComponent implements OnInit {
 
   setRole(role: 'admin' | 'shopowner'): void {
     this.selectedRole = role;
-  }
-
-  quickFillAdmin(): void {
-    this.selectedRole = 'admin';
-    this.email = environment.admin.email;
-    this.password = 'Bhuvi@02#1';
-  }
-
-  quickFillOwner(): void {
-    this.selectedRole = 'shopowner';
-    this.email = 'owner1@hitech.com';
-    this.password = 'Owner@HiTech123';
   }
 
   async handleLogin(): Promise<void> {

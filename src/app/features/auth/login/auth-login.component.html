@@ -37,15 +37,16 @@
     </div>
 
     <!-- Login Form -->
-    <form (ngSubmit)="handleLogin()" class="login-form">
+    <form (ngSubmit)="handleLogin()" class="login-form" autocomplete="off">
       <div class="form-group">
         <label>Account Email Address <span class="required">*</span></label>
         <input
           type="email"
           [(ngModel)]="email"
           name="email"
-          placeholder="{{ selectedRole === 'admin' ? 'bhuvaneshwaranaj@gmail.com' : 'owner1@hitech.com' }}"
+          placeholder="Enter your email address"
           class="form-control"
+          autocomplete="off"
           required />
       </div>
 
@@ -57,6 +58,7 @@
           name="password"
           placeholder="Enter your security password"
           class="form-control"
+          autocomplete="new-password"
           required />
       </div>
 
@@ -67,19 +69,6 @@
           Sign In to {{ selectedRole === 'admin' ? 'Admin Console' : 'Partner Workspace' }}
         }
       </button>
-
-      <!-- Quick Fill Helper for Easy Review -->
-      <div class="quick-fill-box glass-panel">
-        <span class="qf-label">⚡ Quick Fill Demo Credentials:</span>
-        <div class="qf-buttons">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="quickFillAdmin()">
-            Fill Admin Credentials
-          </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="quickFillOwner()">
-            Fill Shop Owner Credentials
-          </button>
-        </div>
-      </div>
 
       <div class="login-footer">
         @if (selectedRole === 'shopowner') {

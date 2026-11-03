@@ -84,36 +84,6 @@
   padding: 0.95rem;
 }
 
-.quick-fill-box {
-  margin-top: 1.75rem;
-  padding: 1rem;
-  background: var(--bg-surface-elevated);
-
-  .qf-label {
-    display: block;
-    font-size: 0.775rem;
-    color: var(--text-muted);
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-  }
-
-  .qf-buttons {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-
-    button {
-      flex: 1;
-      min-width: 140px;
-      font-size: 0.775rem;
-      padding: 0.4rem 0.6rem;
-
-      @media (max-width: 400px) {
-        min-width: 100%;
-      }
-    }
-  }
-}
 
 .login-footer {
   text-align: center;

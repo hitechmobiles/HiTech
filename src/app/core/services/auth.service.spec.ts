@@ -56,19 +56,19 @@ describe('AuthService', () => {
   });
 
   it('should generate OTP for valid admin credentials', async () => {
-    const result = await service.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    const result = await service.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     expect(result.success).toBeTrue();
     expect(result.role).toBe('admin');
   });
 
   it('should set OTP state after successful login initiation', async () => {
-    await service.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    await service.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     expect(service.otpState()).toBeTruthy();
     expect(service.lastSimulatedOtp()).toBeTruthy();
   });
 
   it('should verify correct OTP', async () => {
-    await service.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    await service.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     const otp = service.lastSimulatedOtp()!;
     const result = service.verifyOtp(otp);
     expect(result.success).toBeTrue();
@@ -78,7 +78,7 @@ describe('AuthService', () => {
   });
 
   it('should reject incorrect OTP', async () => {
-    await service.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    await service.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     const result = service.verifyOtp('000000');
     expect(result.success).toBeFalse();
     expect(result.message).toContain('Invalid OTP');
@@ -91,7 +91,7 @@ describe('AuthService', () => {
   });
 
   it('should logout and clear session', async () => {
-    await service.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    await service.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     const otp = service.lastSimulatedOtp()!;
     service.verifyOtp(otp);
     expect(service.isAuthenticated()).toBeTrue();
@@ -103,7 +103,7 @@ describe('AuthService', () => {
   });
 
   it('should clear OTP state after successful verification', async () => {
-    await service.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    await service.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     const otp = service.lastSimulatedOtp()!;
     service.verifyOtp(otp);
     expect(service.otpState()).toBeNull();
@@ -111,7 +111,7 @@ describe('AuthService', () => {
   });
 
   it('should directly log in admin without OTP using login()', async () => {
-    const result = await service.login('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+    const result = await service.login('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
     expect(result.success).toBeTrue();
     expect(result.role).toBe('admin');
     expect(service.isAuthenticated()).toBeTrue();

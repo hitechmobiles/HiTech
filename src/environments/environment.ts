@@ -2,8 +2,8 @@ export const environment = {
   production: false,
   appName: 'HiTech Mobile & Accessories',
   admin: {
-    email: 'bhuvaneshwaranaj@gmail.com',
-    passwordHash: '421d194eed97614f3a06a8867a1595ebb688432356d1d5ff0586be34ccb698e5',
+    email: 'hitechmobilesandservice@gmail.com',
+    passwordHash: 'f636e4ecf9885a0111b777cc419467127116715e43dab9bbaa2fcd93c57607fb',
     role: 'admin'
   },
   resend: {

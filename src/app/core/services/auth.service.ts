@@ -82,7 +82,7 @@ export class AuthService {
     // 1. Check Admin credentials
     const adminEmail = environment.admin.email.toLowerCase();
     const isAdminMatch = cleanEmail === adminEmail &&
-      (inputHash === environment.admin.passwordHash || passwordPlain === 'Bhuvi@02#1');
+      inputHash === environment.admin.passwordHash;
 
     if (isAdminMatch) {
       const session: AuthSession = {
@@ -110,8 +110,7 @@ export class AuthService {
 
       const isPasswordValid =
         (matchedOwner.passwordHash && matchedOwner.passwordHash === inputHash) ||
-        (matchedOwner.defaultPasswordPlain && matchedOwner.defaultPasswordPlain === passwordPlain) ||
-        passwordPlain === 'Owner@HiTech123';
+        (matchedOwner.defaultPasswordPlain && matchedOwner.defaultPasswordPlain === passwordPlain);
 
       if (isPasswordValid) {
         const session: AuthSession = {
@@ -145,7 +144,7 @@ export class AuthService {
     // 1. Check Admin credentials
     const adminEmail = environment.admin.email.toLowerCase();
     const isAdminMatch = cleanEmail === adminEmail &&
-      (inputHash === environment.admin.passwordHash || passwordPlain === 'Bhuvi@02#1');
+      inputHash === environment.admin.passwordHash;
 
     if (isAdminMatch) {
       return this.generateAndSendOtp(cleanEmail, 'admin', 'Super Admin');
@@ -162,8 +161,7 @@ export class AuthService {
 
       const isPasswordValid =
         (matchedOwner.passwordHash && matchedOwner.passwordHash === inputHash) ||
-        (matchedOwner.defaultPasswordPlain && matchedOwner.defaultPasswordPlain === passwordPlain) ||
-        passwordPlain === 'Owner@HiTech123';
+        (matchedOwner.defaultPasswordPlain && matchedOwner.defaultPasswordPlain === passwordPlain);
 
       if (isPasswordValid) {
         return this.generateAndSendOtp(cleanEmail, 'shopowner', matchedOwner.ownerName);

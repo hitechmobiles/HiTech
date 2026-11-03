@@ -41,7 +41,7 @@ describe('Auth Guards', () => {
 
     it('should allow access when user is admin', async () => {
       // Login as admin
-      await authService.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+      await authService.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
       const otp = authService.lastSimulatedOtp()!;
       authService.verifyOtp(otp);
 
@@ -63,7 +63,7 @@ describe('Auth Guards', () => {
     });
 
     it('should allow access when user is admin (admin can access owner pages)', async () => {
-      await authService.initiateLogin('bhuvaneshwaranaj@gmail.com', 'Bhuvi@02#1');
+      await authService.initiateLogin('hitechmobilesandservice@gmail.com', 'Hitech@2026#01');
       const otp = authService.lastSimulatedOtp()!;
       authService.verifyOtp(otp);
 

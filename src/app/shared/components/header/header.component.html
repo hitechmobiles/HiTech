@@ -160,6 +160,8 @@
       </nav>
     </div>
   }
+</header>
+
 
   <!-- Mobile Sticky Bottom Navigation Bar -->
   <nav class="mobile-bottom-bar" aria-label="Mobile Bottom Navigation">
@@ -196,7 +198,7 @@
           <span class="bottom-badge fav-badge">{{ favService.count() }}</span>
         }
       </div>
-      <span>Wishlist</span>
+      <span>Favourites</span>
     </a>
 
     <a routerLink="/cart" routerLinkActive="active" class="bottom-nav-item cart-item" (click)="closeMobileMenu()">
@@ -211,4 +213,3 @@
       <span>Cart</span>
     </a>
   </nav>
-</header>

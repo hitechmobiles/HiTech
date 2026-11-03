@@ -48,7 +48,7 @@
             loading="eager"
             fetchpriority="high"
             (load)="onImageLoaded(selectedImageIndex)"
-            (error)="onImageError(selectedImageIndex)" />
+            (error)="onImageError(selectedImageIndex, $event)" />
 
           <!-- Multi-Image Navigation Chevrons -->
           @if (productImages.length > 1) {
@@ -148,16 +148,22 @@
           <span class="badge badge-cyan" style="font-size: 0.72rem;">Authentic OEM</span>
         </div>
 
-        <!-- Pricing Block -->
-        <div class="price-panel glass-panel">
+        <!-- Pricing Block with 2-Tier Pricing -->
+        <div class="price-panel glass-panel" [class.is-owner-panel]="isOwner">
+          @if (isOwner) {
+            <div class="owner-pricing-pill">
+              <span class="pill-dot"></span>
+              <span>Shop Partner Wholesale Rate</span>
+            </div>
+          }
           <div class="price-main-wrap">
             <span class="currency">₹</span>
-            <span class="val">{{ product.price | number }}</span>
+            <span class="val">{{ activePrice | number }}</span>
           </div>
-          @if (product.originalPrice && product.originalPrice > product.price) {
+          @if (activeOriginalPrice > activePrice) {
             <div class="orig-wrap">
-              <span class="orig-val">₹{{ product.originalPrice | number }}</span>
-              <span class="save-badge">Save ₹{{ (product.originalPrice - product.price) | number }} ({{ (((product.originalPrice - product.price) / product.originalPrice) * 100) | number:'1.0-0' }}% OFF)</span>
+              <span class="orig-val">₹{{ activeOriginalPrice | number }}</span>
+              <span class="save-badge">Save ₹{{ (activeOriginalPrice - activePrice) | number }} ({{ activeDiscountPercent }}% OFF)</span>
             </div>
           }
           <div class="tax-note">Price includes GST invoice, express transit insurance, and warranty registration.</div>

@@ -16,7 +16,7 @@
     },
     "description": "6 Core Processor, Dynamic Island, 48MP main camera with 2x Telephoto, durable color-infused glass.",
     "category": "phone",
-    "originalPrice": 85100,
+    "originalPrice": 80839,
     "rating": 4.9,
     "reviewsCount": 324,
     "inStock": true,
@@ -25,7 +25,8 @@
       "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 62467
   },
   {
     "id": "phone-apple-16",
@@ -44,7 +45,7 @@
     },
     "description": "48MP Fusion camera with Camera Control, A18 Bionic chip with Apple Intelligence.",
     "category": "phone",
-    "originalPrice": 102700,
+    "originalPrice": 96899,
     "rating": 4.6,
     "reviewsCount": 497,
     "inStock": true,
@@ -53,7 +54,8 @@
       "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 74877
   },
   {
     "id": "phone-apple-17",
@@ -72,7 +74,7 @@
     },
     "description": "6 Core Next-Gen Processor, Titanium finish, Ultra-slim bezel with ProMotion 120Hz.",
     "category": "phone",
-    "originalPrice": 114300,
+    "originalPrice": 108185,
     "rating": 4.6,
     "reviewsCount": 339,
     "inStock": true,
@@ -81,7 +83,8 @@
       "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 83598
   },
   {
     "id": "phone-ai-nova2",
@@ -99,7 +102,7 @@
     },
     "description": "Massive 6000mAh all-day battery, 50MP AI dual camera, MediaTek 5G processor.",
     "category": "phone",
-    "originalPrice": 15400,
+    "originalPrice": 15015,
     "rating": 4.7,
     "reviewsCount": 482,
     "inStock": true,
@@ -109,7 +112,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11603
   },
   {
     "id": "phone-ai-pulse",
@@ -127,7 +131,7 @@
     },
     "description": "50MP AI Dual Camera, 5000mAh battery, sleek & stylish premium back design.",
     "category": "phone",
-    "originalPrice": 10700,
+    "originalPrice": 10175,
     "rating": 4.7,
     "reviewsCount": 308,
     "inStock": true,
@@ -137,7 +141,8 @@
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 7863
   },
   {
     "id": "phone-ai-pulse2",
@@ -155,7 +160,7 @@
     },
     "description": "Smooth 90Hz screen, 5000mAh battery, enhanced storage capacity and dual SIM.",
     "category": "phone",
-    "originalPrice": 10800,
+    "originalPrice": 10615,
     "rating": 4.6,
     "reviewsCount": 180,
     "inStock": true,
@@ -165,7 +170,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 8203
   },
   {
     "id": "phone-ai-nova2neo",
@@ -183,7 +189,7 @@
     },
     "description": "Smooth 120Hz fluid display, 5500mAh long battery with turbo charging.",
     "category": "phone",
-    "originalPrice": 15600,
+    "originalPrice": 15279,
     "rating": 4.9,
     "reviewsCount": 234,
     "inStock": true,
@@ -193,7 +199,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11807
   },
   {
     "id": "phone-hmd-vibe2",
@@ -211,7 +218,7 @@
     },
     "description": "Clean pure Android experience, repairable modular construction, 50MP dual lens.",
     "category": "phone",
-    "originalPrice": 14200,
+    "originalPrice": 13629,
     "rating": 4.7,
     "reviewsCount": 368,
     "inStock": true,
@@ -221,7 +228,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10532
   },
   {
     "id": "phone-infinix-hot60i",
@@ -239,7 +247,7 @@
     },
     "description": "True 5G dual standby, 6000mAh big battery, 120Hz ultra-smooth display.",
     "category": "phone",
-    "originalPrice": 18200,
+    "originalPrice": 17589,
     "rating": 4.8,
     "reviewsCount": 271,
     "inStock": true,
@@ -249,7 +257,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13592
   },
   {
     "id": "phone-infinix-note-edge",
@@ -268,7 +277,7 @@
     },
     "description": "Premium 3D Curved 120Hz AMOLED screen, 108MP OIS stabilized photography.",
     "category": "phone",
-    "originalPrice": 26600,
+    "originalPrice": 25289,
     "rating": 4.9,
     "reviewsCount": 478,
     "inStock": true,
@@ -277,7 +286,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 19542
   },
   {
     "id": "phone-infinix-note60pro",
@@ -296,7 +306,7 @@
     },
     "description": "Snapdragon 7s Gen 4 flagship silicon with 3D Ice VC cooling chamber.",
     "category": "phone",
-    "originalPrice": 37500,
+    "originalPrice": 36289,
     "rating": 4.7,
     "reviewsCount": 462,
     "inStock": true,
@@ -305,7 +315,8 @@
       "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 28042
   },
   {
     "id": "phone-infinix-smart20",
@@ -323,7 +334,7 @@
     },
     "description": "7.7mm Ultra Slim body, IP64 water & dust resistance, 120Hz smooth touch.",
     "category": "phone",
-    "originalPrice": 12800,
+    "originalPrice": 12089,
     "rating": 4.7,
     "reviewsCount": 465,
     "inStock": true,
@@ -333,7 +344,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 9342
   },
   {
     "id": "phone-infinix-hot70pro",
@@ -351,7 +363,7 @@
     },
     "description": "Dimensity 7020 chip, 108MP master camera, stereo dual speakers.",
     "category": "phone",
-    "originalPrice": 26700,
+    "originalPrice": 25289,
     "rating": 4.8,
     "reviewsCount": 325,
     "inStock": true,
@@ -361,7 +373,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 19542
   },
   {
     "id": "phone-infinix-note-jbl",
@@ -379,7 +392,7 @@
     },
     "description": "Special Sound by JBL edition with dual tuned stereo speakers and 3D curved screen.",
     "category": "phone",
-    "originalPrice": 32500,
+    "originalPrice": 31119,
     "rating": 4.8,
     "reviewsCount": 293,
     "inStock": true,
@@ -389,7 +402,8 @@
       "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 24047
   },
   {
     "id": "phone-infinix-smart20hd",
@@ -407,7 +421,7 @@
     },
     "description": "8.25mm slim profile, IP64 splash proof, long-lasting 5000mAh powerhouse.",
     "category": "phone",
-    "originalPrice": 10300,
+    "originalPrice": 9889,
     "rating": 4.8,
     "reviewsCount": 388,
     "inStock": true,
@@ -417,7 +431,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 7642
   },
   {
     "id": "phone-iqoo-z11x",
@@ -435,7 +450,7 @@
     },
     "description": "MediaTek Dimensity 6100+ 5G processor with huge 6000mAh battery.",
     "category": "phone",
-    "originalPrice": 19200,
+    "originalPrice": 18469,
     "rating": 4.8,
     "reviewsCount": 240,
     "inStock": true,
@@ -445,7 +460,8 @@
       "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 14272
   },
   {
     "id": "phone-iqoo-z11",
@@ -464,7 +480,7 @@
     },
     "description": "Snapdragon 7+ Gen 3 performance beast with 144Hz AMOLED panel.",
     "category": "phone",
-    "originalPrice": 31500,
+    "originalPrice": 30899,
     "rating": 4.7,
     "reviewsCount": 327,
     "inStock": true,
@@ -473,7 +489,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 23877
   },
   {
     "id": "phone-iqoo-z11lite",
@@ -491,7 +508,7 @@
     },
     "description": "Ultra-slim lightweight build, vibrant 120Hz display, dual stereo speakers.",
     "category": "phone",
-    "originalPrice": 21400,
+    "originalPrice": 20999,
     "rating": 4.7,
     "reviewsCount": 537,
     "inStock": true,
@@ -501,7 +518,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 16227
   },
   {
     "id": "phone-itel-a100c",
@@ -519,7 +537,7 @@
     },
     "description": "Dynamic Bar notifications, 5000mAh battery, Type-C charging port.",
     "category": "phone",
-    "originalPrice": 8000,
+    "originalPrice": 7799,
     "rating": 4.7,
     "reviewsCount": 147,
     "inStock": true,
@@ -529,7 +547,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 6027
   },
   {
     "id": "phone-itel-a100pro",
@@ -547,7 +566,7 @@
     },
     "description": "128GB big storage, 50MP high clarity camera, side fingerprint sensor.",
     "category": "phone",
-    "originalPrice": 9400,
+    "originalPrice": 8899,
     "rating": 4.7,
     "reviewsCount": 464,
     "inStock": true,
@@ -557,7 +576,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 6877
   },
   {
     "id": "phone-itel-a100",
@@ -575,7 +595,7 @@
     },
     "description": "Smooth 90Hz refresh rate, 128GB ROM, Octa-Core high efficiency processor.",
     "category": "phone",
-    "originalPrice": 11700,
+    "originalPrice": 11165,
     "rating": 4.8,
     "reviewsCount": 397,
     "inStock": true,
@@ -585,7 +605,8 @@
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 8628
   },
   {
     "id": "phone-itel-a300c",
@@ -603,7 +624,7 @@
     },
     "description": "Affordable reliable daily smartphone with large 5000mAh battery.",
     "category": "phone",
-    "originalPrice": 8000,
+    "originalPrice": 7799,
     "rating": 4.7,
     "reviewsCount": 159,
     "inStock": true,
@@ -613,7 +634,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 6027
   },
   {
     "id": "phone-itel-care2800",
@@ -629,7 +651,7 @@
     },
     "description": "Big keypad, loud speaker, 2800mAh battery offering up to 30 days standby.",
     "category": "phone",
-    "originalPrice": 1500,
+    "originalPrice": 1463,
     "rating": 4.8,
     "reviewsCount": 561,
     "inStock": true,
@@ -639,7 +661,8 @@
       "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 1131
   },
   {
     "id": "phone-mivi-one",
@@ -657,7 +680,7 @@
     },
     "description": "Made in India 5G smartphone with Studio sound tuning and punch-hole screen.",
     "category": "phone",
-    "originalPrice": 11200,
+    "originalPrice": 10989,
     "rating": 4.9,
     "reviewsCount": 206,
     "inStock": true,
@@ -667,7 +690,8 @@
       "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 8492
   },
   {
     "id": "phone-moto-g37power",
@@ -685,7 +709,7 @@
     },
     "description": "Massive 6000mAh battery, Dolby Atmos stereo audio, 120Hz fluid display.",
     "category": "phone",
-    "originalPrice": 17800,
+    "originalPrice": 17039,
     "rating": 4.7,
     "reviewsCount": 293,
     "inStock": true,
@@ -695,7 +719,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13167
   },
   {
     "id": "phone-moto-pad60neo",
@@ -713,7 +738,7 @@
     },
     "description": "MediaTek Dimensity 6300 chip, 2.5K ultra-vivid display with Moto Pen support.",
     "category": "phone",
-    "originalPrice": 19000,
+    "originalPrice": 18315,
     "rating": 4.9,
     "reviewsCount": 404,
     "inStock": true,
@@ -723,7 +748,8 @@
       "https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 14153
   },
   {
     "id": "phone-moto-g37",
@@ -741,7 +767,7 @@
     },
     "description": "Slim vegan leather back, IP52 water-repellent design, clean Hello UI.",
     "category": "phone",
-    "originalPrice": 16600,
+    "originalPrice": 16225,
     "rating": 4.6,
     "reviewsCount": 568,
     "inStock": true,
@@ -751,7 +777,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12538
   },
   {
     "id": "phone-moto-g77power",
@@ -769,7 +796,7 @@
     },
     "description": "Sony LYTIA camera sensor with OIS optical stabilization, 6000mAh monster battery.",
     "category": "phone",
-    "originalPrice": 17500,
+    "originalPrice": 17039,
     "rating": 4.7,
     "reviewsCount": 324,
     "inStock": true,
@@ -779,7 +806,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13167
   },
   {
     "id": "phone-moto-edge60fusion",
@@ -798,7 +826,7 @@
     },
     "description": "IP68 underwater protection, 144Hz endless edge pOLED display, 68W charging.",
     "category": "phone",
-    "originalPrice": 32500,
+    "originalPrice": 31889,
     "rating": 4.6,
     "reviewsCount": 370,
     "inStock": true,
@@ -807,7 +835,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 24642
   },
   {
     "id": "phone-moto-g06power",
@@ -825,7 +854,7 @@
     },
     "description": "Massive 6000mAh battery life, premium acrylic glass finish, stereo speakers.",
     "category": "phone",
-    "originalPrice": 18800,
+    "originalPrice": 17919,
     "rating": 4.8,
     "reviewsCount": 419,
     "inStock": true,
@@ -835,7 +864,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13847
   },
   {
     "id": "phone-moto-g67power",
@@ -853,7 +883,7 @@
     },
     "description": "Dimensity 7025 high-performance silicon, 6000mAh battery, Dolby Atmos sound.",
     "category": "phone",
-    "originalPrice": 27200,
+    "originalPrice": 26125,
     "rating": 4.7,
     "reviewsCount": 219,
     "inStock": true,
@@ -863,7 +893,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 20188
   },
   {
     "id": "phone-moto-edge70fusion",
@@ -882,7 +913,7 @@
     },
     "description": "Pantone validated colors, IP68 rated, 144Hz 10-bit curved cinema display.",
     "category": "phone",
-    "originalPrice": 35500,
+    "originalPrice": 34639,
     "rating": 4.7,
     "reviewsCount": 182,
     "inStock": true,
@@ -891,7 +922,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 26767
   },
   {
     "id": "phone-narzo-90x",
@@ -909,7 +941,7 @@
     },
     "description": "MediaTek Dimensity 6100+ 5G, 45W fast charge, feather light slim chassis.",
     "category": "phone",
-    "originalPrice": 14000,
+    "originalPrice": 13255,
     "rating": 4.7,
     "reviewsCount": 542,
     "inStock": true,
@@ -919,7 +951,8 @@
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10243
   },
   {
     "id": "phone-narzo-100x",
@@ -937,7 +970,7 @@
     },
     "description": "120Hz eye comfort display, IP54 dust and splash proof, dual stereo speakers.",
     "category": "phone",
-    "originalPrice": 14800,
+    "originalPrice": 14399,
     "rating": 4.6,
     "reviewsCount": 255,
     "inStock": true,
@@ -947,7 +980,8 @@
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11127
   },
   {
     "id": "phone-narzo-100lite",
@@ -965,7 +999,7 @@
     },
     "description": "Affordable 5G speed with rapid 33W charging and high endurance battery.",
     "category": "phone",
-    "originalPrice": 13400,
+    "originalPrice": 12639,
     "rating": 4.9,
     "reviewsCount": 544,
     "inStock": true,
@@ -975,7 +1009,8 @@
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 9767
   },
   {
     "id": "phone-oneplus-nord-ce6",
@@ -994,7 +1029,7 @@
     },
     "description": "OxygenOS 15, Snapdragon 7 Gen 3, 80W SUPERVOOC rapid charge, Sony LYT-600 OIS.",
     "category": "phone",
-    "originalPrice": 28600,
+    "originalPrice": 27489,
     "rating": 4.7,
     "reviewsCount": 411,
     "inStock": true,
@@ -1003,7 +1038,8 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 21242
   },
   {
     "id": "phone-oneplus-n6",
@@ -1021,7 +1057,7 @@
     },
     "description": "67W SUPERVOOC charging, dual stereo speakers, fast multi-tasking performance.",
     "category": "phone",
-    "originalPrice": 25400,
+    "originalPrice": 24299,
     "rating": 4.8,
     "reviewsCount": 314,
     "inStock": true,
@@ -1031,7 +1067,8 @@
       "https://images.unsplash.com/photo-1570891836654-d4961a7b6929?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 18777
   },
   {
     "id": "phone-oneplus-nord-ce6lite",
@@ -1049,7 +1086,7 @@
     },
     "description": "2100 nits peak brightness AMOLED, Aqua Touch technology, 5500mAh battery.",
     "category": "phone",
-    "originalPrice": 20000,
+    "originalPrice": 19019,
     "rating": 4.7,
     "reviewsCount": 429,
     "inStock": true,
@@ -1059,7 +1096,8 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 14697
   },
   {
     "id": "phone-oneplus-n6x",
@@ -1077,7 +1115,7 @@
     },
     "description": "OxygenOS smoothness, high-speed 5G network bands, immersive audio-visuals.",
     "category": "phone",
-    "originalPrice": 21900,
+    "originalPrice": 21285,
     "rating": 4.8,
     "reviewsCount": 274,
     "inStock": true,
@@ -1087,7 +1125,8 @@
       "https://images.unsplash.com/photo-1570891836654-d4961a7b6929?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 16448
   },
   {
     "id": "phone-nothing-3alite",
@@ -1105,7 +1144,7 @@
     },
     "description": "Iconic transparent Glyph Interface, clean Nothing OS 3.0, dual 50MP studio cameras.",
     "category": "phone",
-    "originalPrice": 22400,
+    "originalPrice": 21780,
     "rating": 4.7,
     "reviewsCount": 398,
     "inStock": true,
@@ -1115,7 +1154,8 @@
       "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 16830
   },
   {
     "id": "phone-nothing-2a",
@@ -1134,7 +1174,7 @@
     },
     "description": "Custom Dimensity 7200 Pro chipset, dual 50MP rear camera system, Glyph lighting.",
     "category": "phone",
-    "originalPrice": 26900,
+    "originalPrice": 25509,
     "rating": 4.7,
     "reviewsCount": 343,
     "inStock": true,
@@ -1143,7 +1183,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 19712
   },
   {
     "id": "phone-nothing-4b",
@@ -1161,7 +1202,7 @@
     },
     "description": "Next-gen translucent industrial styling, LTPO adaptive refresh rate, Nothing OS.",
     "category": "phone",
-    "originalPrice": 29400,
+    "originalPrice": 28875,
     "rating": 4.8,
     "reviewsCount": 214,
     "inStock": true,
@@ -1171,7 +1212,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 22313
   },
   {
     "id": "phone-oppo-f33",
@@ -1189,7 +1231,7 @@
     },
     "description": "Dimensity 6360 MAX Octa-Core processor, 50MP portrait camera, ultra-slim design.",
     "category": "phone",
-    "originalPrice": 25700,
+    "originalPrice": 24739,
     "rating": 4.7,
     "reviewsCount": 210,
     "inStock": true,
@@ -1199,7 +1241,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 19117
   },
   {
     "id": "phone-oppo-a6c",
@@ -1217,7 +1260,7 @@
     },
     "description": "IP64 water and dust resistance, 45W SUPERVOOC flash charge, military grade shock resist.",
     "category": "phone",
-    "originalPrice": 18000,
+    "originalPrice": 17039,
     "rating": 4.6,
     "reviewsCount": 421,
     "inStock": true,
@@ -1227,7 +1270,8 @@
       "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13167
   },
   {
     "id": "phone-oppo-f33pro",
@@ -1246,7 +1290,7 @@
     },
     "description": "Dimensity 6360 MAX Octa-Core 2.4GHz processor, 50MP flagship OIS portrait sensor.",
     "category": "phone",
-    "originalPrice": 35700,
+    "originalPrice": 34639,
     "rating": 4.7,
     "reviewsCount": 192,
     "inStock": true,
@@ -1255,7 +1299,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 26767
   },
   {
     "id": "phone-oppo-f35",
@@ -1273,7 +1318,7 @@
     },
     "description": "IP69K extreme high-temperature water & dust resistance, 50MP Group Selfie Expert.",
     "category": "phone",
-    "originalPrice": 36400,
+    "originalPrice": 34375,
     "rating": 4.9,
     "reviewsCount": 169,
     "inStock": true,
@@ -1283,7 +1328,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 26563
   },
   {
     "id": "phone-oppo-f35pro",
@@ -1302,7 +1348,7 @@
     },
     "description": "Colossal 8000 mAh long-life battery, Group Selfie Expert, Quad-Curved OLED.",
     "category": "phone",
-    "originalPrice": 42800,
+    "originalPrice": 40359,
     "rating": 4.8,
     "reviewsCount": 370,
     "inStock": true,
@@ -1311,7 +1357,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 31187
   },
   {
     "id": "phone-oppo-a6",
@@ -1329,7 +1376,7 @@
     },
     "description": "ColorOS 15.0 operating system, 45W SUPERVOOC, splash-touch screen tech.",
     "category": "phone",
-    "originalPrice": 26200,
+    "originalPrice": 24959,
     "rating": 4.9,
     "reviewsCount": 251,
     "inStock": true,
@@ -1339,7 +1386,8 @@
       "https://images.unsplash.com/photo-1609081219090-a6d8173087ec?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 19287
   },
   {
     "id": "phone-oppo-a6s",
@@ -1357,7 +1405,7 @@
     },
     "description": "Dimensity 6300 Octa-Core 2.4 GHz processor with 120Hz ultra-fluid refresh rate.",
     "category": "phone",
-    "originalPrice": 23300,
+    "originalPrice": 21989,
     "rating": 4.8,
     "reviewsCount": 132,
     "inStock": true,
@@ -1367,7 +1415,8 @@
       "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 16992
   },
   {
     "id": "phone-oppo-k14",
@@ -1385,7 +1434,7 @@
     },
     "description": "OPPO K-series performance with 5500mAh battery and 45W SUPERVOOC charging.",
     "category": "phone",
-    "originalPrice": 25900,
+    "originalPrice": 25355,
     "rating": 4.8,
     "reviewsCount": 482,
     "inStock": true,
@@ -1395,7 +1444,8 @@
       "https://images.unsplash.com/photo-1609081219090-a6d8173087ec?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 19593
   },
   {
     "id": "phone-oppo-a6x",
@@ -1413,7 +1463,7 @@
     },
     "description": "Dimensity 6300 Processor, 5100mAh battery with 45W flash charging.",
     "category": "phone",
-    "originalPrice": 25500,
+    "originalPrice": 24409,
     "rating": 4.6,
     "reviewsCount": 451,
     "inStock": true,
@@ -1423,7 +1473,8 @@
       "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 18862
   },
   {
     "id": "phone-oppo-a6pro",
@@ -1441,7 +1492,7 @@
     },
     "description": "Dimensity 6300 series processor, 64MP OIS camera, sleek premium body.",
     "category": "phone",
-    "originalPrice": 33900,
+    "originalPrice": 31889,
     "rating": 4.7,
     "reviewsCount": 545,
     "inStock": true,
@@ -1451,7 +1502,8 @@
       "https://images.unsplash.com/photo-1609081219090-a6d8173087ec?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 24642
   },
   {
     "id": "phone-oppo-k14x",
@@ -1469,7 +1521,7 @@
     },
     "description": "Giant 6500 mAh battery capacity, 45W SUPERVOOC fast charge, 120Hz display.",
     "category": "phone",
-    "originalPrice": 19500,
+    "originalPrice": 18975,
     "rating": 4.9,
     "reviewsCount": 209,
     "inStock": true,
@@ -1479,7 +1531,8 @@
       "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 14663
   },
   {
     "id": "phone-poco-m8",
@@ -1497,7 +1550,7 @@
     },
     "description": "MediaTek 5G processor, smooth 120Hz screen, massive battery endurance.",
     "category": "phone",
-    "originalPrice": 17600,
+    "originalPrice": 16819,
     "rating": 4.9,
     "reviewsCount": 224,
     "inStock": true,
@@ -1507,7 +1560,8 @@
       "https://images.unsplash.com/photo-1569770218135-bea267ed7e84?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12997
   },
   {
     "id": "phone-poco-c81",
@@ -1525,7 +1579,7 @@
     },
     "description": "Affordable powerhouse with 50MP rear camera and 5000mAh battery.",
     "category": "phone",
-    "originalPrice": 13400,
+    "originalPrice": 12639,
     "rating": 4.9,
     "reviewsCount": 307,
     "inStock": true,
@@ -1535,7 +1589,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 9767
   },
   {
     "id": "phone-poco-c85x",
@@ -1553,7 +1608,7 @@
     },
     "description": "High speed 5G processor, 50MP AI imaging, Corning Gorilla Glass protection.",
     "category": "phone",
-    "originalPrice": 15900,
+    "originalPrice": 15015,
     "rating": 4.8,
     "reviewsCount": 510,
     "inStock": true,
@@ -1563,7 +1618,8 @@
       "https://images.unsplash.com/photo-1569770218135-bea267ed7e84?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11603
   },
   {
     "id": "phone-poco-c81x",
@@ -1581,7 +1637,7 @@
     },
     "description": "Reliable POCO build quality, high volume speakers, fast fingerprint unlock.",
     "category": "phone",
-    "originalPrice": 11900,
+    "originalPrice": 11385,
     "rating": 4.9,
     "reviewsCount": 378,
     "inStock": true,
@@ -1591,7 +1647,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 8798
   },
   {
     "id": "phone-poco-m8power",
@@ -1610,7 +1667,7 @@
     },
     "description": "Monstrous 8000 mAh battery capacity for 3-day backup, 120Hz display.",
     "category": "phone",
-    "originalPrice": 23100,
+    "originalPrice": 21989,
     "rating": 4.8,
     "reviewsCount": 128,
     "inStock": true,
@@ -1619,7 +1676,8 @@
       "https://images.unsplash.com/photo-1569770218135-bea267ed7e84?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 16992
   },
   {
     "id": "phone-poco-m8x",
@@ -1637,7 +1695,7 @@
     },
     "description": "7900 mAh battery, powerful gaming processor, immersive display.",
     "category": "phone",
-    "originalPrice": 20800,
+    "originalPrice": 20405,
     "rating": 4.7,
     "reviewsCount": 507,
     "inStock": true,
@@ -1647,7 +1705,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 15768
   },
   {
     "id": "phone-realme-p4x",
@@ -1665,7 +1724,7 @@
     },
     "description": "Segment fastest chipset with biggest vapor cooling chamber, 50MP camera.",
     "category": "phone",
-    "originalPrice": 25300,
+    "originalPrice": 24585,
     "rating": 4.6,
     "reviewsCount": 411,
     "inStock": true,
@@ -1675,7 +1734,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 18998
   },
   {
     "id": "phone-realme-16proplus",
@@ -1694,7 +1754,7 @@
     },
     "description": "Luxury watch design, periscope telephoto portrait camera with 120x zoom.",
     "category": "phone",
-    "originalPrice": 35000,
+    "originalPrice": 34199,
     "rating": 4.8,
     "reviewsCount": 511,
     "inStock": true,
@@ -1703,7 +1763,8 @@
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 26427
   },
   {
     "id": "phone-realme-16pro",
@@ -1721,7 +1782,7 @@
     },
     "description": "Curved AMOLED 120Hz display, Sony LYTIA OIS sensor, vegan leather finish.",
     "category": "phone",
-    "originalPrice": 30100,
+    "originalPrice": 28369,
     "rating": 4.6,
     "reviewsCount": 281,
     "inStock": true,
@@ -1731,7 +1792,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 21922
   },
   {
     "id": "phone-realme-p4lite",
@@ -1749,7 +1811,7 @@
     },
     "description": "Huge 7000 mAh battery endurance, 120Hz eye comfort display, rain water smart touch.",
     "category": "phone",
-    "originalPrice": 21200,
+    "originalPrice": 20669,
     "rating": 4.9,
     "reviewsCount": 484,
     "inStock": true,
@@ -1759,7 +1821,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 15972
   },
   {
     "id": "phone-realme-16",
@@ -1777,7 +1840,7 @@
     },
     "description": "Ultra-slim 7.69mm design, 120Hz FHD+ display, 45W SUPERVOOC charging.",
     "category": "phone",
-    "originalPrice": 25800,
+    "originalPrice": 24409,
     "rating": 4.8,
     "reviewsCount": 404,
     "inStock": true,
@@ -1787,7 +1850,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 18862
   },
   {
     "id": "phone-realme-c100x",
@@ -1805,7 +1869,7 @@
     },
     "description": "8000 mAh monster battery, 120Hz smooth refresh rate, 50MP high clarity camera.",
     "category": "phone",
-    "originalPrice": 17000,
+    "originalPrice": 16225,
     "rating": 4.9,
     "reviewsCount": 549,
     "inStock": true,
@@ -1815,7 +1879,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12538
   },
   {
     "id": "phone-realme-c100i",
@@ -1833,7 +1898,7 @@
     },
     "description": "Reliable daily performer with rapid 45W charging and 128GB internal storage.",
     "category": "phone",
-    "originalPrice": 14300,
+    "originalPrice": 13739,
     "rating": 4.6,
     "reviewsCount": 133,
     "inStock": true,
@@ -1843,7 +1908,8 @@
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10617
   },
   {
     "id": "phone-realme-c83",
@@ -1861,7 +1927,7 @@
     },
     "description": "7000 mAh battery endurance, 120Hz display, military-grade drop resistance.",
     "category": "phone",
-    "originalPrice": 18500,
+    "originalPrice": 18029,
     "rating": 4.7,
     "reviewsCount": 144,
     "inStock": true,
@@ -1871,7 +1937,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13932
   },
   {
     "id": "phone-realme-p4r",
@@ -1889,7 +1956,7 @@
     },
     "description": "Dimensity series high-speed 5G chip, 120Hz AMOLED screen, stereo sound.",
     "category": "phone",
-    "originalPrice": 20500,
+    "originalPrice": 20020,
     "rating": 4.8,
     "reviewsCount": 268,
     "inStock": true,
@@ -1899,7 +1966,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 15470
   },
   {
     "id": "phone-redmi-a7pro",
@@ -1917,7 +1985,7 @@
     },
     "description": "Royale design, 6300 mAh long-lasting battery, 6.88\" massive 120Hz display.",
     "category": "phone",
-    "originalPrice": 12200,
+    "originalPrice": 11539,
     "rating": 4.9,
     "reviewsCount": 228,
     "inStock": true,
@@ -1927,7 +1995,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 8917
   },
   {
     "id": "phone-redmi-17",
@@ -1945,7 +2014,7 @@
     },
     "description": "Gorilla Glass 7i protection, Snapdragon 5G chipset, crisp FHD+ display.",
     "category": "phone",
-    "originalPrice": 25400,
+    "originalPrice": 23925,
     "rating": 4.7,
     "reviewsCount": 417,
     "inStock": true,
@@ -1955,7 +2024,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 18488
   },
   {
     "id": "phone-redmi-a7",
@@ -1973,7 +2043,7 @@
     },
     "description": "Smooth 120Hz display, budget friendly powerhouse with MIUI smooth experience.",
     "category": "phone",
-    "originalPrice": 9500,
+    "originalPrice": 9339,
     "rating": 4.6,
     "reviewsCount": 231,
     "inStock": true,
@@ -1983,7 +2053,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 7217
   },
   {
     "id": "phone-redmi-note17",
@@ -2002,7 +2073,7 @@
     },
     "description": "2.3 GHz high clock speed processor, 108MP OIS camera, 67W Turbo charging.",
     "category": "phone",
-    "originalPrice": 29100,
+    "originalPrice": 28105,
     "rating": 4.7,
     "reviewsCount": 397,
     "inStock": true,
@@ -2011,7 +2082,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 21718
   },
   {
     "id": "phone-redmi-15c",
@@ -2029,7 +2101,7 @@
     },
     "description": "Big Boss 6000 mAh battery, huge 6.9\" 120Hz display, Star Trail design.",
     "category": "phone",
-    "originalPrice": 15600,
+    "originalPrice": 14839,
     "rating": 4.8,
     "reviewsCount": 133,
     "inStock": true,
@@ -2039,7 +2111,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11467
   },
   {
     "id": "phone-redmi-15a",
@@ -2057,7 +2130,7 @@
     },
     "description": "6300 mAh battery, high endurance daily battery life, clean splash proof body.",
     "category": "phone",
-    "originalPrice": 14000,
+    "originalPrice": 13189,
     "rating": 4.9,
     "reviewsCount": 246,
     "inStock": true,
@@ -2067,7 +2140,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10192
   },
   {
     "id": "phone-redmi-note15se",
@@ -2085,7 +2159,7 @@
     },
     "description": "6.77 inch 120Hz adaptive FHD+ display, dual stereo speakers, high performance.",
     "category": "phone",
-    "originalPrice": 28200,
+    "originalPrice": 26719,
     "rating": 4.8,
     "reviewsCount": 564,
     "inStock": true,
@@ -2095,7 +2169,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 20647
   },
   {
     "id": "phone-redmi-17c",
@@ -2113,7 +2188,7 @@
     },
     "description": "MediaTek Dimensity 6300 processor, 50MP AI dual camera, fast side fingerprint.",
     "category": "phone",
-    "originalPrice": 17100,
+    "originalPrice": 16489,
     "rating": 4.7,
     "reviewsCount": 477,
     "inStock": true,
@@ -2123,7 +2198,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12742
   },
   {
     "id": "phone-samsung-a17",
@@ -2142,7 +2218,7 @@
     },
     "description": "Samsung Super AMOLED 120Hz display, 50MP OIS camera, 4 generations of OS upgrades.",
     "category": "phone",
-    "originalPrice": 27900,
+    "originalPrice": 26939,
     "rating": 4.8,
     "reviewsCount": 382,
     "inStock": true,
@@ -2151,7 +2227,8 @@
       "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 20817
   },
   {
     "id": "phone-samsung-m07",
@@ -2169,7 +2246,7 @@
     },
     "description": "6.7-inch large screen, 50MP primary camera, reliable Samsung Knox security.",
     "category": "phone",
-    "originalPrice": 12600,
+    "originalPrice": 12309,
     "rating": 4.6,
     "reviewsCount": 358,
     "inStock": true,
@@ -2179,7 +2256,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 9512
   },
   {
     "id": "phone-samsung-a07",
@@ -2197,7 +2275,7 @@
     },
     "description": "Sleek Galaxy design, 5000mAh long battery, 25W super-fast charging support.",
     "category": "phone",
-    "originalPrice": 14200,
+    "originalPrice": 13739,
     "rating": 4.8,
     "reviewsCount": 463,
     "inStock": true,
@@ -2207,7 +2285,8 @@
       "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10617
   },
   {
     "id": "phone-samsung-f07",
@@ -2225,7 +2304,7 @@
     },
     "description": "Segment best camera, leather-like textured back, Samsung One UI 6.",
     "category": "phone",
-    "originalPrice": 13500,
+    "originalPrice": 13035,
     "rating": 4.7,
     "reviewsCount": 534,
     "inStock": true,
@@ -2235,7 +2314,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10073
   },
   {
     "id": "phone-samsung-m06",
@@ -2253,7 +2333,7 @@
     },
     "description": "12 5G bands support, MediaTek Dimensity 5G silicon, Voice Focus audio.",
     "category": "phone",
-    "originalPrice": 16100,
+    "originalPrice": 15785,
     "rating": 4.7,
     "reviewsCount": 374,
     "inStock": true,
@@ -2263,7 +2343,8 @@
       "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12198
   },
   {
     "id": "phone-samsung-m17e",
@@ -2281,7 +2362,7 @@
     },
     "description": "Huge 6000mAh battery, Super AMOLED screen, Knox Vault hardware security.",
     "category": "phone",
-    "originalPrice": 19200,
+    "originalPrice": 18689,
     "rating": 4.6,
     "reviewsCount": 252,
     "inStock": true,
@@ -2291,7 +2372,8 @@
       "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 14442
   },
   {
     "id": "phone-samsung-f70e",
@@ -2309,7 +2391,7 @@
     },
     "description": "Best camera in the segment with OIS, 120Hz Super AMOLED display.",
     "category": "phone",
-    "originalPrice": 18500,
+    "originalPrice": 17589,
     "rating": 4.8,
     "reviewsCount": 147,
     "inStock": true,
@@ -2319,7 +2401,8 @@
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13592
   },
   {
     "id": "phone-samsung-f06",
@@ -2337,7 +2420,7 @@
     },
     "description": "4 Generations of OS upgrades, 12 5G bands, Knox security protection.",
     "category": "phone",
-    "originalPrice": 15400,
+    "originalPrice": 14839,
     "rating": 4.7,
     "reviewsCount": 435,
     "inStock": true,
@@ -2347,7 +2430,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11467
   },
   {
     "id": "phone-lava-smart4plus",
@@ -2365,7 +2449,7 @@
     },
     "description": "IP64 dust & water resistant, clean bloatware-free Android, 5000mAh battery.",
     "category": "phone",
-    "originalPrice": 8600,
+    "originalPrice": 8239,
     "rating": 4.6,
     "reviewsCount": 242,
     "inStock": true,
@@ -2375,7 +2459,8 @@
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 6367
   },
   {
     "id": "phone-lava-virat-v1-5g",
@@ -2393,7 +2478,7 @@
     },
     "description": "High speed 5G processor, IP64 water resistance, premium glass back.",
     "category": "phone",
-    "originalPrice": 14000,
+    "originalPrice": 13189,
     "rating": 4.7,
     "reviewsCount": 336,
     "inStock": true,
@@ -2403,7 +2488,8 @@
       "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10192
   },
   {
     "id": "phone-lava-shariq",
@@ -2421,7 +2507,7 @@
     },
     "description": "Made in India 5G smartphone with free doorstep service guarantee.",
     "category": "phone",
-    "originalPrice": 12000,
+    "originalPrice": 11539,
     "rating": 4.7,
     "reviewsCount": 543,
     "inStock": true,
@@ -2431,7 +2517,8 @@
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 8917
   },
   {
     "id": "phone-lava-bold-n2lite",
@@ -2449,7 +2536,7 @@
     },
     "description": "Military grade durability, IP64 dust & water resistant, clean UI.",
     "category": "phone",
-    "originalPrice": 7600,
+    "originalPrice": 7425,
     "rating": 4.9,
     "reviewsCount": 476,
     "inStock": true,
@@ -2459,7 +2546,8 @@
       "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 5738
   },
   {
     "id": "phone-lava-virat-v1-4g",
@@ -2477,7 +2565,7 @@
     },
     "description": "90Hz smooth punch-hole display, 50MP rear camera, stereo speaker.",
     "category": "phone",
-    "originalPrice": 10200,
+    "originalPrice": 9889,
     "rating": 4.9,
     "reviewsCount": 499,
     "inStock": true,
@@ -2487,7 +2575,8 @@
       "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 7642
   },
   {
     "id": "phone-lava-smart4",
@@ -2505,7 +2594,7 @@
     },
     "description": "Reliable budget smartphone with Android Go edition and long standby.",
     "category": "phone",
-    "originalPrice": 7400,
+    "originalPrice": 7139,
     "rating": 4.9,
     "reviewsCount": 279,
     "inStock": true,
@@ -2515,7 +2604,8 @@
       "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 5517
   },
   {
     "id": "phone-lava-bold-n4lite",
@@ -2533,7 +2623,7 @@
     },
     "description": "Military grade drop tested, 90Hz display, clean pure Android experience.",
     "category": "phone",
-    "originalPrice": 8300,
+    "originalPrice": 8129,
     "rating": 4.8,
     "reviewsCount": 214,
     "inStock": true,
@@ -2543,7 +2633,8 @@
       "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 6282
   },
   {
     "id": "phone-lava-virat-v1pro",
@@ -2562,7 +2653,7 @@
     },
     "description": "120Hz big display, 6000 mAh battery, MediaTek 5G processor.",
     "category": "phone",
-    "originalPrice": 16300,
+    "originalPrice": 15389,
     "rating": 4.7,
     "reviewsCount": 383,
     "inStock": true,
@@ -2571,7 +2662,8 @@
       "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11892
   },
   {
     "id": "phone-villaon-f30",
@@ -2589,7 +2681,7 @@
     },
     "description": "High speed 5G support, durable chassis, all-day 5000mAh battery life.",
     "category": "phone",
-    "originalPrice": 10400,
+    "originalPrice": 9889,
     "rating": 4.9,
     "reviewsCount": 398,
     "inStock": true,
@@ -2599,7 +2691,8 @@
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 7642
   },
   {
     "id": "phone-villaon-x50",
@@ -2617,7 +2710,7 @@
     },
     "description": "Enhanced memory, 50MP rear camera, side-mounted biometric scanner.",
     "category": "phone",
-    "originalPrice": 13100,
+    "originalPrice": 12639,
     "rating": 4.8,
     "reviewsCount": 262,
     "inStock": true,
@@ -2627,7 +2720,8 @@
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 9767
   },
   {
     "id": "phone-vivo-y05",
@@ -2645,7 +2739,7 @@
     },
     "description": "Sunlight water-drop display, 5000mAh battery, slim lightweight body.",
     "category": "phone",
-    "originalPrice": 12700,
+    "originalPrice": 12419,
     "rating": 4.7,
     "reviewsCount": 178,
     "inStock": true,
@@ -2655,7 +2749,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 9597
   },
   {
     "id": "phone-vivo-t5pro",
@@ -2674,7 +2769,7 @@
     },
     "description": "Slimmest curved phone in segment with 5500 mAh battery and Snapdragon 7 Gen 3.",
     "category": "phone",
-    "originalPrice": 31100,
+    "originalPrice": 30459,
     "rating": 4.7,
     "reviewsCount": 353,
     "inStock": true,
@@ -2683,7 +2778,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 23537
   },
   {
     "id": "phone-vivo-t5lite",
@@ -2701,7 +2797,7 @@
     },
     "description": "Dimensity 6300 5G silicon, IP54 dust and splash proof, 5000mAh battery.",
     "category": "phone",
-    "originalPrice": 16200,
+    "originalPrice": 15675,
     "rating": 4.9,
     "reviewsCount": 461,
     "inStock": true,
@@ -2711,7 +2807,8 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12113
   },
   {
     "id": "phone-vivo-t5e",
@@ -2729,7 +2826,7 @@
     },
     "description": "120Hz AMOLED screen with 1800 nits peak brightness, 50MP Sony main sensor.",
     "category": "phone",
-    "originalPrice": 16600,
+    "originalPrice": 15675,
     "rating": 4.7,
     "reviewsCount": 566,
     "inStock": true,
@@ -2739,7 +2836,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 12113
   },
   {
     "id": "phone-vivo-y31t",
@@ -2757,7 +2855,7 @@
     },
     "description": "Massive 6000mAh battery, 1000 nits sunlight screen, military shock resist.",
     "category": "phone",
-    "originalPrice": 28200,
+    "originalPrice": 26609,
     "rating": 4.8,
     "reviewsCount": 532,
     "inStock": true,
@@ -2767,7 +2865,8 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 20562
   },
   {
     "id": "phone-vivo-s2",
@@ -2785,7 +2884,7 @@
     },
     "description": "Smart Aura Light portrait system, 2800 nits ultra bright AMOLED screen.",
     "category": "phone",
-    "originalPrice": 32500,
+    "originalPrice": 30679,
     "rating": 4.9,
     "reviewsCount": 483,
     "inStock": true,
@@ -2795,7 +2894,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 23707
   },
   {
     "id": "phone-vivo-t5",
@@ -2813,7 +2913,7 @@
     },
     "description": "MediaTek Dimensity 7200 processor, 120Hz AMOLED, dual stereo speakers.",
     "category": "phone",
-    "originalPrice": 21400,
+    "originalPrice": 20779,
     "rating": 4.7,
     "reviewsCount": 514,
     "inStock": true,
@@ -2823,7 +2923,8 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 16057
   },
   {
     "id": "phone-vivo-t4lite",
@@ -2841,7 +2942,7 @@
     },
     "description": "Get Set Go 5G speed, 5000mAh battery, clean Funtouch OS 14.",
     "category": "phone",
-    "originalPrice": 15700,
+    "originalPrice": 14839,
     "rating": 4.9,
     "reviewsCount": 515,
     "inStock": true,
@@ -2851,7 +2952,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11467
   },
   {
     "id": "phone-vivo-y11",
@@ -2869,7 +2971,7 @@
     },
     "description": "50MP portrait camera, 128GB ROM, smooth multi-app switching.",
     "category": "phone",
-    "originalPrice": 14100,
+    "originalPrice": 13409,
     "rating": 4.9,
     "reviewsCount": 171,
     "inStock": true,
@@ -2879,7 +2981,8 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 10362
   },
   {
     "id": "phone-vivo-t5x",
@@ -2897,7 +3000,7 @@
     },
     "description": "Snapdragon 6 Gen 1 chip, 6000mAh monster battery, 44W FlashCharge.",
     "category": "phone",
-    "originalPrice": 18300,
+    "originalPrice": 17259,
     "rating": 4.7,
     "reviewsCount": 423,
     "inStock": true,
@@ -2907,7 +3010,8 @@
       "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 13337
   },
   {
     "id": "phone-vivo-y21",
@@ -2925,7 +3029,7 @@
     },
     "description": "Slim 8.0mm design, 5000mAh battery, extended RAM 3.0 technology.",
     "category": "phone",
-    "originalPrice": 16300,
+    "originalPrice": 15389,
     "rating": 4.8,
     "reviewsCount": 310,
     "inStock": true,
@@ -2935,6 +3039,7 @@
       "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80"
-    ]
+    ],
+    "ownerPrice": 11892
   }
 ]

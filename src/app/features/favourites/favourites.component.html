@@ -20,7 +20,7 @@
         <button class="remove-fav-btn" (click)="removeFav(item)" title="Remove from wishlist">✕</button>
 
           <a [routerLink]="['/products', item.id]" class="img-wrap" [title]="item.name">
-            <img [src]="item.image" [alt]="item.name" loading="lazy" />
+            <img [src]="item.image" (error)="$any($event.target).src = (item.category === 'accessory' ? 'images/default-accessory.svg' : 'images/default-phone.svg')" [alt]="item.name" loading="lazy" />
           </a>
 
           <div class="card-info">

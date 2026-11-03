@@ -25,6 +25,7 @@ export interface ProductItem {
   category: 'phone' | 'accessory';
   subCategory: string;
   price: number;
+  ownerPrice?: number;
   originalPrice?: number;
   rating: number;
   reviewsCount: number;

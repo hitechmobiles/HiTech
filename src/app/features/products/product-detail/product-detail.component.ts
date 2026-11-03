@@ -8,6 +8,7 @@ import { FavouritesService } from '../../../core/services/favourites.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { SeoService } from '../../../core/services/seo.service';
 import { EmailService } from '../../../core/services/email.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { ProductItem } from '../../../core/models/product.model';
 
 @Component({
@@ -26,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   favService = inject(FavouritesService);
   toastService = inject(ToastService);
   emailService = inject(EmailService);
+  authService = inject(AuthService);
 
   product: ProductItem | null = null;
   quantity: number = 1;
@@ -43,6 +45,36 @@ export class ProductDetailComponent implements OnInit {
     phone: '',
     email: ''
   };
+
+    get isOwner(): boolean {
+    return this.authService.isShopOwner();
+  }
+
+  get activePrice(): number {
+    if (!this.product) return 0;
+    if (this.isOwner) {
+      return this.product.ownerPrice || Math.round(this.product.price * 0.85);
+    }
+    return this.product.price;
+  }
+
+  get activeOriginalPrice(): number {
+    if (!this.product) return 0;
+    if (this.isOwner) {
+      return Math.round(this.activePrice * 1.20);
+    }
+    return Math.round(this.activePrice * 1.10);
+  }
+
+  get activeDiscountPercent(): number {
+    return this.isOwner ? 20 : 10;
+  }
+
+  get defaultFallbackImage(): string {
+    const isAccessory = this.product?.category === 'accessory' ||
+      (this.product?.id ? this.product.id.startsWith('acc-') : false);
+    return isAccessory ? 'images/default-accessory.svg' : 'images/default-phone.svg';
+  }
 
   get productImages(): string[] {
       if (this.product?.images && this.product.images.length > 0) {
@@ -103,7 +135,10 @@ export class ProductDetailComponent implements OnInit {
       this.imageFailed[idx] = false;
     }
 
-      onImageError(idx: number): void {
+      onImageError(idx: number, event?: Event): void {
+    if (event?.target) {
+      (event.target as HTMLImageElement).src = this.defaultFallbackImage;
+    }
         this.imageFailed[idx] = true;
         this.imageLoaded[idx] = false;
       }
@@ -130,7 +165,7 @@ export class ProductDetailComponent implements OnInit {
           this.toastService.show('Item is currently out of stock.', 'warning');
           return;
         }
-        this.cartService.addToCart(this.product, this.quantity);
+        this.cartService.addToCart(this.product, this.quantity, this.activePrice);
         this.toastService.show(`Added ${this.quantity}x ${this.product.name} to cart`, 'success', 'Cart Updated');
       }
 

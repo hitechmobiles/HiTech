@@ -9,6 +9,10 @@
 
 .main-content {
   flex: 1 0 auto;
+
+  @media (max-width: 768px) {
+    padding-bottom: 74px;
+  }
 }
 
 /* Floating Toast Notification */

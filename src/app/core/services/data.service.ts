@@ -228,17 +228,31 @@ export class DataService {
     }
   }
 
-  updateProductPrice(id: string, newPrice: number): void {
+  updateProductPrice(id: string, newPrice: number, newOwnerPrice?: number): void {
     const isPhone = this._products().some(p => p.id === id);
+    const calculatedOriginal = Math.round(newPrice * 1.10);
+    const updater = (item: ProductItem): ProductItem => {
+      if (item.id !== id) return item;
+      const ownerPrice = (newOwnerPrice !== undefined && newOwnerPrice > 0)
+        ? newOwnerPrice
+        : (item.ownerPrice || Math.round(newPrice * 0.85));
+      return {
+        ...item,
+        price: newPrice,
+        ownerPrice,
+        originalPrice: calculatedOriginal
+      };
+    };
+
     if (isPhone) {
       this._products.update(list => {
-        const updated = list.map(item => item.id === id ? { ...item, price: newPrice } : item);
+        const updated = list.map(updater);
         this.persistProducts(updated);
         return updated;
       });
     } else {
       this._accessories.update(list => {
-        const updated = list.map(item => item.id === id ? { ...item, price: newPrice } : item);
+        const updated = list.map(updater);
         this.persistAccessories(updated);
         return updated;
       });

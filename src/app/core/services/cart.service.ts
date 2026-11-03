@@ -20,7 +20,7 @@ export class CartService {
   );
 
   readonly subtotal = computed(() =>
-    this._items().reduce((acc, item) => acc + (item.selectedPrice * item.quantity), 0)
+    this._items().reduce((acc, item) => acc + ((item.selectedPrice ?? item.product.price) * item.quantity), 0)
   );
 
   readonly discountAmount = computed(() => {
@@ -52,7 +52,12 @@ export class CartService {
   private loadFromStorage(): CartItem[] {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      return parsed.map((item: CartItem) => ({
+        ...item,
+        selectedPrice: item.selectedPrice ?? item.product.price
+      }));
     } catch {
       return [];
     }
@@ -63,13 +68,15 @@ export class CartService {
     this._bulkDiscountPercent.set(discountPercent);
   }
 
-  addToCart(product: ProductItem, quantity: number = 1): void {
+  addToCart(product: ProductItem, quantity: number = 1, priceToUse?: number): void {
+    const finalPrice = priceToUse ?? product.price;
     this._items.update(currentItems => {
       const existingIndex = currentItems.findIndex(i => i.product.id === product.id);
       if (existingIndex > -1) {
         const updated = [...currentItems];
         updated[existingIndex] = {
           ...updated[existingIndex],
+          selectedPrice: finalPrice,
           quantity: updated[existingIndex].quantity + quantity
         };
         return updated;
@@ -77,7 +84,7 @@ export class CartService {
         return [...currentItems, {
           product,
           quantity,
-          selectedPrice: product.price
+          selectedPrice: finalPrice
         }];
       }
     });

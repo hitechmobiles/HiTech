@@ -50,7 +50,7 @@ export class AdminDashboardComponent implements OnInit {
     category: 'phone' as 'phone' | 'accessory',
     subCategory: 'Smartphones',
     price: 0,
-    originalPrice: 0,
+    ownerPrice: 0,
     image: '',
     description: '',
     isFeatured: false,
@@ -66,6 +66,7 @@ export class AdminDashboardComponent implements OnInit {
   // Quick Price Edit Modal
   editingProduct: ProductItem | null = null;
   editingPriceValue: number = 0;
+  editingOwnerPriceValue: number = 0;
 
   editingService: ServiceBookingItem | null = null;
   editingServicePriceValue: number = 0;
@@ -227,7 +228,7 @@ export class AdminDashboardComponent implements OnInit {
       category: 'phone',
       subCategory: 'Smartphones',
       price: 0,
-      originalPrice: 0,
+      ownerPrice: 0,
       image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80',
       description: '',
       isFeatured: false,
@@ -251,7 +252,7 @@ export class AdminDashboardComponent implements OnInit {
       category: product.category,
       subCategory: product.subCategory,
       price: product.price,
-      originalPrice: product.originalPrice || product.price,
+      ownerPrice: product.ownerPrice || Math.round(product.price * 0.85),
       image: product.image,
       description: product.description || '',
       isFeatured: !!product.isFeatured,
@@ -300,6 +301,9 @@ export class AdminDashboardComponent implements OnInit {
       };
     }
 
+    const calculatedOriginalPrice = Math.round(this.productForm.price * 1.10);
+    const resolvedOwnerPrice = this.productForm.ownerPrice > 0 ? this.productForm.ownerPrice : Math.round(this.productForm.price * 0.85);
+
     if (this.isEditingProduct) {
       const updatedItem: ProductItem = {
         id: this.productForm.id,
@@ -308,7 +312,8 @@ export class AdminDashboardComponent implements OnInit {
         category: this.productForm.category,
         subCategory: this.productForm.subCategory,
         price: this.productForm.price,
-        originalPrice: this.productForm.originalPrice || this.productForm.price,
+        ownerPrice: resolvedOwnerPrice,
+        originalPrice: calculatedOriginalPrice,
         rating: 4.5,
         reviewsCount: 0,
         image: this.productForm.image,
@@ -327,7 +332,8 @@ export class AdminDashboardComponent implements OnInit {
         category: this.productForm.category,
         subCategory: this.productForm.subCategory,
         price: this.productForm.price,
-        originalPrice: this.productForm.originalPrice || this.productForm.price,
+        ownerPrice: resolvedOwnerPrice,
+        originalPrice: calculatedOriginalPrice,
         rating: 4.8,
         reviewsCount: 1,
         image: this.productForm.image,
@@ -363,12 +369,13 @@ export class AdminDashboardComponent implements OnInit {
   openEditPrice(product: ProductItem): void {
     this.editingProduct = product;
     this.editingPriceValue = product.price;
+    this.editingOwnerPriceValue = product.ownerPrice || Math.round(product.price * 0.85);
   }
 
   saveProductPrice(): void {
     if (this.editingProduct && this.editingPriceValue > 0) {
-      this.dataService.updateProductPrice(this.editingProduct.id, this.editingPriceValue);
-      this.toastService.show(`Price updated to ₹${this.editingPriceValue.toLocaleString()}`, 'success');
+      this.dataService.updateProductPrice(this.editingProduct.id, this.editingPriceValue, this.editingOwnerPriceValue);
+      this.toastService.show(`Prices updated: Retail ₹${this.editingPriceValue.toLocaleString()}, Partner ₹${this.editingOwnerPriceValue.toLocaleString()}`, 'success');
       this.editingProduct = null;
     }
   }

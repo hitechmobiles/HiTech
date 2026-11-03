@@ -26,7 +26,7 @@
           @for (item of cartService.items(); track item.product.id) {
             <div class="cart-item-row">
               <a [routerLink]="['/products', item.product.id]" class="thumb-wrap">
-                <img [src]="item.product.image" [alt]="item.product.name" />
+                <img [src]="item.product.image" (error)="$any($event.target).src = (item.product.category === 'accessory' ? 'images/default-accessory.svg' : 'images/default-phone.svg')" [alt]="item.product.name" />
               </a>
 
               <div class="item-meta">

@@ -209,7 +209,7 @@
                 <th>Model</th>
                 <th>Brand</th>
                 <th>Current Retail Price</th>
-                <th>Wholesale Partner Price (15% OFF)</th>
+                <th>Shop Owner Price</th>
                 <th>Quick Edit</th>
               </tr>
             </thead>
@@ -219,7 +219,7 @@
                   <td><strong>{{ item.name }}</strong></td>
                   <td>{{ item.brand }}</td>
                   <td><strong class="text-gradient">₹{{ item.price | number }}</strong></td>
-                  <td><span class="partner-price">₹{{ (item.price * 0.85) | number:'1.0-0' }}</span></td>
+                  <td><span class="partner-price">₹{{ (item.ownerPrice || (item.price * 0.85)) | number:'1.0-0' }}</span></td>
                   <td>
                     <button class="btn btn-sm btn-primary" (click)="openEditPrice(item)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit Price</button>
                   </td>
@@ -239,7 +239,7 @@
                 <th>Accessory Name</th>
                 <th>Subcategory</th>
                 <th>Current Retail Price</th>
-                <th>Wholesale Partner Price (15% OFF)</th>
+                <th>Shop Owner Price</th>
                 <th>Quick Edit</th>
               </tr>
             </thead>
@@ -249,7 +249,7 @@
                   <td><strong>{{ item.name }}</strong></td>
                   <td><span class="badge badge-purple">{{ item.subCategory }}</span></td>
                   <td><strong class="text-gradient">₹{{ item.price | number }}</strong></td>
-                  <td><span class="partner-price">₹{{ (item.price * 0.85) | number:'1.0-0' }}</span></td>
+                  <td><span class="partner-price">₹{{ (item.ownerPrice || (item.price * 0.85)) | number:'1.0-0' }}</span></td>
                   <td>
                     <button class="btn btn-sm btn-primary" (click)="openEditPrice(item)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit Price</button>
                   </td>
@@ -1061,13 +1061,15 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>Selling Price (₹ INR) <span class="required">*</span></label>
+              <label>User / Retail Price (₹ INR) <span class="required">*</span></label>
               <input type="number" [(ngModel)]="productForm.price" name="prodPrice" class="form-control" required />
+              <small class="form-hint" style="color: var(--text-muted); font-size: 0.75rem;">Original MRP auto-calculated (+10%) for UI discount</small>
             </div>
 
             <div class="form-group">
-              <label>Original MRP (₹ INR)</label>
-              <input type="number" [(ngModel)]="productForm.originalPrice" name="prodOriginalPrice" class="form-control" />
+              <label>Shop Owner Price (₹ INR)</label>
+              <input type="number" [(ngModel)]="productForm.ownerPrice" name="prodOwnerPrice" class="form-control" placeholder="Optional (defaults to 15% wholesale margin)" />
+              <small class="form-hint" style="color: var(--text-muted); font-size: 0.75rem;">Original MRP auto-calculated (+20%) for wholesale UI</small>
             </div>
           </div>
 
@@ -1202,9 +1204,17 @@
         <h3>Edit Price: {{ editingProduct.name }}</h3>
         <p class="tbl-sub">{{ editingProduct.brand }} (Current: ₹{{ editingProduct.price | number }})</p>
 
-        <div class="form-group" style="margin-top: 1.5rem;">
-          <label>New Price (₹ INR)</label>
-          <input type="number" [(ngModel)]="editingPriceValue" class="form-control" />
+        <div class="form-row" style="margin-top: 1.25rem;">
+          <div class="form-group">
+            <label>User / Retail Price (₹ INR)</label>
+            <input type="number" [(ngModel)]="editingPriceValue" class="form-control" />
+            <small class="form-hint" style="color: var(--text-muted); font-size: 0.75rem;">Original MRP auto-set to +10%</small>
+          </div>
+          <div class="form-group">
+            <label>Shop Owner Price (₹ INR)</label>
+            <input type="number" [(ngModel)]="editingOwnerPriceValue" class="form-control" />
+            <small class="form-hint" style="color: var(--text-muted); font-size: 0.75rem;">Wholesale partner rate</small>
+          </div>
         </div>
 
         <div class="modal-btn-row">

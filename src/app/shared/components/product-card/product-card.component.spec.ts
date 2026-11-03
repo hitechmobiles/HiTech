@@ -68,7 +68,7 @@ describe('ProductCardComponent', () => {
     fixture.componentInstance.product = mockProduct;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.original-price')?.textContent).toContain('55,000');
+    expect(compiled.querySelector('.original-price')?.textContent).toContain('49,500');
   });
 
   it('should display product rating', () => {
@@ -125,7 +125,7 @@ describe('ProductCardComponent', () => {
     const addBtn = fixture.nativeElement.querySelector('.add-cart-btn') as HTMLButtonElement;
     addBtn.click();
 
-    expect(fixture.componentInstance.cartService.addToCart).toHaveBeenCalledWith(mockProduct);
+    expect(fixture.componentInstance.cartService.addToCart).toHaveBeenCalledWith(mockProduct, 1, 45000);
     expect(fixture.componentInstance.toastService.show).toHaveBeenCalled();
   });
 

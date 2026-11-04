@@ -9,7 +9,7 @@
         </p>
       </div>
 
-      <form class="reg-form" (ngSubmit)="submitRegistration()">
+      <form class="reg-form" (ngSubmit)="submitRegistration()" #shopRegForm="ngForm" autocomplete="off" novalidate>
         <div class="form-section-tag">
           <span class="dot-section"></span> Mandatory Business Details
         </div>
@@ -21,9 +21,14 @@
               type="text"
               [(ngModel)]="form.shopName"
               name="shopName"
+              #shopNameInput="ngModel"
               placeholder="e.g. Apex Mobile Spares & Gadgets"
               class="form-control"
+              minlength="2"
               required />
+            @if (shopNameInput.invalid && (shopNameInput.dirty || shopNameInput.touched || formSubmitted)) {
+              <span class="field-error">Please enter your shop or business name (min 2 characters).</span>
+            }
           </div>
 
           <div class="form-group">
@@ -32,9 +37,14 @@
               type="text"
               [(ngModel)]="form.ownerName"
               name="ownerName"
+              #ownerNameInput="ngModel"
               placeholder="Full name of shop owner"
               class="form-control"
+              minlength="2"
               required />
+            @if (ownerNameInput.invalid && (ownerNameInput.dirty || ownerNameInput.touched || formSubmitted)) {
+              <span class="field-error">Please enter proprietor or owner full name.</span>
+            }
           </div>
         </div>
 
@@ -43,9 +53,14 @@
           <textarea
             [(ngModel)]="form.location"
             name="location"
+            #locInput="ngModel"
             placeholder="Shop No, Complex/Building Name, Street, Landmark, City, State, Pincode"
             class="form-control"
+            minlength="5"
             required></textarea>
+          @if (locInput.invalid && (locInput.dirty || locInput.touched || formSubmitted)) {
+            <span class="field-error">Please provide complete shop location and address (min 5 characters).</span>
+          }
         </div>
 
         <!-- Shop Photo Upload & Presets -->
@@ -82,12 +97,48 @@
                 <span class="preview-badge">Selected Shop Photo</span>
                 <img [src]="photoPreview" alt="Storefront preview" class="preview-img" />
               </div>
+            } @else if (formSubmitted && !form.shopPhoto) {
+              <span class="field-error">Please upload a photo or select a sample storefront image.</span>
             }
           </div>
         </div>
 
         <div class="form-section-tag optional-tag">
-          <span class="dot-section"></span> Optional Additional Details
+          <span class="dot-section"></span> Contact & Business Identifiers
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Contact Phone <span class="required">*</span></label>
+            <input
+              type="tel"
+              [(ngModel)]="form.phone"
+              name="phone"
+              #phoneInput="ngModel"
+              placeholder="10-digit mobile or WhatsApp number"
+              class="form-control"
+              pattern="^[6-9]\d{9}$"
+              required />
+            @if (phoneInput.invalid && (phoneInput.dirty || phoneInput.touched || formSubmitted)) {
+              <span class="field-error">Please enter a valid 10-digit mobile number starting with 6-9.</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Business Email Address <span class="required">*</span></label>
+            <input
+              type="email"
+              [(ngModel)]="form.email"
+              name="email"
+              #emailInput="ngModel"
+              placeholder="Official email for verification, invoices, and login"
+              class="form-control"
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              required />
+            @if (emailInput.invalid && (emailInput.dirty || emailInput.touched || formSubmitted)) {
+              <span class="field-error">Please enter a valid business email address.</span>
+            }
+          </div>
         </div>
 
         <div class="form-row">
@@ -97,41 +148,24 @@
               type="text"
               [(ngModel)]="form.gstNumber"
               name="gstNumber"
+              #gstInput="ngModel"
               placeholder="e.g. 33AAAAA0000A1Z5 (15 digits)"
-              class="form-control" />
+              class="form-control"
+              maxlength="15" />
+            @if (gstInput.value && gstInput.value.length !== 15 && (gstInput.dirty || gstInput.touched || formSubmitted)) {
+              <span class="field-error">GSTIN must be exactly 15 characters long.</span>
+            }
           </div>
 
           <div class="form-group">
-            <label>Contact Phone <span class="required">*</span></label>
+            <label>Additional Notes / Brands Handled</label>
             <input
-              type="tel"
-              [(ngModel)]="form.phone"
-              name="phone"
-              placeholder="10-digit mobile or WhatsApp number"
-              class="form-control"
-              required />
+              type="text"
+              [(ngModel)]="form.additionalNotes"
+              name="additionalNotes"
+              placeholder="e.g., We repair iPhones and need bulk displays & flex cables"
+              class="form-control" />
           </div>
-        </div>
-
-        <div class="form-group">
-          <label>Business Email Address <span class="required">*</span></label>
-          <input
-            type="email"
-            [(ngModel)]="form.email"
-            name="email"
-            placeholder="Official email for verification, invoices, and login"
-            class="form-control"
-            required />
-        </div>
-
-        <div class="form-group">
-          <label>Additional Notes / Brands Handled</label>
-          <input
-            type="text"
-            [(ngModel)]="form.additionalNotes"
-            name="additionalNotes"
-            placeholder="e.g., We repair iPhones and need bulk displays & flex cables"
-            class="form-control" />
         </div>
 
         <button type="submit" class="btn btn-purple btn-lg submit-reg-btn" [disabled]="isSubmitting">

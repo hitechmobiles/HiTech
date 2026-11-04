@@ -87,7 +87,7 @@ export class EmailService {
     const primaryEndpoint = resendConfig.apiEndpoint || '/api/send-email';
     const isLocalhost = typeof window !== 'undefined' &&
       (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-    const cloudEndpoint = 'https://hi-tech-gray.vercel.app/api/send-email';
+    const cloudEndpoint = 'https://hitechmobiles.tech/api/send-email';
 
     // 1. Dispatch via primary endpoint (relative /api/send-email or configured API)
     try {

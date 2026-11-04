@@ -1,13 +1,13 @@
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 9999 !important;
+
+
+
+
+  z-index: 9999;
   height: var(--header-height);
   background: var(--bg-glass-nav);
   backdrop-filter: blur(20px);

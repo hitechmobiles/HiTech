@@ -22,7 +22,7 @@ export class SeoService {
   private readonly defaultTitle = 'HiTech — Premium Mobiles, Accessories & Expert Repair Services';
   private readonly defaultDescription = 'Hi Tech Mobile Sales and Service — Your trusted destination for genuine smartphones, premium accessories, and certified mobile repair services with doorstep pickup in Maniyarampatti, Trichy.';
   private readonly defaultKeywords = 'mobile phones, phone repair Trichy, mobile accessories, screen replacement, battery repair, smartphone store Tamil Nadu, wholesale mobile spares';
-  private readonly baseUrl = 'https://hitech-mobiles.vercel.app';
+  private readonly baseUrl = 'https://hitechmobiles.tech';
 
   /**
    * Updates page metadata, Open Graph, Twitter cards, and canonical link

@@ -31,6 +31,7 @@ export class ServicesComponent implements OnInit {
   isCustomService: boolean = false;
   customIssueTitle: string = '';
   bookingSubmitted: boolean = false;
+  bookingFormSubmitted: boolean = false;
   confirmedBooking: ServiceBookingRequest | null = null;
   isSubmitting: boolean = false;
   isLocating: boolean = false;
@@ -227,6 +228,7 @@ export class ServicesComponent implements OnInit {
 
   async submitBooking(): Promise<void> {
     if (!this.selectedService) return;
+    this.bookingFormSubmitted = true;
 
     if (!this.bookingForm.customerName.trim() || !this.bookingForm.customerPhone.trim() || !this.bookingForm.customerAddress.trim()) {
       this.toastService.show('Please fill in your Name, Phone Number, and Address.', 'warning');
@@ -239,7 +241,16 @@ export class ServicesComponent implements OnInit {
     }
 
     if (!this.bookingForm.pincode.trim() || this.bookingForm.pincode.trim().length !== 6) {
-      this.toastService.show('Please enter a valid 6-digit Pincode to check service delivery eligibility.', 'warning');
+      this.toastService.show('Please enter a valid 6-digit Pincode.', 'warning');
+      return;
+    }
+
+    if (this.bookingForm.customerEmail && this.bookingForm.customerEmail.trim()) {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(this.bookingForm.customerEmail.trim())) {
+        this.toastService.show('Please enter a valid email address.', 'warning');
+        return;
+      }
       return;
     }
 

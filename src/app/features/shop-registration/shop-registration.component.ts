@@ -24,6 +24,7 @@ export class ShopRegistrationComponent {
 
   isSubmitting = false;
   isRegistered = false;
+  formSubmitted = false;
   registeredShop: ShopOwner | null = null;
 
   form: ShopRegistrationForm = {
@@ -65,19 +66,31 @@ export class ShopRegistrationComponent {
   }
 
   async submitRegistration(): Promise<void> {
+    this.formSubmitted = true;
+
     if (!this.form.shopName.trim() || !this.form.ownerName.trim() || !this.form.location.trim() || !this.form.shopPhoto.trim()) {
       this.toastService.show('Shop Name, Owner Name, Location, and Shop Photo are mandatory.', 'warning');
       return;
     }
 
-    if (!this.form.email.trim() || !this.form.email.includes('@')) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!this.form.email.trim() || !emailRegex.test(this.form.email.trim())) {
       this.toastService.show('A valid business email address is required for application review and credential delivery.', 'warning');
       return;
     }
 
-    if (!this.form.phone.trim() || this.form.phone.trim().length < 10) {
-      this.toastService.show('Please provide a valid 10-digit mobile / WhatsApp number.', 'warning');
+    const phoneClean = this.form.phone.trim().replace(/\D/g, '');
+    if (phoneClean.length < 10) {
+      this.toastService.show('Please provide a valid 10-digit mobile or WhatsApp number.', 'warning');
       return;
+    }
+
+    if (this.form.gstNumber && this.form.gstNumber.trim()) {
+      const gstClean = this.form.gstNumber.trim().toUpperCase();
+      if (gstClean.length !== 15) {
+        this.toastService.show('GST number must be 15 characters long if provided.', 'warning');
+        return;
+      }
     }
 
     this.isSubmitting = true;
@@ -96,7 +109,7 @@ export class ShopRegistrationComponent {
       try {
         const isLocalhost = typeof window !== 'undefined' &&
           (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-        const endpoint = isLocalhost ? '/api/register-shop' : 'https://hi-tech-gray.vercel.app/api/register-shop';
+        const endpoint = isLocalhost ? '/api/register-shop' : 'https://hitechmobiles.tech/api/register-shop';
 
         await fetch(endpoint, {
           method: 'POST',

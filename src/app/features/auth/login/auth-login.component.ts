@@ -22,6 +22,7 @@ export class AuthLoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   isSubmitting: boolean = false;
+  loginSubmitted: boolean = false;
   returnUrl: string = '';
 
   ngOnInit(): void {
@@ -40,14 +41,26 @@ export class AuthLoginComponent implements OnInit {
   }
 
   async handleLogin(): Promise<void> {
+    this.loginSubmitted = true;
     if (!this.email.trim() || !this.password.trim()) {
       this.toastService.show('Please enter both email and password.', 'warning');
       return;
     }
 
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(this.email.trim())) {
+      this.toastService.show('Please enter a valid email address.', 'warning');
+      return;
+    }
+
+    if (this.password.trim().length < 6) {
+      this.toastService.show('Password must be at least 6 characters.', 'warning');
+      return;
+    }
+
     this.isSubmitting = true;
     try {
-      const res = await this.authService.login(this.email, this.password);
+      const res = await this.authService.login(this.email.trim(), this.password);
       if (res.success) {
         this.toastService.show(res.message, 'success', 'Login Successful');
         if (this.returnUrl) {

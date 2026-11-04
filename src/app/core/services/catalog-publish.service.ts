@@ -129,7 +129,7 @@ export class CatalogPublishService {
   ): Promise<{ success: boolean; message: string }> {
     const isLocalhost = typeof window !== 'undefined' &&
       (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-    const cloudEndpoint = 'https://hi-tech-gray.vercel.app/api/publish-catalog';
+    const cloudEndpoint = 'https://hitechmobiles.tech/api/publish-catalog';
     const primaryEndpoint = '/api/publish-catalog';
 
     const payload = {

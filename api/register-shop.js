@@ -32,7 +32,7 @@ function generateAdminHtml(vars) {
     <p><strong>Location:</strong> ${vars.location || ''}</p>
     <p><strong>GST:</strong> ${vars.gst_number || 'Not Provided'}</p>
     <p><strong>Date:</strong> ${vars.registration_date || ''}</p>
-    <p><a href="https://hi-tech-gray.vercel.app/admin" style="background:#7c3aed;color:#fff;padding:10px 16px;text-decoration:none;border-radius:6px;display:inline-block;">Open Admin Portal</a></p>
+    <p><a href="https://hitechmobiles.tech/admin" style="background:#7c3aed;color:#fff;padding:10px 16px;text-decoration:none;border-radius:6px;display:inline-block;">Open Admin Portal</a></p>
   </div></body></html>`;
 }
 
@@ -135,7 +135,7 @@ module.exports = async function handler(req, res) {
   // 1. Send Email Notifications via Resend
   const apiKey = process.env.RESEND_API_KEY || '';
   const adminEmail = process.env.RESEND_TO_EMAIL || 'hitechmobilesandservice@gmail.com';
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'HiTech <onboarding@resend.dev>';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'HiTech Mobiles <noreply@hitechmobiles.tech>';
   let adminEmailResult = null;
   let applicantEmailResult = null;
 

@@ -103,7 +103,6 @@
     </div>
   }
 
-
   <!-- Active Filter Badges -->
   @if (selectedBrand !== 'all' || searchQuery || selectedCategory !== 'all') {
     <div class="active-filter-chips">
@@ -155,7 +154,7 @@
             <h4>Request Phone Sourcing & Quotation</h4>
           </div>
 
-          <form (ngSubmit)="submitProductRequest()" class="request-grid-form">
+          <form (ngSubmit)="submitProductRequest()" #sourcingForm="ngForm" class="request-grid-form" autocomplete="off" novalidate>
             <div class="form-row-2">
               <div class="form-group">
                 <label class="form-label">Requested Phone / Model <span class="req">*</span></label>
@@ -163,9 +162,14 @@
                   type="text"
                   [(ngModel)]="requestForm.requestedProduct"
                   name="requestedProduct"
+                  #reqProdInput="ngModel"
                   placeholder="e.g. Vivo X100 Pro, OnePlus 12, iPhone 16 Plus..."
+                  minlength="2"
                   required
                   class="form-input" />
+                @if (reqProdInput.invalid && (reqProdInput.dirty || reqProdInput.touched || requestFormTouched)) {
+                  <span class="field-error">Please specify the phone name or model (min 2 chars).</span>
+                }
               </div>
 
               <div class="form-group">
@@ -186,9 +190,14 @@
                   type="text"
                   [(ngModel)]="requestForm.customerName"
                   name="customerName"
+                  #reqNameInput="ngModel"
                   placeholder="Enter full name"
+                  minlength="2"
                   required
                   class="form-input" />
+                @if (reqNameInput.invalid && (reqNameInput.dirty || reqNameInput.touched || requestFormTouched)) {
+                  <span class="field-error">Please enter your name (min 2 chars).</span>
+                }
               </div>
 
               <div class="form-group">
@@ -197,10 +206,15 @@
                   type="tel"
                   [(ngModel)]="requestForm.customerPhone"
                   name="customerPhone"
+                  #reqPhoneInput="ngModel"
                   placeholder="10-digit mobile number"
+                  pattern="^[6-9]\d{9}$"
                   maxlength="10"
                   required
                   class="form-input" />
+                @if (reqPhoneInput.invalid && (reqPhoneInput.dirty || reqPhoneInput.touched || requestFormTouched)) {
+                  <span class="field-error">Please enter a valid 10-digit mobile number starting with 6-9.</span>
+                }
               </div>
             </div>
 
@@ -210,8 +224,13 @@
                 type="email"
                 [(ngModel)]="requestForm.customerEmail"
                 name="customerEmail"
+                #reqEmailInput="ngModel"
                 placeholder="name@example.com (we'll email you with availability)"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                 class="form-input" />
+              @if (reqEmailInput.invalid && (reqEmailInput.dirty || reqEmailInput.touched)) {
+                <span class="field-error">Please enter a valid email format.</span>
+              }
             </div>
 
             <div class="form-group">

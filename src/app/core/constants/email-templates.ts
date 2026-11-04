@@ -99,7 +99,7 @@ export const ORDER_NOTIFICATION_TEMPLATE_HTML = `<!DOCTYPE html>
           <tr>
             <td style="background-color: #f1f5f9; padding: 22px 30px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6;">
               <p style="margin: 0 0 6px;"><strong>Hi Tech Mobile Sales and Service</strong></p>
-              <p style="margin: 0 0 6px;">Maniyarampatti, Trichy, Tamil Nadu - 621315 &bull; Support: bhuvaneshwaranaj@gmail.com</p>
+              <p style="margin: 0 0 6px;">Maniyarampatti, Trichy, Tamil Nadu - 621315 &bull; Support: hitechmobilesandservice@gmail.com</p>
               <p style="margin: 0; color: #94a3b8;">This is an automated dispatch from the HiTech store console.</p>
             </td>
           </tr>
@@ -206,7 +206,7 @@ export const SERVICE_BOOKING_TEMPLATE_HTML = `<!DOCTYPE html>
           <tr>
             <td style="background-color: #f1f5f9; padding: 22px 30px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6;">
               <p style="margin: 0 0 6px;"><strong>Hi Tech Mobile Sales and Service</strong></p>
-              <p style="margin: 0 0 6px;">Maniyarampatti, Trichy, Tamil Nadu - 621315 &bull; Diagnostic Hotline: bhuvaneshwaranaj@gmail.com</p>
+              <p style="margin: 0 0 6px;">Maniyarampatti, Trichy, Tamil Nadu - 621315 &bull; Diagnostic Hotline: hitechmobilesandservice@gmail.com</p>
               <p style="margin: 0; color: #94a3b8;">This is an automated appointment notification dispatched from the HiTech console.</p>
             </td>
           </tr>

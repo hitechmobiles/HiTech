@@ -461,20 +461,29 @@
           Leave your details below and our inventory team will notify you immediately via WhatsApp/Email when fresh stock arrives at HiTech.
         </p>
 
-        <form (ngSubmit)="submitNotifyRequest()">
+        <form (ngSubmit)="submitNotifyRequest()" #notifyNgForm="ngForm" autocomplete="off" novalidate>
           <div class="m-group">
             <label>Your Name <span class="req">*</span></label>
-            <input type="text" [(ngModel)]="notifyForm.name" name="cName" class="form-control" placeholder="Full Name" required />
+            <input type="text" [(ngModel)]="notifyForm.name" name="cName" #notifyNameInput="ngModel" class="form-control" placeholder="Full Name" minlength="2" required />
+            @if (notifyNameInput.invalid && (notifyNameInput.dirty || notifyNameInput.touched || notifySubmitted)) {
+              <span class="field-error">Please enter your name.</span>
+            }
           </div>
 
           <div class="m-group">
             <label>WhatsApp / Phone Number <span class="req">*</span></label>
-            <input type="tel" [(ngModel)]="notifyForm.phone" name="cPhone" class="form-control" placeholder="10-digit mobile number" required />
+            <input type="tel" [(ngModel)]="notifyForm.phone" name="cPhone" #notifyPhoneInput="ngModel" class="form-control" placeholder="10-digit mobile number" pattern="^[6-9]\d{9}$" required />
+            @if (notifyPhoneInput.invalid && (notifyPhoneInput.dirty || notifyPhoneInput.touched || notifySubmitted)) {
+              <span class="field-error">Please enter a valid 10-digit mobile number.</span>
+            }
           </div>
 
           <div class="m-group">
             <label>Email Address (Optional)</label>
-            <input type="email" [(ngModel)]="notifyForm.email" name="cEmail" class="form-control" placeholder="name@example.com" />
+            <input type="email" [(ngModel)]="notifyForm.email" name="cEmail" #notifyEmailInput="ngModel" class="form-control" placeholder="name@example.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+            @if (notifyEmailInput.invalid && (notifyEmailInput.dirty || notifyEmailInput.touched)) {
+              <span class="field-error">Please enter a valid email format.</span>
+            }
           </div>
 
           <div class="modal-actions">

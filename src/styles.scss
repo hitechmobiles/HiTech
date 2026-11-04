@@ -458,6 +458,24 @@ textarea.form-control {
   min-height: 90px;
 }
 
+.field-error {
+  display: block;
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin-top: 0.35rem;
+  font-weight: 500;
+}
+
+.form-control.ng-invalid.ng-touched {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 0.15rem;
+}
+
 /* Table Design */
 .table-responsive {
   width: 100%;

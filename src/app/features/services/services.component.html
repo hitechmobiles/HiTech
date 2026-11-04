@@ -78,7 +78,7 @@
 
         @if (!bookingSubmitted) {
           <!-- Booking Form -->
-          <form class="booking-form" (ngSubmit)="submitBooking()">
+          <form class="booking-form" (ngSubmit)="submitBooking()" #srvForm="ngForm" autocomplete="off" novalidate>
             @if (isCustomService) {
               <div class="form-group" style="margin-bottom: 1rem;">
                 <label>Custom Repair / Issue Title <span class="required">*</span></label>
@@ -86,9 +86,14 @@
                   type="text"
                   [(ngModel)]="customIssueTitle"
                   name="customIssueTitle"
+                  #customTitleInput="ngModel"
                   placeholder="e.g. Motherboard Short, Audio IC, Face ID Repair, Water Damage"
                   class="form-control"
+                  minlength="3"
                   required />
+                @if (customTitleInput.invalid && (customTitleInput.dirty || customTitleInput.touched || bookingFormSubmitted)) {
+                  <span class="field-error">Please describe the custom issue or repair needed (min 3 chars).</span>
+                }
               </div>
             }
 
@@ -99,9 +104,14 @@
                   type="text"
                   [(ngModel)]="bookingForm.deviceModel"
                   name="deviceModel"
+                  #deviceInput="ngModel"
                   placeholder="e.g., iPhone 14 Pro, Samsung Galaxy S23"
                   class="form-control"
+                  minlength="2"
                   required />
+                @if (deviceInput.invalid && (deviceInput.dirty || deviceInput.touched || bookingFormSubmitted)) {
+                  <span class="field-error">Please specify your phone model (e.g., iPhone 14 Pro).</span>
+                }
               </div>
 
               <div class="form-group">
@@ -154,9 +164,14 @@
                   type="text"
                   [(ngModel)]="bookingForm.customerName"
                   name="customerName"
+                  #cNameInput="ngModel"
                   placeholder="Your full name"
                   class="form-control"
+                  minlength="2"
                   required />
+                @if (cNameInput.invalid && (cNameInput.dirty || cNameInput.touched || bookingFormSubmitted)) {
+                  <span class="field-error">Please enter your full name.</span>
+                }
               </div>
 
               <div class="form-group">
@@ -165,9 +180,14 @@
                   type="tel"
                   [(ngModel)]="bookingForm.customerPhone"
                   name="customerPhone"
+                  #cPhoneInput="ngModel"
                   placeholder="10-digit mobile number"
                   class="form-control"
+                  pattern="^[6-9]\d{9}$"
                   required />
+                @if (cPhoneInput.invalid && (cPhoneInput.dirty || cPhoneInput.touched || bookingFormSubmitted)) {
+                  <span class="field-error">Please enter a valid 10-digit mobile number starting with 6-9.</span>
+                }
               </div>
             </div>
 
@@ -177,8 +197,13 @@
                 type="email"
                 [(ngModel)]="bookingForm.customerEmail"
                 name="customerEmail"
+                #cEmailInput="ngModel"
                 placeholder="you@example.com (for appointment receipt)"
-                class="form-control" />
+                class="form-control"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+              @if (cEmailInput.invalid && (cEmailInput.dirty || cEmailInput.touched)) {
+                <span class="field-error">Please enter a valid email address format.</span>
+              }
             </div>
 
             <div class="form-row">
@@ -189,9 +214,11 @@
                     type="text"
                     [(ngModel)]="bookingForm.pincode"
                     name="pincode"
+                    #cPinInput="ngModel"
                     (input)="onPincodeChange()"
                     placeholder="6-digit pincode"
                     maxlength="6"
+                    pattern="^\d{6}$"
                     class="form-control"
                     required />
                   <button type="button" class="btn btn-secondary btn-sm gps-btn" (click)="useCurrentLocation()" [disabled]="isLocating" title="Use current GPS coordinates" style="display: inline-flex; align-items: center; gap: 0.35rem;">
@@ -203,6 +230,9 @@
                     }
                   </button>
                 </div>
+                @if (cPinInput.invalid && (cPinInput.dirty || cPinInput.touched || bookingFormSubmitted)) {
+                  <span class="field-error">Please enter a valid 6-digit postal pincode.</span>
+                }
               </div>
 
               <div class="form-group">
@@ -228,9 +258,14 @@
                 type="text"
                 [(ngModel)]="bookingForm.customerAddress"
                 name="customerAddress"
+                #cAddrInput="ngModel"
                 placeholder="Door No, Street Name, Area, City"
                 class="form-control"
+                minlength="5"
                 required />
+              @if (cAddrInput.invalid && (cAddrInput.dirty || cAddrInput.touched || bookingFormSubmitted)) {
+                <span class="field-error">Please enter full pickup address (min 5 characters).</span>
+              }
             </div>
 
             <!-- Fulfillment Mode Selector -->

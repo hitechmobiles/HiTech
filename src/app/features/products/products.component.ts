@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit {
   };
   requestSubmitting: boolean = false;
   requestSubmitted: boolean = false;
+  requestFormTouched: boolean = false;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -141,6 +142,8 @@ export class ProductsComponent implements OnInit {
   }
 
   async submitProductRequest(): Promise<void> {
+    this.requestFormTouched = true;
+
     if (!this.requestForm.requestedProduct.trim()) {
       this.toastService.show('Please enter the device name or model you are looking for.', 'warning');
       return;
@@ -149,9 +152,19 @@ export class ProductsComponent implements OnInit {
       this.toastService.show('Please enter your name and contact phone number.', 'warning');
       return;
     }
-    if (this.requestForm.customerPhone.trim().length < 10) {
+
+    const phoneClean = this.requestForm.customerPhone.trim().replace(/\D/g, '');
+    if (phoneClean.length < 10) {
       this.toastService.show('Please enter a valid 10-digit phone number.', 'warning');
       return;
+    }
+
+    if (this.requestForm.customerEmail && this.requestForm.customerEmail.trim()) {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(this.requestForm.customerEmail.trim())) {
+        this.toastService.show('Please enter a valid email address.', 'warning');
+        return;
+      }
     }
 
     this.requestSubmitting = true;

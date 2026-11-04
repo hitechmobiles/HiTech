@@ -34,7 +34,7 @@ function generateCustomerOrderHtml(vars) {
     <hr/><pre style="background:#f8fafc;padding:12px;border-radius:6px;">${vars.items_summary || ''}</pre>
     <h3>Total: ${vars.total_amount || ''}</h3>
     <p><strong>Delivery to:</strong> ${vars.delivery_address || ''}</p>
-    <p style="color:#64748b;font-size:12px;">Support: bhuvaneshwaranaj@gmail.com</p>
+    <p style="color:#64748b;font-size:12px;">Support: hitechmobilesandservice@gmail.com</p>
   </div></body></html>`;
 }
 
@@ -60,7 +60,7 @@ function generateCustomerBookingHtml(vars) {
     <p><strong>Preferred Slot:</strong> ${vars.preferred_slot || ''}</p>
     <p><strong>Mode:</strong> ${vars.fulfillment_mode || ''}</p>
     <p><strong>Estimated Quote:</strong> ${vars.estimated_price || ''}</p>
-    <p style="color:#64748b;font-size:12px;">Our team will contact you at ${vars.customer_phone || ''}. Support: bhuvaneshwaranaj@gmail.com</p>
+    <p style="color:#64748b;font-size:12px;">Our team will contact you at ${vars.customer_phone || ''}. Support: hitechmobilesandservice@gmail.com</p>
   </div></body></html>`;
 }
 
@@ -75,7 +75,7 @@ function generateShopRegistrationAdminHtml(vars) {
     <p><strong>GST:</strong> ${vars.gst_number || 'Not Provided'}</p>
     <p><strong>Date:</strong> ${vars.registration_date || ''}</p>
     <hr/>
-    <p><a href="https://hi-tech-gray.vercel.app/admin" style="background:#7c3aed;color:#fff;padding:10px 16px;text-decoration:none;border-radius:6px;display:inline-block;">Open Admin Portal to Review</a></p>
+    <p><a href="https://hitechmobiles.tech/admin" style="background:#7c3aed;color:#fff;padding:10px 16px;text-decoration:none;border-radius:6px;display:inline-block;">Open Admin Portal to Review</a></p>
   </div></body></html>`;
 }
 
@@ -164,7 +164,7 @@ module.exports = async function handler(req, res) {
 
   const apiKey = process.env.RESEND_API_KEY || '';
   const adminEmail = process.env.RESEND_TO_EMAIL || 'hitechmobilesandservice@gmail.com';
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'HiTech <onboarding@resend.dev>';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'HiTech Mobiles <noreply@hitechmobiles.tech>';
 
   try {
     const { type, recipient, subject, templateParams } = req.body || {};
@@ -177,7 +177,7 @@ module.exports = async function handler(req, res) {
 
     if (!apiKey) {
       console.warn('RESEND_API_KEY is not defined in environment variables. Simulating email dispatch.');
-      console.log(JSON.stringify({ timestamp: new Date().toISOString(), level: 'info', event: 'EMAIL_DISPATCH_SUCCESS', type, adminEmail: targetAdmin }));
+      console.log(JSON.stringify({ timestamp: new Date().toISOString(), level: 'info', event: 'EMAIL_DISPATCH_SIMULATED', type, adminEmail }));
       return res.status(200).json({
         success: true,
         simulated: true,

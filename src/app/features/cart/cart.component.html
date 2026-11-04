@@ -113,16 +113,21 @@
               </div>
             }
 
-            <form (ngSubmit)="placeOrder()">
+            <form (ngSubmit)="placeOrder()" #checkoutForm="ngForm" autocomplete="off" novalidate>
               <div class="form-group">
                 <label>Full Name <span class="required">*</span></label>
                 <input
                   type="text"
                   [(ngModel)]="customerForm.name"
                   name="name"
+                  #nameInput="ngModel"
                   placeholder="Recipient's Name"
                   class="form-control"
+                  minlength="2"
                   required />
+                @if (nameInput.invalid && (nameInput.dirty || nameInput.touched || orderSubmitted)) {
+                  <span class="field-error">Please enter recipient full name (min 2 characters).</span>
+                }
               </div>
 
               <div class="form-group">
@@ -131,9 +136,14 @@
                   type="tel"
                   [(ngModel)]="customerForm.phone"
                   name="phone"
-                  placeholder="10-digit phone for order SMS / call"
+                  #phoneInput="ngModel"
+                  placeholder="10-digit mobile number"
                   class="form-control"
+                  pattern="^[6-9]\d{9}$"
                   required />
+                @if (phoneInput.invalid && (phoneInput.dirty || phoneInput.touched || orderSubmitted)) {
+                  <span class="field-error">Please enter a valid 10-digit mobile number starting with 6-9.</span>
+                }
               </div>
 
               <div class="form-group">
@@ -141,19 +151,31 @@
                 <textarea
                   [(ngModel)]="customerForm.address"
                   name="address"
+                  #addressInput="ngModel"
                   placeholder="House / Flat No, Street, Landmark, Area, City"
                   class="form-control"
+                  minlength="5"
                   required></textarea>
+                @if (addressInput.invalid && (addressInput.dirty || addressInput.touched || orderSubmitted)) {
+                  <span class="field-error">Please provide a complete delivery address (min 5 characters).</span>
+                }
               </div>
 
               <div class="form-group">
-                <label>Pincode / Postal Code</label>
+                <label>Pincode / Postal Code <span class="required">*</span></label>
                 <input
                   type="text"
                   [(ngModel)]="customerForm.pincode"
                   name="pincode"
+                  #pincodeInput="ngModel"
                   placeholder="6-digit Pincode"
-                  class="form-control" />
+                  class="form-control"
+                  pattern="^\d{6}$"
+                  maxlength="6"
+                  required />
+                @if (pincodeInput.invalid && (pincodeInput.dirty || pincodeInput.touched || orderSubmitted)) {
+                  <span class="field-error">Please enter a valid 6-digit postal pincode.</span>
+                }
               </div>
 
               <div class="form-group">
@@ -162,8 +184,13 @@
                   type="email"
                   [(ngModel)]="customerForm.email"
                   name="email"
-                  placeholder="For electronic receipt"
-                  class="form-control" />
+                  #emailInput="ngModel"
+                  placeholder="For electronic order receipt"
+                  class="form-control"
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
+                  <span class="field-error">Please enter a valid email address format.</span>
+                }
               </div>
 
               <button

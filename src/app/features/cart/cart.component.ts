@@ -23,6 +23,7 @@ export class CartComponent {
   private router = inject(Router);
 
   isSubmittingOrder: boolean = false;
+  orderSubmitted: boolean = false;
 
   customerForm: CustomerDetails = {
     name: '',
@@ -91,14 +92,33 @@ export class CartComponent {
   }
 
   async placeOrder(): Promise<void> {
+    this.orderSubmitted = true;
+
     if (!this.customerForm.name.trim() || !this.customerForm.phone.trim() || !this.customerForm.address.trim()) {
-      this.toastService.show('Please fill in Name, Phone Number, and Delivery Address.', 'warning');
+      this.toastService.show('Please fill in Name, Mobile Number, and Delivery Address.', 'warning');
       return;
     }
 
-    if (this.customerForm.phone.trim().length < 10) {
+    const phoneDigits = this.customerForm.phone.trim().replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
       this.toastService.show('Please enter a valid 10-digit mobile number.', 'warning');
       return;
+    }
+
+    if (this.customerForm.pincode && this.customerForm.pincode.trim()) {
+      const pinClean = this.customerForm.pincode.trim();
+      if (!/^\d{6}$/.test(pinClean)) {
+        this.toastService.show('Please enter a valid 6-digit Pincode.', 'warning');
+        return;
+      }
+    }
+
+    if (this.customerForm.email && this.customerForm.email.trim()) {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(this.customerForm.email.trim())) {
+        this.toastService.show('Please enter a valid email address.', 'warning');
+        return;
+      }
     }
 
     this.isSubmittingOrder = true;

@@ -1,4 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { CustomerDetails, Order, OrderItemRecord } from '../models/order.model';
 import { ServiceBookingRequest, ServiceFulfillmentMode } from '../models/service.model';
 import { CartService } from './cart.service';
@@ -6,6 +8,7 @@ import { EmailService } from './email.service';
 import { AuthService } from './auth.service';
 import { CatalogPublishService } from './catalog-publish.service';
 import { LoggerService } from './logger.service';
+import { IndexedDbService } from './indexed-db.service';
 
 const ORDERS_STORAGE_KEY = 'hitech_customer_orders';
 const BOOKINGS_STORAGE_KEY = 'hitech_service_bookings';
@@ -19,9 +22,11 @@ export class OrderService {
   private authService = inject(AuthService);
   private publishService = inject(CatalogPublishService);
   private logger = inject(LoggerService);
+  private idbService = inject(IndexedDbService);
+  private http = inject(HttpClient);
 
-  private _orders = signal<Order[]>(this.loadOrders());
-  private _bookings = signal<ServiceBookingRequest[]>(this.loadBookings());
+  private _orders = signal<Order[]>(this.loadOrdersFromStorage());
+  private _bookings = signal<ServiceBookingRequest[]>(this.loadBookingsFromStorage());
   private _lastPlacedOrder = signal<Order | null>(null);
   private _lastPlacedBooking = signal<ServiceBookingRequest | null>(null);
 
@@ -33,7 +38,98 @@ export class OrderService {
   readonly totalOrdersCount = computed(() => this._orders().length);
   readonly totalBookingsCount = computed(() => this._bookings().length);
 
-  private loadOrders(): Order[] {
+  constructor() {
+    this.initStorageAndSync();
+  }
+
+  /**
+   * Asynchronous initialization:
+   * 1. Loads from IndexedDB
+   * 2. Migrates localStorage items to IndexedDB if needed
+   * 3. Syncs from server ledger (public/data/orders.json and bookings.json)
+   */
+  private async initStorageAndSync(): Promise<void> {
+    try {
+      // 1. Fetch existing from IndexedDB
+      const idbOrders = await this.idbService.getAllOrders();
+      const idbBookings = await this.idbService.getAllBookings();
+
+      // 2. Fetch server ledger from public/data/
+      let serverOrders: Order[] = [];
+      let serverBookings: ServiceBookingRequest[] = [];
+      try {
+        const fetchedOrders = await firstValueFrom(this.http.get<Order[]>('data/orders.json'));
+        if (Array.isArray(fetchedOrders)) serverOrders = fetchedOrders;
+      } catch {
+        // Local or offline
+      }
+      try {
+        const fetchedBookings = await firstValueFrom(this.http.get<ServiceBookingRequest[]>('data/bookings.json'));
+        if (Array.isArray(fetchedBookings)) serverBookings = fetchedBookings;
+      } catch {
+        // Local or offline
+      }
+
+      // 3. Merge: Local signal (which had localStorage) + IndexedDB + Server orders (keyed by id)
+      const mergedOrdersMap = new Map<string, Order>();
+      // Older items from server first
+      for (const ord of serverOrders) {
+        if (ord?.id) mergedOrdersMap.set(ord.id, ord);
+      }
+      // IndexedDB items override
+      for (const ord of idbOrders) {
+        if (ord?.id) mergedOrdersMap.set(ord.id, ord);
+      }
+      // LocalStorage / signal items override
+      for (const ord of this._orders()) {
+        if (ord?.id) mergedOrdersMap.set(ord.id, ord);
+      }
+
+      const mergedOrders = Array.from(mergedOrdersMap.values()).sort((a, b) => {
+        const tA = new Date(a.createdAt || 0).getTime() || 0;
+        const tB = new Date(b.createdAt || 0).getTime() || 0;
+        return tB - tA; // newest first
+      });
+
+      // Same for bookings
+      const mergedBookingsMap = new Map<string, ServiceBookingRequest>();
+      for (const b of serverBookings) {
+        if (b?.id) mergedBookingsMap.set(b.id, b);
+      }
+      for (const b of idbBookings) {
+        if (b?.id) mergedBookingsMap.set(b.id, b);
+      }
+      for (const b of this._bookings()) {
+        if (b?.id) mergedBookingsMap.set(b.id, b);
+      }
+
+      const mergedBookings = Array.from(mergedBookingsMap.values()).sort((a, b) => {
+        const tA = new Date(a.createdAt || 0).getTime() || 0;
+        const tB = new Date(b.createdAt || 0).getTime() || 0;
+        return tB - tA;
+      });
+
+      // Update state and persist to both IndexedDB and localStorage
+      this._orders.set(mergedOrders);
+      this._bookings.set(mergedBookings);
+
+      try {
+        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(mergedOrders));
+        localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(mergedBookings));
+      } catch {
+        // Quota exceeded
+      }
+
+      await this.idbService.saveAllOrders(mergedOrders);
+      await this.idbService.saveAllBookings(mergedBookings);
+
+      this.logger.info('OrderService', `Storage initialized with IndexedDB. Loaded ${mergedOrders.length} orders and ${mergedBookings.length} bookings.`);
+    } catch (err: any) {
+      this.logger.warn('OrderService', `IndexedDB sync fallback to localStorage: ${err?.message}`);
+    }
+  }
+
+  private loadOrdersFromStorage(): Order[] {
     try {
       const saved = localStorage.getItem(ORDERS_STORAGE_KEY);
       return saved ? JSON.parse(saved) : [];
@@ -42,7 +138,7 @@ export class OrderService {
     }
   }
 
-  private loadBookings(): ServiceBookingRequest[] {
+  private loadBookingsFromStorage(): ServiceBookingRequest[] {
     try {
       const saved = localStorage.getItem(BOOKINGS_STORAGE_KEY);
       return saved ? JSON.parse(saved) : [];
@@ -111,12 +207,19 @@ export class OrderService {
     const emailResult = await this.emailService.sendOrderNotification(newOrder);
     newOrder.ownerNotifiedViaEmail = emailResult.success;
 
-    // Save to orders list in signal and localStorage
+    // Save to orders list in signal, localStorage, and IndexedDB
     this._orders.update(list => {
       const updated = [newOrder, ...list];
-      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(updated));
+      try {
+        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // Quota
+      }
       return updated;
     });
+
+    // Asynchronously save to IndexedDB
+    await this.idbService.saveOrder(newOrder);
 
     this._lastPlacedOrder.set(newOrder);
     this.cartService.clearCart();
@@ -127,8 +230,6 @@ export class OrderService {
       itemsCount: newOrder.items.length
     });
 
-    // Note: Automatic pipeline dispatch removed as per midnight 1:00 AM scheduler requirement.
-    // Manual publish via admin dashboard remains available.
     return { success: true, order: newOrder };
   }
 
@@ -197,9 +298,16 @@ export class OrderService {
 
     this._bookings.update(list => {
       const updated = [booking, ...list];
-      localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(updated));
+      try {
+        localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // Quota
+      }
       return updated;
     });
+
+    // Save to IndexedDB
+    await this.idbService.saveBooking(booking);
 
     this._lastPlacedBooking.set(booking);
 
@@ -209,20 +317,20 @@ export class OrderService {
       device: booking.deviceModel
     });
 
-    // Note: Automatic pipeline dispatch removed as per midnight 1:00 AM scheduler requirement.
-    // Manual publish via admin dashboard remains available.
     return { success: true, booking };
   }
 
   updateOrderStatus(orderId: string, status: Order['status'], note?: string, updatedBy: string = 'Admin'): void {
     const timestamp = new Date().toLocaleString();
+    let updatedOrderObj: Order | undefined;
+
     this._orders.update(list => {
       const updated = list.map(ord => {
         if (ord.id === orderId) {
           const currentHistory = ord.statusHistory || [
             { status: ord.status, timestamp: ord.createdAt, note: 'Initial placement' }
           ];
-          return {
+          updatedOrderObj = {
             ...ord,
             status,
             updatedAt: timestamp,
@@ -231,24 +339,36 @@ export class OrderService {
               { status, timestamp, note: note || `Status updated to ${status}`, updatedBy }
             ]
           };
+          return updatedOrderObj;
         }
         return ord;
       });
-      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(updated));
+      try {
+        localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // Quota
+      }
       return updated;
     });
+
+    if (updatedOrderObj) {
+      this.idbService.saveOrder(updatedOrderObj);
+    }
+
     this.logger.info('OrderService', `Order #${orderId} status updated to '${status}'`, { orderId, status, updatedBy });
   }
 
   updateBookingStatus(bookingId: string, status: ServiceBookingRequest['status'], note?: string, updatedBy: string = 'Admin'): void {
     const timestamp = new Date().toLocaleString();
+    let updatedBookingObj: ServiceBookingRequest | undefined;
+
     this._bookings.update(list => {
       const updated = list.map(b => {
         if (b.id === bookingId) {
           const currentHistory = b.statusHistory || [
             { status: b.status, timestamp: b.createdAt, note: 'Initial booking' }
           ];
-          return {
+          updatedBookingObj = {
             ...b,
             status,
             updatedAt: timestamp,
@@ -257,12 +377,22 @@ export class OrderService {
               { status, timestamp, note: note || `Status updated to ${status}`, updatedBy }
             ]
           };
+          return updatedBookingObj;
         }
         return b;
       });
-      localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(updated));
+      try {
+        localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // Quota
+      }
       return updated;
     });
+
+    if (updatedBookingObj) {
+      this.idbService.saveBooking(updatedBookingObj);
+    }
+
     this.logger.info('OrderService', `Repair Booking #${bookingId} status updated to '${status}'`, { bookingId, status, updatedBy });
   }
 
@@ -314,8 +444,13 @@ export class OrderService {
 
     this._orders.set([]);
     this._bookings.set([]);
-    localStorage.removeItem(ORDERS_STORAGE_KEY);
-    localStorage.removeItem(BOOKINGS_STORAGE_KEY);
+    try {
+      localStorage.removeItem(ORDERS_STORAGE_KEY);
+      localStorage.removeItem(BOOKINGS_STORAGE_KEY);
+    } catch {
+      // Ignore
+    }
+    await this.idbService.clearStores();
     this.markBackupYear(new Date().getFullYear());
 
     return {

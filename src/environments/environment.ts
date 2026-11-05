@@ -24,5 +24,8 @@ export const environment = {
     repo: 'HiTech',
     branch: 'develop',
     token: ''
+  },
+  ga: {
+    measurementId: ''  // Leave empty in dev to disable tracking locally
   }
 };

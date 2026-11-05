@@ -24,5 +24,8 @@ export const environment = {
     repo: 'HiTech',
     branch: 'develop',
     token: ''
+  },
+  ga: {
+    measurementId: 'G-9H3SHYWNEV'
   }
 };

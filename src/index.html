@@ -5,7 +5,7 @@
   <title>HiTech — Premium Mobiles, Accessories & Expert Repair Services</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.github.com https://api.resend.com; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.github.com https://api.resend.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-ancestors 'none';">
 
   <!-- Primary SEO Meta Tags -->
   <meta name="description" content="Hi Tech Mobile Sales and Service — Your trusted destination for genuine flagship smartphones, certified mobile screen and battery repair with doorstep pickup in Maniyarampatti, Trichy. B2B wholesale available.">
@@ -54,6 +54,8 @@
   <!-- Google & Browser Resource Hints for Super-Fast Load Speeds -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -145,6 +147,44 @@
           "target": "https://hitechmobiles.tech/products?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://hitechmobiles.tech/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where is HiTech Mobiles located in Trichy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "HiTech Mobiles is located on Maniyarampatti Main Road, Trichy, Tamil Nadu - 621315. We are open 7 days a week from 9:00 AM to 9:30 PM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does HiTech offer doorstep mobile repair in Trichy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! We offer free doorstep pickup and delivery for mobile repairs within a 30km radius of Trichy. All repairs come with a 6-month warranty."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What mobile phone brands does HiTech sell?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We sell genuine smartphones from Apple, Samsung, OnePlus, Vivo, Realme, Redmi, Xiaomi, Motorola, Nothing, POCO, iQOO, Infinix, OPPO, and more. All phones come with manufacturer warranty."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does HiTech offer wholesale pricing for mobile retailers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! We offer B2B wholesale pricing with 10% to 20% bulk discounts for registered mobile retailers. Register your shop on our website to unlock wholesale rates with GST billing."
+            }
+          }
+        ]
       }
     ]
   }

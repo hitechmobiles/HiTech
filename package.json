@@ -8,10 +8,10 @@
     "build:prod": "node scripts/build.js --configuration=production",
     "build:dev": "node scripts/build.js --configuration=development",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "ng lint",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox",
-    "test:coverage": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage"
+    "test": "node scripts/set-env.js && ng test",
+    "lint": "node scripts/set-env.js && ng lint",
+    "test:ci": "node scripts/set-env.js && ng test --watch=false --browsers=ChromeHeadlessNoSandbox",
+    "test:coverage": "node scripts/set-env.js && ng test --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage"
   },
   "private": true,
   "dependencies": {

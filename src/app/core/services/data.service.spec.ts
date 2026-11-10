@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { DataService } from './data.service';
+import { SupabaseService } from './supabase.service';
 import { ProductItem } from '../models/product.model';
 import { ServiceBookingItem } from '../models/service.model';
 import { ShopOwner } from '../models/shop-owner.model';
@@ -80,13 +81,28 @@ describe('DataService', () => {
     }
   ];
 
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear();
+
+    const mockSupabaseService = {
+      getProducts: jasmine.createSpy('getProducts').and.callFake(() => {
+        if (localStorage.getItem('hitech_custom_products')) {
+          return Promise.resolve([]);
+        }
+        return Promise.resolve([...mockProducts, ...mockAccessories]);
+      }),
+      updateProduct: jasmine.createSpy('updateProduct').and.returnValue(Promise.resolve(null)),
+      createProduct: jasmine.createSpy('createProduct').and.returnValue(Promise.resolve(null)),
+      deleteProduct: jasmine.createSpy('deleteProduct').and.returnValue(Promise.resolve(null)),
+      toggleStock: jasmine.createSpy('toggleStock').and.returnValue(Promise.resolve(null)),
+      updateProductPrice: jasmine.createSpy('updateProductPrice').and.returnValue(Promise.resolve(null))
+    };
 
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
+        { provide: SupabaseService, useValue: mockSupabaseService },
         DataService
       ]
     });
@@ -94,12 +110,7 @@ describe('DataService', () => {
     httpMock = TestBed.inject(HttpTestingController);
     service = TestBed.inject(DataService);
 
-    // Flush any constructor HTTP calls
-    const pReq = httpMock.match('data/products.json');
-    pReq.forEach(req => req.flush(mockProducts));
-
-    const aReq = httpMock.match('data/accessories.json');
-    aReq.forEach(req => req.flush(mockAccessories));
+    await service.initData();
 
     const sReq = httpMock.match('data/services.json');
     sReq.forEach(req => req.flush(mockServices));

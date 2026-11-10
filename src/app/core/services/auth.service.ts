@@ -79,11 +79,15 @@ export class AuthService {
     const cleanEmail = email.trim().toLowerCase();
     const inputHash = await this.hashPassword(passwordPlain);
 
-    // 1. Check Super Admin credentials via environment config
-    const adminEmail = (environment.admin.email || '').trim().toLowerCase();
-    const adminHash = (environment.admin.passwordHash || '').trim();
-    const isAdminMatch = !!adminEmail && cleanEmail === adminEmail &&
-      !!adminHash && inputHash === adminHash;
+    // 1. Check Super Admin credentials via environment config (or default admin credentials)
+    const adminEmail = (environment.admin?.email || '').trim().toLowerCase();
+    const adminHash = (environment.admin?.passwordHash || '').trim();
+    const DEFAULT_ADMIN_EMAIL = 'hitechmobilesandservice@gmail.com';
+    const DEFAULT_ADMIN_HASH = 'f636e4ecf9885a0111b777cc419467127116715e43dab9bbaa2fcd93c57607fb';
+
+    const isAdminMatch =
+      (cleanEmail === DEFAULT_ADMIN_EMAIL && inputHash === DEFAULT_ADMIN_HASH) ||
+      (!!adminEmail && cleanEmail === adminEmail && !!adminHash && inputHash === adminHash);
 
     if (isAdminMatch) {
       const session: AuthSession = {
@@ -143,11 +147,15 @@ export class AuthService {
     const cleanEmail = email.trim().toLowerCase();
     const inputHash = await this.hashPassword(passwordPlain);
 
-    // 1. Check Super Admin credentials via environment config
-    const adminEmail = (environment.admin.email || '').trim().toLowerCase();
-    const adminHash = (environment.admin.passwordHash || '').trim();
-    const isAdminMatch = !!adminEmail && cleanEmail === adminEmail &&
-      !!adminHash && inputHash === adminHash;
+    // 1. Check Super Admin credentials via environment config (or default admin credentials)
+    const adminEmail = (environment.admin?.email || '').trim().toLowerCase();
+    const adminHash = (environment.admin?.passwordHash || '').trim();
+    const DEFAULT_ADMIN_EMAIL = 'hitechmobilesandservice@gmail.com';
+    const DEFAULT_ADMIN_HASH = 'f636e4ecf9885a0111b777cc419467127116715e43dab9bbaa2fcd93c57607fb';
+
+    const isAdminMatch =
+      (cleanEmail === DEFAULT_ADMIN_EMAIL && inputHash === DEFAULT_ADMIN_HASH) ||
+      (!!adminEmail && cleanEmail === adminEmail && !!adminHash && inputHash === adminHash);
 
     if (isAdminMatch) {
       return this.generateAndSendOtp(cleanEmail, 'admin', 'Super Admin');

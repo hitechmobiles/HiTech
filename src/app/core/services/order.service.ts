@@ -58,7 +58,7 @@ export class OrderService {
 
       // 2. Fetch server ledger from Supabase PostgreSQL (if online)
       let serverOrders: Order[] = [];
-      let serverBookings: ServiceBookingRequest[] = [];
+      const serverBookings: ServiceBookingRequest[] = [];
       try {
         const supaOrders = await this.supabaseService.getOrders?.();
         if (Array.isArray(supaOrders)) {

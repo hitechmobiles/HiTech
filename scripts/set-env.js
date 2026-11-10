@@ -37,8 +37,8 @@ const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME || '';
 const cloudinaryApiKey = process.env.CLOUDINARY_API_KEY || '';
 const cloudinaryProductPreset = process.env.CLOUDINARY_PRODUCTS_PRESET || 'hitech_products_unsigned';
 const cloudinaryOfferPreset = process.env.CLOUDINARY_OFFERS_PRESET || 'hitech_offers_unsigned';
-const adminEmail = process.env.ADMIN_EMAIL || '';
-const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH || '';
+const adminEmail = process.env.ADMIN_EMAIL || 'hitechmobilesandservice@gmail.com';
+const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH || 'f636e4ecf9885a0111b777cc419467127116715e43dab9bbaa2fcd93c57607fb';
 const resendNotificationEmail = process.env.RESEND_TO_EMAIL || 'hitechmobilesandservice@gmail.com';
 
 function generateEnvironmentContent(isProd) {

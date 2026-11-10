@@ -21,7 +21,7 @@
       <!-- Media Column with Multi-Image Scroll & Progressive Brand Fallback -->
       <div class="media-col glass-card">
         <!-- Main Display Frame with Image Scroll & Brand Silhouette -->
-        <div class="main-image-wrap">
+        <div class="main-image-wrap" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
           <!-- Default Mobile Silhouette Placeholder with Brand Name (Renders while image is loading or fails) -->
           @if (!imageLoaded[selectedImageIndex] || imageFailed[selectedImageIndex]) {
             <div class="brand-device-placeholder detail-placeholder">
@@ -69,6 +69,12 @@
               aria-label="Next photo">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
+
+            <!-- Image Counter Indicator -->
+            <div class="image-counter-pill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>{{ selectedImageIndex + 1 }} / {{ productImages.length }}</span>
+            </div>
           }
 
           <!-- Zoom Lightbox Trigger -->
@@ -77,17 +83,41 @@
           </button>
         </div>
 
-        <!-- Pure Image Scroll Thumbnail Strip (Max 3 Clean Thumbnails, No Text Pills) -->
+        <!-- Pure Image Scroll Thumbnail Strip with Scroll Navigation -->
         @if (productImages.length > 1) {
-          <div class="image-scroll-strip">
-            @for (img of productImages; track $index) {
+          <div class="image-scroll-strip-wrapper">
+            @if (productImages.length > 3) {
               <button
                 type="button"
-                class="thumb-img-btn"
-                [class.active]="selectedImageIndex === $index"
-                (click)="selectImage($index)"
-                [title]="'View image ' + ($index + 1)">
-                <img [src]="img" [alt]="product.name + ' thumb ' + ($index + 1)" class="thumb-img" />
+                class="strip-arrow-btn strip-prev-btn"
+                (click)="scrollThumbStrip('left')"
+                title="Scroll thumbnails left"
+                aria-label="Scroll thumbnails left">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+            }
+
+            <div class="image-scroll-strip" #thumbStrip>
+              @for (img of productImages; track $index) {
+                <button
+                  type="button"
+                  class="thumb-img-btn"
+                  [class.active]="selectedImageIndex === $index"
+                  (click)="selectImage($index)"
+                  [title]="'View image ' + ($index + 1)">
+                  <img [src]="img" [alt]="product.name + ' thumb ' + ($index + 1)" class="thumb-img" />
+                </button>
+              }
+            </div>
+
+            @if (productImages.length > 3) {
+              <button
+                type="button"
+                class="strip-arrow-btn strip-next-btn"
+                (click)="scrollThumbStrip('right')"
+                title="Scroll thumbnails right"
+                aria-label="Scroll thumbnails right">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg>
               </button>
             }
           </div>
@@ -404,6 +434,22 @@
           }
         </div>
       </div>
+    </div>
+  } @else if (!dataService.isLoaded() || dataService.isLoading()) {
+    <app-loading-spinner
+      message="Retrieving device specifications & gallery..."
+      subMessage="Connecting to Supabase PostgreSQL & Cloudinary CDN">
+    </app-loading-spinner>
+  } @else {
+    <div class="product-not-found glass-panel animate-fade-in" style="text-align: center; padding: 4rem 1.5rem; margin-top: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+      <div style="font-size: 3.5rem; margin-bottom: 1rem; filter: drop-shadow(0 0 16px rgba(var(--primary-accent-rgb), 0.4));">📱</div>
+      <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-white);">Device Not Found in Active Catalog</h2>
+      <p style="color: var(--text-secondary); max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6;">
+        The requested smartphone or accessory could not be found in our real-time inventory. It may have been unlisted or moved.
+      </p>
+      <a routerLink="/products" class="btn btn-primary btn-lg">
+        ← Browse Certified Catalog
+      </a>
     </div>
   }
 

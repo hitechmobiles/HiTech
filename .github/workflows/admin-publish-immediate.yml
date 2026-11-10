@@ -30,25 +30,27 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Validate Public Data Catalogs
+      - name: Validate Supabase Production Database Connectivity
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           echo "Triggered by: ${{ github.event.inputs.actor_email }}"
           echo "Reason: ${{ github.event.inputs.trigger_reason }}"
           node -e "
-            const fs = require('fs');
-            const files = ['products.json', 'accessories.json', 'services.json', 'shop-owners.json', 'orders.json', 'bookings.json'];
-            for (const f of files) {
-              const p = 'public/data/' + f;
-              if (fs.existsSync(p)) {
-                try {
-                  const data = JSON.parse(fs.readFileSync(p, 'utf8'));
-                  console.log('✓ ' + f + ' validated (' + (Array.isArray(data) ? data.length + ' items' : 'object') + ')');
-                } catch (err) {
-                  console.error('✗ ' + f + ' JSON syntax error:', err.message);
-                  process.exit(1);
-                }
-              }
+            const { createClient } = require('@supabase/supabase-js');
+            if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
+              console.log('Notice: SUPABASE_URL or SUPABASE_ANON_KEY not set in GitHub Secrets. Skipping DB check.');
+              process.exit(0);
             }
+            const client = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+            client.from('products').select('id', { count: 'exact', head: true }).then(res => {
+              if (res.error) {
+                console.error('Supabase connectivity error:', res.error.message);
+                process.exit(1);
+              }
+              console.log('✓ Supabase connection verified (' + res.count + ' products active).');
+            });
           "
 
       - name: Production Build Validation

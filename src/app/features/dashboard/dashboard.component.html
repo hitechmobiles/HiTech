@@ -217,11 +217,18 @@
       </div>
     </div>
 
-    <div class="products-grid">
-      @for (item of displayedProducts; track item.id) {
-        <app-product-card [product]="item"></app-product-card>
-      }
-    </div>
+    @if (!dataService.isLoaded() || dataService.isLoading()) {
+      <app-loading-spinner
+        message="Loading trending smartphones & accessories..."
+        subMessage="Synchronizing live inventory from Supabase PostgreSQL & Cloudinary CDN">
+      </app-loading-spinner>
+    } @else {
+      <div class="products-grid animate-fade-in">
+        @for (item of displayedProducts; track item.id) {
+          <app-product-card [product]="item"></app-product-card>
+        }
+      </div>
+    }
 
     <div class="view-more-center">
       <a routerLink="/products" class="btn btn-outline btn-lg">

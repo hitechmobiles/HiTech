@@ -4,12 +4,13 @@ import { RouterModule, Router } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { ServiceCardComponent } from '../../shared/components/service-card/service-card.component';
+import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner/loading-spinner.component';
 import { ServiceBookingItem } from '../../core/models/service.model';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductCardComponent, ServiceCardComponent],
+  imports: [CommonModule, RouterModule, ProductCardComponent, ServiceCardComponent, LoadingSpinnerComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

@@ -42,5 +42,11 @@ Thumbs.db
 # Environment variables
 .env
 .env.*
+!.env.example
+
+# Generated Angular environment files (created dynamically at build time by scripts/set-env.js)
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
 
 

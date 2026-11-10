@@ -24,7 +24,11 @@ console.log(`Target Angular Configuration: ${configuration}`);
 console.log(`========================================`);
 
 try {
-  // Execute Angular build with chosen configuration
+  // 1. Run dynamic environment generator to inject env vars into Angular
+  const setEnvScript = path.join(__dirname, 'set-env.js');
+  execSync(`node "${setEnvScript}"`, { stdio: 'inherit' });
+
+  // 2. Execute Angular build with chosen configuration
   const buildCmd = `npx ng build --configuration ${configuration}`;
   console.log(`Running: ${buildCmd}`);
   execSync(buildCmd, { stdio: 'inherit' });

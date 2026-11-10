@@ -10,6 +10,8 @@ import { EmailService } from '../../core/services/email.service';
 import { CatalogPublishService, GithubPublishConfig } from '../../core/services/catalog-publish.service';
 import { DistanceService, HubConfig } from '../../core/services/distance.service';
 import { LoggerService } from '../../core/services/logger.service';
+import { SupabaseService, OfferRecord } from '../../core/services/supabase.service';
+import { CloudinaryService } from '../../core/services/cloudinary.service';
 import { ProductItem, ProductSpecs } from '../../core/models/product.model';
 import { ServiceBookingItem, ServiceBookingRequest } from '../../core/models/service.model';
 import { ShopOwner } from '../../core/models/shop-owner.model';
@@ -32,8 +34,10 @@ export class AdminDashboardComponent implements OnInit {
   publishService = inject(CatalogPublishService);
   distanceService = inject(DistanceService);
   loggerService = inject(LoggerService);
+  supabaseService = inject(SupabaseService);
+  cloudinaryService = inject(CloudinaryService);
 
-  activeTab: 'products' | 'pricing' | 'owners' | 'orders' | 'settings' = 'products';
+  activeTab: 'products' | 'pricing' | 'owners' | 'orders' | 'offers' | 'settings' = 'products';
   pricingCategoryTab: 'phones' | 'accessories' | 'services' = 'phones';
   searchQuery: string = '';
   ownerFilter: 'all' | 'pending' | 'active' | 'suspended' = 'all';
@@ -43,6 +47,7 @@ export class AdminDashboardComponent implements OnInit {
   // --- Product Add / Edit Modal State ---
   showProductModal: boolean = false;
   isEditingProduct: boolean = false;
+  isUploadingCloudinaryImage: boolean = false;
   productForm = {
     id: '',
     name: '',
@@ -51,17 +56,47 @@ export class AdminDashboardComponent implements OnInit {
     subCategory: 'Smartphones',
     price: 0,
     ownerPrice: 0,
+    originalPrice: 0,
+    stockQuantity: 25,
     image: '',
+    images: [] as string[],
+    newGalleryUrl: '',
     description: '',
     isFeatured: false,
     inStock: true,
+    rating: 4.8,
+    reviewsCount: 1,
     ram: '',
     storage: '',
     display: '',
     battery: '',
     camera: '',
+    processor: '',
+    os: '',
+    warranty: '1 Year Brand Warranty',
     compatibleWith: ''
   };
+
+  // --- Offers & Promotional Video Ads State ---
+  offersList: OfferRecord[] = [];
+  isLoadingOffers: boolean = false;
+  showOfferModal: boolean = false;
+  isEditingOffer: boolean = false;
+  isUploadingOfferVideo: boolean = false;
+  offerForm = {
+    id: '',
+    title: '',
+    description: '',
+    video_url: '',
+    poster_url: '',
+    target_url: '/products',
+    start_at: '',
+    end_at: '',
+    is_active: true
+  };
+
+  // Live Supabase DB Health Stats
+  supabaseStats: any = null;
 
   // Quick Price Edit Modal
   editingProduct: ProductItem | null = null;
@@ -160,6 +195,27 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     this.loadNotifyRequests();
+    this.loadSupabaseStats();
+    this.loadOffers();
+  }
+
+  async loadSupabaseStats(): Promise<void> {
+    try {
+      this.supabaseStats = await this.supabaseService.getDbStatus();
+    } catch {
+      this.supabaseStats = null;
+    }
+  }
+
+  async loadOffers(): Promise<void> {
+    this.isLoadingOffers = true;
+    try {
+      this.offersList = await this.supabaseService.getActiveOffers();
+    } catch (err: any) {
+      this.loggerService.warn('AdminDashboard', 'Offers load error: ' + (err?.message || err));
+    } finally {
+      this.isLoadingOffers = false;
+    }
   }
 
   loadNotifyRequests(): void {
@@ -178,13 +234,19 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  setTab(tab: 'products' | 'pricing' | 'owners' | 'orders' | 'settings'): void {
+  setTab(tab: 'products' | 'pricing' | 'owners' | 'orders' | 'offers' | 'settings'): void {
     this.activeTab = tab;
     if (tab === 'orders') {
       this.loadNotifyRequests();
     }
     if (tab === 'owners') {
       this.refreshShopOwnersList();
+    }
+    if (tab === 'offers') {
+      this.loadOffers();
+    }
+    if (tab === 'settings') {
+      this.loadSupabaseStats();
     }
   }
 
@@ -229,15 +291,24 @@ export class AdminDashboardComponent implements OnInit {
       subCategory: 'Smartphones',
       price: 0,
       ownerPrice: 0,
+      originalPrice: 0,
+      stockQuantity: 25,
       image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80',
+      images: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80'],
+      newGalleryUrl: '',
       description: '',
       isFeatured: false,
       inStock: true,
+      rating: 4.8,
+      reviewsCount: 1,
       ram: '8 GB',
       storage: '128 GB',
       display: '6.1-inch OLED 120Hz',
       battery: '4500 mAh',
       camera: '50MP + 12MP',
+      processor: 'Snapdragon 8 Gen / A-Series',
+      os: 'Android 15 / iOS 18',
+      warranty: '1 Year Brand Warranty',
       compatibleWith: ''
     };
     this.showProductModal = true;
@@ -245,6 +316,10 @@ export class AdminDashboardComponent implements OnInit {
 
   openEditProductFull(product: ProductItem): void {
     this.isEditingProduct = true;
+    const gallery = product.images && product.images.length > 0
+      ? [...product.images]
+      : (product.image ? [product.image] : []);
+
     this.productForm = {
       id: product.id,
       name: product.name,
@@ -253,15 +328,24 @@ export class AdminDashboardComponent implements OnInit {
       subCategory: product.subCategory,
       price: product.price,
       ownerPrice: product.ownerPrice || Math.round(product.price * 0.85),
+      originalPrice: product.originalPrice || Math.round(product.price * 1.10),
+      stockQuantity: product.inStock ? 25 : 0,
       image: product.image,
+      images: gallery,
+      newGalleryUrl: '',
       description: product.description || '',
       isFeatured: !!product.isFeatured,
       inStock: product.inStock,
+      rating: product.rating || 4.8,
+      reviewsCount: product.reviewsCount || 0,
       ram: product.specs?.ram || '',
       storage: product.specs?.storage || '',
       display: product.specs?.display || '',
       battery: product.specs?.battery || '',
       camera: product.specs?.camera || '',
+      processor: product.specs?.processor || '',
+      os: product.specs?.os || '',
+      warranty: product.specs?.warranty || '1 Year Brand Warranty',
       compatibleWith: product.compatibleWith || ''
     };
     this.showProductModal = true;
@@ -279,6 +363,59 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
+  async onCloudinaryFileSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    this.isUploadingCloudinaryImage = true;
+    try {
+      for (let i = 0; i < input.files.length; i++) {
+        const file = input.files[i];
+        const res = await this.cloudinaryService.uploadImage(file);
+        if (res && res.secure_url) {
+          if (!this.productForm.image) {
+            this.productForm.image = res.secure_url;
+          }
+          if (!this.productForm.images.includes(res.secure_url)) {
+            this.productForm.images.push(res.secure_url);
+          }
+          this.toastService.show(`Uploaded ${file.name} to Cloudinary!`, 'success');
+        }
+      }
+    } catch (e: any) {
+      this.toastService.show('Cloudinary upload failed: ' + (e?.message || e), 'danger');
+    } finally {
+      this.isUploadingCloudinaryImage = false;
+      input.value = '';
+    }
+  }
+
+  addGalleryUrl(): void {
+    if (this.productForm.newGalleryUrl && this.productForm.newGalleryUrl.trim()) {
+      const url = this.productForm.newGalleryUrl.trim();
+      if (!this.productForm.images.includes(url)) {
+        this.productForm.images.push(url);
+        if (!this.productForm.image) {
+          this.productForm.image = url;
+        }
+      }
+      this.productForm.newGalleryUrl = '';
+    }
+  }
+
+  removeGalleryImage(index: number): void {
+    const removed = this.productForm.images.splice(index, 1);
+    if (this.productForm.images.length > 0 && !this.productForm.images.includes(this.productForm.image)) {
+      this.productForm.image = this.productForm.images[0];
+    }
+    this.toastService.show('Gallery image removed', 'info');
+  }
+
+  setPrimaryImage(url: string): void {
+    this.productForm.image = url;
+    this.toastService.show('Set as primary thumbnail', 'info');
+  }
+
   saveProductForm(): void {
     if (!this.productForm.name.trim() || !this.productForm.brand.trim() || this.productForm.price <= 0) {
       this.toastService.show('Please provide a valid Product Name, Brand, and Price.', 'warning');
@@ -286,7 +423,7 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     if (!this.productForm.image.trim()) {
-      this.toastService.show('Please provide an image URL.', 'warning');
+      this.toastService.show('Please provide a primary image URL or upload via Cloudinary.', 'warning');
       return;
     }
 
@@ -297,12 +434,27 @@ export class AdminDashboardComponent implements OnInit {
         storage: this.productForm.storage,
         display: this.productForm.display,
         battery: this.productForm.battery,
-        camera: this.productForm.camera
+        camera: this.productForm.camera,
+        processor: this.productForm.processor,
+        os: this.productForm.os,
+        warranty: this.productForm.warranty
+      };
+    } else {
+      specs = {
+        warranty: this.productForm.warranty
       };
     }
 
-    const calculatedOriginalPrice = Math.round(this.productForm.price * 1.10);
-    const resolvedOwnerPrice = this.productForm.ownerPrice > 0 ? this.productForm.ownerPrice : Math.round(this.productForm.price * 0.85);
+    const calculatedOriginalPrice = this.productForm.originalPrice > 0
+      ? this.productForm.originalPrice
+      : Math.round(this.productForm.price * 1.10);
+    const resolvedOwnerPrice = this.productForm.ownerPrice > 0
+      ? this.productForm.ownerPrice
+      : Math.round(this.productForm.price * 0.85);
+
+    const gallery = this.productForm.images.length > 0
+      ? this.productForm.images
+      : [this.productForm.image];
 
     if (this.isEditingProduct) {
       const updatedItem: ProductItem = {
@@ -311,12 +463,13 @@ export class AdminDashboardComponent implements OnInit {
         brand: this.productForm.brand,
         category: this.productForm.category,
         subCategory: this.productForm.subCategory,
-        price: this.productForm.price,
+        price: Number(this.productForm.price),
         ownerPrice: resolvedOwnerPrice,
         originalPrice: calculatedOriginalPrice,
-        rating: 4.5,
-        reviewsCount: 0,
+        rating: Number(this.productForm.rating || 4.8),
+        reviewsCount: Number(this.productForm.reviewsCount || 0),
         image: this.productForm.image,
+        images: gallery,
         description: this.productForm.description,
         isFeatured: this.productForm.isFeatured,
         inStock: this.productForm.inStock,
@@ -324,6 +477,11 @@ export class AdminDashboardComponent implements OnInit {
         compatibleWith: this.productForm.compatibleWith
       };
       this.dataService.updateProduct(updatedItem);
+      this.supabaseService.upsertProduct(updatedItem, gallery).then(() => {
+        this.toastService.show('Synchronized live to Supabase PostgreSQL!', 'info');
+      }).catch(e => {
+        this.loggerService.warn('AdminDashboard', 'Supabase async sync notice: ' + (e?.message || e));
+      });
       this.toastService.show(`${updatedItem.name} updated successfully!`, 'success', 'Product Updated');
     } else {
       const created = this.dataService.addProduct({
@@ -331,22 +489,135 @@ export class AdminDashboardComponent implements OnInit {
         brand: this.productForm.brand,
         category: this.productForm.category,
         subCategory: this.productForm.subCategory,
-        price: this.productForm.price,
+        price: Number(this.productForm.price),
         ownerPrice: resolvedOwnerPrice,
         originalPrice: calculatedOriginalPrice,
-        rating: 4.8,
-        reviewsCount: 1,
+        rating: Number(this.productForm.rating || 4.8),
+        reviewsCount: Number(this.productForm.reviewsCount || 1),
         image: this.productForm.image,
+        images: gallery,
         description: this.productForm.description,
         isFeatured: this.productForm.isFeatured,
         inStock: this.productForm.inStock,
         specs,
         compatibleWith: this.productForm.compatibleWith
       });
+      this.supabaseService.upsertProduct(created, gallery).then(() => {
+        this.toastService.show('Added live to Supabase PostgreSQL!', 'info');
+      }).catch(e => {
+        this.loggerService.warn('AdminDashboard', 'Supabase async sync notice: ' + (e?.message || e));
+      });
       this.toastService.show(`${created.name} added to catalog!`, 'success', 'Product Created');
     }
 
     this.showProductModal = false;
+  }
+
+  // --- Offers & Video Promotions Management ---
+
+  openAddOffer(): void {
+    this.isEditingOffer = false;
+    this.offerForm = {
+      id: '',
+      title: '',
+      description: '',
+      video_url: '',
+      poster_url: '',
+      target_url: '/products',
+      start_at: new Date().toISOString().split('T')[0],
+      end_at: new Date(Date.now() + 30 * 24 * 3600 * 1000).toISOString().split('T')[0],
+      is_active: true
+    };
+    this.showOfferModal = true;
+  }
+
+  openEditOffer(offer: OfferRecord): void {
+    this.isEditingOffer = true;
+    this.offerForm = {
+      id: offer.id,
+      title: offer.title,
+      description: offer.description || '',
+      video_url: offer.video_url,
+      poster_url: offer.poster_url || '',
+      target_url: offer.target_url || '/products',
+      start_at: offer.start_at ? offer.start_at.split('T')[0] : '',
+      end_at: offer.end_at ? offer.end_at.split('T')[0] : '',
+      is_active: offer.is_active
+    };
+    this.showOfferModal = true;
+  }
+
+  closeOfferModal(): void {
+    this.showOfferModal = false;
+  }
+
+  async onOfferVideoSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    this.isUploadingOfferVideo = true;
+    try {
+      const res = await this.cloudinaryService.uploadVideo(file);
+      if (res && res.secure_url) {
+        this.offerForm.video_url = res.secure_url;
+        this.offerForm.poster_url = this.cloudinaryService.getVideoPosterUrl(res.secure_url);
+        this.toastService.show('Promotional video uploaded to Cloudinary!', 'success');
+      }
+    } catch (e: any) {
+      this.toastService.show('Cloudinary video upload failed: ' + (e?.message || e), 'danger');
+    } finally {
+      this.isUploadingOfferVideo = false;
+      input.value = '';
+    }
+  }
+
+  async saveOfferForm(): Promise<void> {
+    if (!this.offerForm.title.trim() || !this.offerForm.video_url.trim()) {
+      this.toastService.show('Please provide offer title and video URL.', 'warning');
+      return;
+    }
+
+    try {
+      await this.supabaseService.upsertOffer({
+        id: this.offerForm.id || undefined,
+        title: this.offerForm.title.trim(),
+        description: this.offerForm.description.trim(),
+        video_url: this.offerForm.video_url.trim(),
+        poster_url: this.offerForm.poster_url.trim(),
+        target_url: this.offerForm.target_url.trim() || '/products',
+        start_at: new Date(this.offerForm.start_at || Date.now()).toISOString(),
+        end_at: new Date(this.offerForm.end_at || Date.now() + 30 * 24 * 3600 * 1000).toISOString(),
+        is_active: this.offerForm.is_active
+      });
+      this.toastService.show('Promotional offer saved to Supabase!', 'success');
+      this.showOfferModal = false;
+      await this.loadOffers();
+    } catch (e: any) {
+      this.toastService.show('Failed to save offer: ' + (e?.message || e), 'danger');
+    }
+  }
+
+  async toggleOfferActive(offer: OfferRecord): Promise<void> {
+    try {
+      const updated = !offer.is_active;
+      await this.supabaseService.upsertOffer({ id: offer.id, is_active: updated });
+      offer.is_active = updated;
+      this.toastService.show(`Offer status set to ${updated ? 'Active' : 'Inactive'}`, 'info');
+    } catch (e: any) {
+      this.toastService.show('Status update failed: ' + (e?.message || e), 'danger');
+    }
+  }
+
+  async deleteOfferItem(offer: OfferRecord): Promise<void> {
+    if (!confirm(`Permanently remove offer "${offer.title}"?`)) return;
+    try {
+      await this.supabaseService.deleteOffer(offer.id);
+      this.offersList = this.offersList.filter(o => o.id !== offer.id);
+      this.toastService.show('Promotional video removed', 'info');
+    } catch (e: any) {
+      this.toastService.show('Delete failed: ' + (e?.message || e), 'danger');
+    }
   }
 
   deleteProductItem(product: ProductItem): void {

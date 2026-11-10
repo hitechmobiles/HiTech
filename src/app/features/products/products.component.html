@@ -129,7 +129,12 @@
   }
 
   <!-- Products Results Grid -->
-  @if (filteredProducts.length > 0) {
+  @if (!dataService.isLoaded() || dataService.isLoading()) {
+    <app-loading-spinner
+      message="Synchronizing certified catalog from cloud..."
+      subMessage="Fetching latest models, live pricing, and verified inventory from Supabase">
+    </app-loading-spinner>
+  } @else if (filteredProducts.length > 0) {
     <div class="products-grid animate-fade-in">
       @for (item of filteredProducts; track item.id) {
         <app-product-card [product]="item"></app-product-card>

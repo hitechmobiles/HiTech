@@ -6,12 +6,13 @@ import { DataService } from '../../core/services/data.service';
 import { EmailService } from '../../core/services/email.service';
 import { ToastService } from '../../core/services/toast.service';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
+import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner/loading-spinner.component';
 import { ProductItem } from '../../core/models/product.model';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, ProductCardComponent],
+  imports: [CommonModule, FormsModule, RouterModule, ProductCardComponent, LoadingSpinnerComponent],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

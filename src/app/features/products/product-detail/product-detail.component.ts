@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
@@ -10,11 +10,12 @@ import { SeoService } from '../../../core/services/seo.service';
 import { EmailService } from '../../../core/services/email.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { ProductItem } from '../../../core/models/product.model';
+import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, LoadingSpinnerComponent],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
@@ -46,6 +47,12 @@ export class ProductDetailComponent implements OnInit {
     phone: '',
     email: ''
   };
+
+  @ViewChild('thumbStrip') thumbStrip?: ElementRef<HTMLDivElement>;
+
+  // Touch swipe support for mobile
+  touchStartX: number = 0;
+  touchEndX: number = 0;
 
   get isOwner(): boolean {
     return this.authService.isShopOwner();
@@ -79,7 +86,7 @@ export class ProductDetailComponent implements OnInit {
 
   get productImages(): string[] {
     if (this.product?.images && this.product.images.length > 0) {
-      return this.product.images.slice(0, 3);
+      return this.product.images;
     }
     return this.product?.image ? [this.product.image] : [];
   }
@@ -115,12 +122,14 @@ export class ProductDetailComponent implements OnInit {
 
   selectImage(idx: number): void {
     this.selectedImageIndex = idx;
+    this.scrollThumbIntoView(idx);
   }
 
   nextImage(): void {
     const total = this.productImages.length;
     if (total > 1) {
       this.selectedImageIndex = (this.selectedImageIndex + 1) % total;
+      this.scrollThumbIntoView(this.selectedImageIndex);
     }
   }
 
@@ -128,6 +137,51 @@ export class ProductDetailComponent implements OnInit {
     const total = this.productImages.length;
     if (total > 1) {
       this.selectedImageIndex = (this.selectedImageIndex - 1 + total) % total;
+      this.scrollThumbIntoView(this.selectedImageIndex);
+    }
+  }
+
+  scrollThumbStrip(direction: 'left' | 'right'): void {
+    if (!this.thumbStrip?.nativeElement) return;
+    const scrollAmount = 180;
+    this.thumbStrip.nativeElement.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+  private scrollThumbIntoView(idx: number): void {
+    if (!this.thumbStrip?.nativeElement) return;
+    const container = this.thumbStrip.nativeElement;
+    const thumbButtons = container.querySelectorAll<HTMLElement>('.thumb-img-btn');
+    const targetThumb = thumbButtons[idx];
+    if (targetThumb) {
+      targetThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
+  onTouchStart(e: TouchEvent): void {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      this.touchStartX = e.changedTouches[0].screenX;
+    }
+  }
+
+  onTouchEnd(e: TouchEvent): void {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      this.touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+    }
+  }
+
+  private handleSwipe(): void {
+    const threshold = 40;
+    const diff = this.touchStartX - this.touchEndX;
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        this.nextImage();
+      } else {
+        this.prevImage();
+      }
     }
   }
 

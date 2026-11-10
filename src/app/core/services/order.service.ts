@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 import { CatalogPublishService } from './catalog-publish.service';
 import { LoggerService } from './logger.service';
 import { IndexedDbService } from './indexed-db.service';
+import { SupabaseService } from './supabase.service';
 
 const ORDERS_STORAGE_KEY = 'hitech_customer_orders';
 const BOOKINGS_STORAGE_KEY = 'hitech_service_bookings';
@@ -24,6 +25,7 @@ export class OrderService {
   private logger = inject(LoggerService);
   private idbService = inject(IndexedDbService);
   private http = inject(HttpClient);
+  private supabaseService = inject(SupabaseService);
 
   private _orders = signal<Order[]>(this.loadOrdersFromStorage());
   private _bookings = signal<ServiceBookingRequest[]>(this.loadBookingsFromStorage());
@@ -54,20 +56,16 @@ export class OrderService {
       const idbOrders = await this.idbService.getAllOrders();
       const idbBookings = await this.idbService.getAllBookings();
 
-      // 2. Fetch server ledger from public/data/
+      // 2. Fetch server ledger from Supabase PostgreSQL (if online)
       let serverOrders: Order[] = [];
       let serverBookings: ServiceBookingRequest[] = [];
       try {
-        const fetchedOrders = await firstValueFrom(this.http.get<Order[]>('data/orders.json'));
-        if (Array.isArray(fetchedOrders)) serverOrders = fetchedOrders;
+        const supaOrders = await this.supabaseService.getOrders?.();
+        if (Array.isArray(supaOrders)) {
+          serverOrders = supaOrders;
+        }
       } catch {
-        // Local or offline
-      }
-      try {
-        const fetchedBookings = await firstValueFrom(this.http.get<ServiceBookingRequest[]>('data/bookings.json'));
-        if (Array.isArray(fetchedBookings)) serverBookings = fetchedBookings;
-      } catch {
-        // Local or offline
+        // Offline or unauthenticated
       }
 
       // 3. Merge: Local signal (which had localStorage) + IndexedDB + Server orders (keyed by id)
@@ -206,6 +204,34 @@ export class OrderService {
     // Dispatch email notification to owner
     const emailResult = await this.emailService.sendOrderNotification(newOrder);
     newOrder.ownerNotifiedViaEmail = emailResult.success;
+
+    // Dispatch to Supabase PostgreSQL ledger
+    try {
+      const supaResult = await this.supabaseService.submitOrder({
+        customerName: customer.name,
+        customerPhone: customer.phone,
+        customerEmail: customer.email,
+        deliveryAddress: customer.address,
+        pincode: customer.pincode,
+        subtotal: this.cartService.subtotal(),
+        deliveryFee: this.cartService.deliveryFee(),
+        discountAmount: this.cartService.discountAmount(),
+        totalAmount: this.cartService.finalTotal(),
+        items: cartItems.map(item => ({
+          productId: item.product.id,
+          name: item.product.name,
+          brand: item.product.brand,
+          price: item.selectedPrice,
+          quantity: item.quantity,
+          thumbnailUrl: item.product.image
+        }))
+      });
+      if (supaResult?.orderNumber) {
+        newOrder.orderNumber = supaResult.orderNumber;
+      }
+    } catch (supaErr: any) {
+      this.logger.warn('OrderService', 'Supabase order ledger sync notice: ' + (supaErr?.message || supaErr));
+    }
 
     // Save to orders list in signal, localStorage, and IndexedDB
     this._orders.update(list => {
@@ -353,6 +379,9 @@ export class OrderService {
 
     if (updatedOrderObj) {
       this.idbService.saveOrder(updatedOrderObj);
+      this.supabaseService.updateOrderStatus(orderId, status).catch(err => {
+        this.logger.warn('OrderService', 'Supabase status sync notice: ' + (err?.message || err));
+      });
     }
 
     this.logger.info('OrderService', `Order #${orderId} status updated to '${status}'`, { orderId, status, updatedBy });

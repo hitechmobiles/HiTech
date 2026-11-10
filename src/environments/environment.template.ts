@@ -1,15 +1,24 @@
 export const environment = {
-  production: true,
+  production: false,
   appName: 'HiTech Mobile & Accessories',
+  supabase: {
+    url: '',
+    anonKey: ''
+  },
+  cloudinary: {
+    cloudName: '',
+    apiKey: '',
+    productPreset: 'hitech_products_unsigned',
+    offerPreset: 'hitech_offers_unsigned'
+  },
   admin: {
-    email: 'hitechmobilesandservice@gmail.com',
-    passwordHash: 'f636e4ecf9885a0111b777cc419467127116715e43dab9bbaa2fcd93c57607fb',
+    email: '',
+    passwordHash: '',
     role: 'admin'
   },
   resend: {
     apiEndpoint: '/api/send-email',
-    apiKey: 're_EBa6bKgi_PdixrfD7A4wwo5aJAAFZaQwc',
-    notificationEmail: 'hitechmobilesandservice@gmail.com'
+    notificationEmail: ''
   },
   otpExpirySeconds: 60,
   hub: {
@@ -26,6 +35,6 @@ export const environment = {
     token: ''
   },
   ga: {
-    measurementId: 'G-9H3SHYWNEV'
+    measurementId: ''
   }
 };

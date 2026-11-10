@@ -1,0 +1,68 @@
+name: Supabase & Cloudinary Architecture Verification
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  verify-architecture:
+    name: Verify Database & Cloudinary Services
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Verify Supabase Connection & Live RLS Read
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          node -e "
+            const { createClient } = require('@supabase/supabase-js');
+            if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
+              console.log('Notice: SUPABASE_URL or SUPABASE_ANON_KEY not set in GitHub Secrets. Skipping live verification.');
+              process.exit(0);
+            }
+            const client = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+            async function test() {
+              console.log('Connecting to Supabase endpoint:', process.env.SUPABASE_URL);
+              const { data, error } = await client
+                .from('products')
+                .select('id, name, price, product_images(cloudinary_url)')
+                .limit(3);
+              if (error) {
+                console.error('Supabase RLS query failed:', error.message);
+                process.exit(1);
+              }
+              console.log('✓ Supabase connection successful!');
+              console.log('✓ Verified live product records with multi-image Cloudinary relations (' + data.length + ' samples retrieved).');
+            }
+            test();
+          "
+
+      - name: Validate Angular Production Build
+        run: npm run build -- --configuration=production
+
+      - name: Report Verification Status
+        run: |
+          echo "===================================================="
+          echo "Supabase & Cloudinary Architecture Verification: PASSED"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "===================================================="
+

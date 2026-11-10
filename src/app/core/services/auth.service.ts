@@ -79,23 +79,25 @@ export class AuthService {
     const cleanEmail = email.trim().toLowerCase();
     const inputHash = await this.hashPassword(passwordPlain);
 
-    // 1. Check Admin credentials
-    const adminEmail = environment.admin.email.toLowerCase();
-    const isAdminMatch = cleanEmail === adminEmail &&
-      inputHash === environment.admin.passwordHash;
+    // 1. Check Super Admin credentials via environment config
+    const adminEmail = (environment.admin.email || '').trim().toLowerCase();
+    const adminHash = (environment.admin.passwordHash || '').trim();
+    const isAdminMatch = !!adminEmail && cleanEmail === adminEmail &&
+      !!adminHash && inputHash === adminHash;
 
     if (isAdminMatch) {
       const session: AuthSession = {
         isAuthenticated: true,
         role: 'admin',
         email: cleanEmail,
-        name: 'Administrator',
+        name: 'Super Administrator',
         loginTime: new Date().toISOString()
       };
       this._session.set(session);
       sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
-      this.logger.info('AuthService', 'Administrator logged in successfully: ' + cleanEmail);
-      return { success: true, message: 'Welcome back, Administrator!', role: 'admin', session };
+      sessionStorage.setItem('hitech_admin_token', inputHash);
+      this.logger.info('AuthService', 'Super Administrator authenticated: ' + cleanEmail);
+      return { success: true, message: 'Welcome back, Super Administrator!', role: 'admin', session };
     }
 
     // 2. Check Shop Owners from DataService
@@ -141,10 +143,11 @@ export class AuthService {
     const cleanEmail = email.trim().toLowerCase();
     const inputHash = await this.hashPassword(passwordPlain);
 
-    // 1. Check Admin credentials
-    const adminEmail = environment.admin.email.toLowerCase();
-    const isAdminMatch = cleanEmail === adminEmail &&
-      inputHash === environment.admin.passwordHash;
+    // 1. Check Super Admin credentials via environment config
+    const adminEmail = (environment.admin.email || '').trim().toLowerCase();
+    const adminHash = (environment.admin.passwordHash || '').trim();
+    const isAdminMatch = !!adminEmail && cleanEmail === adminEmail &&
+      !!adminHash && inputHash === adminHash;
 
     if (isAdminMatch) {
       return this.generateAndSendOtp(cleanEmail, 'admin', 'Super Admin');
@@ -266,12 +269,17 @@ export class AuthService {
     sessionStorage.removeItem(OTP_PENDING_KEY);
   }
 
+  getAdminToken(): string | null {
+    return sessionStorage.getItem('hitech_admin_token') || null;
+  }
+
   logout(): void {
     const session = this._session();
     this.logger.info('AuthService', `User logged out: ${session?.email || 'anonymous'}`);
     this._session.set(null);
     this.clearOtpState();
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    sessionStorage.removeItem('hitech_admin_token');
     this.router.navigate(['/']);
   }
 }

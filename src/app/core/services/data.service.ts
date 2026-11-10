@@ -6,6 +6,7 @@ import { ServiceBookingItem } from '../models/service.model';
 import { ShopOwner, ShopRegistrationForm } from '../models/shop-owner.model';
 import { parseDiscountPercent } from '../utils/wholesale.util';
 import { LoggerService } from './logger.service';
+import { SupabaseService } from './supabase.service';
 
 const STORAGE_KEYS = {
   PRODUCTS: 'hitech_custom_products',
@@ -20,6 +21,7 @@ const STORAGE_KEYS = {
 export class DataService {
   private http = inject(HttpClient);
   private logger = inject(LoggerService);
+  private supabaseService = inject(SupabaseService);
 
   // Reactive state signals
   private _products = signal<ProductItem[]>([]);
@@ -27,6 +29,7 @@ export class DataService {
   private _services = signal<ServiceBookingItem[]>([]);
   private _shopOwners = signal<ShopOwner[]>([]);
   private _isLoaded = signal<boolean>(false);
+  private _isLoading = signal<boolean>(true);
 
   // Readonly public signals
   readonly products = this._products.asReadonly();
@@ -34,6 +37,7 @@ export class DataService {
   readonly services = this._services.asReadonly();
   readonly shopOwners = this._shopOwners.asReadonly();
   readonly isLoaded = this._isLoaded.asReadonly();
+  readonly isLoading = this._isLoading.asReadonly();
 
   // Computed signals
   readonly allProducts = computed(() => [...this._products(), ...this._accessories()]);
@@ -53,26 +57,37 @@ export class DataService {
    */
   async initData(): Promise<void> {
     try {
-      // 1. Load Products
-      const localProducts = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
-      if (localProducts) {
-        this._products.set(JSON.parse(localProducts));
-      } else {
-        this.http.get<ProductItem[]>('data/products.json').subscribe({
-          next: (data) => this._products.set(data),
-          error: (err) => this.logger.error('DataService', 'Failed to load products.json', err)
-        });
+      // 1. Attempt to load live products from Supabase PostgreSQL first
+      let loadedFromSupabase = false;
+      try {
+        const supaProducts = await this.supabaseService.getProducts();
+        if (supaProducts && supaProducts.length > 0) {
+          const phones = supaProducts.filter(p => p.category === 'phone');
+          const accessories = supaProducts.filter(p => p.category === 'accessory');
+          this._products.set(phones);
+          this._accessories.set(accessories);
+          loadedFromSupabase = true;
+          this.logger.info('DataService', `Loaded ${supaProducts.length} live products directly from Supabase`);
+        }
+      } catch (err) {
+        this.logger.warn('DataService', 'Supabase tables not initialized or unseeded yet; falling back to local data');
       }
 
-      // 2. Load Accessories
-      const localAccessories = localStorage.getItem(STORAGE_KEYS.ACCESSORIES);
-      if (localAccessories) {
-        this._accessories.set(JSON.parse(localAccessories));
-      } else {
-        this.http.get<ProductItem[]>('data/accessories.json').subscribe({
-          next: (data) => this._accessories.set(data),
-          error: (err) => this.logger.error('DataService', 'Failed to load accessories.json', err)
-        });
+      // If Supabase was empty or offline, fallback to cached local data
+      if (!loadedFromSupabase) {
+        const localProducts = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
+        if (localProducts) {
+          try {
+            this._products.set(JSON.parse(localProducts));
+          } catch {}
+        }
+
+        const localAccessories = localStorage.getItem(STORAGE_KEYS.ACCESSORIES);
+        if (localAccessories) {
+          try {
+            this._accessories.set(JSON.parse(localAccessories));
+          } catch {}
+        }
       }
 
       // 3. Load Services
@@ -100,10 +115,12 @@ export class DataService {
       }
 
       this._isLoaded.set(true);
+      this._isLoading.set(false);
       this.logger.info('DataService', 'Catalogs initialized successfully');
     } catch (e) {
       this.logger.error('DataService', 'Error during initData', e);
       this._isLoaded.set(true);
+      this._isLoading.set(false);
     }
   }
 
@@ -209,37 +226,57 @@ export class DataService {
       this.persistAccessories(updated);
       return updated;
     });
+    this.supabaseService.deleteProduct(id).catch(err => {
+      this.logger.warn('DataService', 'Supabase delete async notice: ' + (err?.message || err));
+    });
   }
 
   toggleProductAvailability(id: string): void {
+    let newInStock = false;
     const isPhone = this._products().some(p => p.id === id);
     if (isPhone) {
       this._products.update(list => {
-        const updated = list.map(item => item.id === id ? { ...item, inStock: !item.inStock } : item);
+        const updated = list.map(item => {
+          if (item.id === id) {
+            newInStock = !item.inStock;
+            return { ...item, inStock: newInStock };
+          }
+          return item;
+        });
         this.persistProducts(updated);
         return updated;
       });
     } else {
       this._accessories.update(list => {
-        const updated = list.map(item => item.id === id ? { ...item, inStock: !item.inStock } : item);
+        const updated = list.map(item => {
+          if (item.id === id) {
+            newInStock = !item.inStock;
+            return { ...item, inStock: newInStock };
+          }
+          return item;
+        });
         this.persistAccessories(updated);
         return updated;
       });
     }
+    this.supabaseService.toggleStock(id, newInStock).catch(err => {
+      this.logger.warn('DataService', 'Supabase stock toggle async notice: ' + (err?.message || err));
+    });
   }
 
   updateProductPrice(id: string, newPrice: number, newOwnerPrice?: number): void {
     const isPhone = this._products().some(p => p.id === id);
     const calculatedOriginal = Math.round(newPrice * 1.10);
+    const resolvedOwnerPrice = (newOwnerPrice !== undefined && newOwnerPrice > 0)
+      ? newOwnerPrice
+      : Math.round(newPrice * 0.85);
+
     const updater = (item: ProductItem): ProductItem => {
       if (item.id !== id) return item;
-      const ownerPrice = (newOwnerPrice !== undefined && newOwnerPrice > 0)
-        ? newOwnerPrice
-        : (item.ownerPrice || Math.round(newPrice * 0.85));
       return {
         ...item,
         price: newPrice,
-        ownerPrice,
+        ownerPrice: resolvedOwnerPrice,
         originalPrice: calculatedOriginal
       };
     };
@@ -257,6 +294,9 @@ export class DataService {
         return updated;
       });
     }
+    this.supabaseService.updateProductPrice(id, newPrice, resolvedOwnerPrice).catch(err => {
+      this.logger.warn('DataService', 'Supabase price update async notice: ' + (err?.message || err));
+    });
   }
 
   // --- Services Modifiers ---

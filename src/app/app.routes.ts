@@ -66,6 +66,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
+    title: '404 — Page Not Found | HiTech'
   }
 ];

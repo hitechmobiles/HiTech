@@ -1,0 +1,143 @@
+[
+  {
+    "id": "srv-1",
+    "name": "Original OLED & AMOLED Screen Replacement",
+    "category": "Screen Repair",
+    "startingPrice": 1899,
+    "estimatedTime": "45 - 60 Minutes",
+    "warrantyPeriod": "6 Months Warranty",
+    "description": "Premium Grade-A original display replacement with precision touch sensitivity, true-tone calibration and zero dead pixels for all 2021-2026 devices.",
+    "icon": "screen",
+    "isPopular": true,
+    "available": true,
+    "includedPoints": [
+      "OEM Certified Display Assembly",
+      "Free 9H Tempered Glass Screen Guard",
+      "Dust and Water Sealant Re-application",
+      "Doorstep or In-Store Diagnostic"
+    ]
+  },
+  {
+    "id": "srv-2",
+    "name": "High-Capacity Battery Replacement",
+    "category": "Battery",
+    "startingPrice": 1299,
+    "estimatedTime": "30 - 45 Minutes",
+    "warrantyPeriod": "6 Months Warranty",
+    "description": "Restore 100% peak battery health and day-long standby with brand-certified Li-ion replacement battery packs.",
+    "icon": "battery",
+    "isPopular": true,
+    "available": true,
+    "includedPoints": [
+      "Zero-cycle certified cells",
+      "Protection against swelling & overheating",
+      "Battery health indicator sync",
+      "Old battery eco-disposal"
+    ]
+  },
+  {
+    "id": "srv-3",
+    "name": "Water & Liquid Damage Diagnostic & Ultrasonic Clean",
+    "category": "Motherboard",
+    "startingPrice": 999,
+    "estimatedTime": "2 - 4 Hours",
+    "warrantyPeriod": "3 Months Warranty",
+    "description": "Complete chemical wash and ultrasonic motherboard descaling to eliminate circuit corrosion and prevent short circuits.",
+    "icon": "droplet",
+    "isPopular": false,
+    "available": true,
+    "includedPoints": [
+      "Microscopic IC Inspection",
+      "Ultrasonic multi-stage chemical wash",
+      "Component level short-circuit isolation",
+      "No fix, no diagnosis charge policy"
+    ]
+  },
+  {
+    "id": "srv-4",
+    "name": "Charging Port / Type-C & Lightning Flex Repair",
+    "category": "Hardware",
+    "startingPrice": 799,
+    "estimatedTime": "30 Minutes",
+    "warrantyPeriod": "6 Months Warranty",
+    "description": "Fix loose cables, slow charging, heating while charging, and intermittent connection issues.",
+    "icon": "zap",
+    "isPopular": false,
+    "available": true,
+    "includedPoints": [
+      "Original docking flex cable replacement",
+      "Microphone & antenna integrity test",
+      "Fast charging protocol verification"
+    ]
+  },
+  {
+    "id": "srv-5",
+    "name": "Camera Sensor & Lens Glass Replacement",
+    "category": "Camera",
+    "startingPrice": 1499,
+    "estimatedTime": "45 Minutes",
+    "warrantyPeriod": "6 Months Warranty",
+    "description": "Resolve blurry images, focusing motor rattling, cracked sapphire glass covers, and black viewfinder screens.",
+    "icon": "camera",
+    "isPopular": true,
+    "available": true,
+    "includedPoints": [
+      "Original optical sensor modules",
+      "OIS Optical stabilization calibration",
+      "Dust-free clean room assembly"
+    ]
+  },
+  {
+    "id": "srv-6",
+    "name": "OS Bootloop, Software Flash & Data Recovery",
+    "category": "Software",
+    "startingPrice": 599,
+    "estimatedTime": "1 - 2 Hours",
+    "warrantyPeriod": "1 Month Warranty",
+    "description": "Fix stuck logos, bootloops, system update crashes, unlock PIN bypass verification and memory recovery.",
+    "icon": "cpu",
+    "isPopular": false,
+    "available": true,
+    "includedPoints": [
+      "Official OEM firmware flashing",
+      "Safe storage retrieval",
+      "Malware & spyware scanning"
+    ]
+  },
+  {
+    "id": "srv-7",
+    "name": "Laser Back Glass & Titanium/Alloy Housing Restoration",
+    "category": "Hardware",
+    "startingPrice": 1699,
+    "estimatedTime": "60 - 90 Minutes",
+    "warrantyPeriod": "6 Months Warranty",
+    "description": "High-precision computer-guided laser detachment for cracked rear glass without opening internal components on iPhone 12-16 and modern flagships.",
+    "icon": "zap",
+    "isPopular": true,
+    "available": true,
+    "includedPoints": [
+      "Automated cold laser epoxy removal",
+      "Original frosted/matte rear glass panel",
+      "Preserves Qi & MagSafe charging coils",
+      "Factory seal re-adhesion"
+    ]
+  },
+  {
+    "id": "srv-8",
+    "name": "Foldable Screen UTG & Gear Hinge Servicing",
+    "category": "Screen Repair",
+    "startingPrice": 3999,
+    "estimatedTime": "2 - 3 Hours",
+    "warrantyPeriod": "6 Months Warranty",
+    "description": "Specialized service for Galaxy Z Fold/Flip, Razr, and OnePlus Open foldable displays, crease bubbles, and stiff or crunchy hinges.",
+    "icon": "screen",
+    "isPopular": false,
+    "available": true,
+    "includedPoints": [
+      "Ultra-Thin Glass (UTG) protective layer replacement",
+      "Micro-gear hinge cleaning & re-lubrication",
+      "Flex cable ribbon alignment",
+      "Free anti-bubble PET pre-applied protector"
+    ]
+  }
+]

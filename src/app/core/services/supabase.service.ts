@@ -65,14 +65,28 @@ export interface OrderRecordPayload {
   }>;
 }
 
+let cachedSupabaseClient: SupabaseClient | null = null;
+
+function getSharedSupabaseClient(): SupabaseClient {
+  if (!cachedSupabaseClient) {
+    const url = (environment.supabase?.url || '').trim() || 'https://placeholder.supabase.co';
+    const key = (environment.supabase?.anonKey || '').trim() || 'placeholder';
+    cachedSupabaseClient = createClient(url, key, {
+      auth: {
+        persistSession: typeof window !== 'undefined',
+        autoRefreshToken: true,
+        detectSessionInUrl: false
+      }
+    });
+  }
+  return cachedSupabaseClient;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class SupabaseService {
-  private client: SupabaseClient = createClient(
-    environment.supabase.url,
-    environment.supabase.anonKey
-  );
+  private client: SupabaseClient = getSharedSupabaseClient();
 
   // Reactive state signals
   private _currentUser = signal<User | null>(null);
